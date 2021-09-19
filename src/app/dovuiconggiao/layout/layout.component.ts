@@ -1,5 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as $ from 'jquery';
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Component({
   selector: 'app-layout',
@@ -7,14 +8,14 @@ import * as $ from 'jquery';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
-  @ViewChild('container') container: ElementRef | undefined;
 
-  constructor() {
+  constructor(private afs: AngularFirestore) {
   }
 
   ngOnInit(): void {
-
-
+    this.afs.doc<any>('/questions/mk4EgiHwr6Xl6gvkOP7d').get().subscribe((doc) => {
+      console.log(doc.data());
+    });
   }
 
   ngAfterViewInit() {
