@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import * as $ from 'jquery';
-import {FirebaseInit} from "../../firebase/firebase.init";
-import firebase from "firebase/compat";
 
 @Component({
   selector: 'app-upsert-question',

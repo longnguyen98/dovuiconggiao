@@ -9,6 +9,8 @@ import {UpsertQuestionComponent} from './dovuiconggiao/pages/upsert-question/ups
 import {environment} from "../environments/environment";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
