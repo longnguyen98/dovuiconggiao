@@ -9,8 +9,14 @@ import {UpsertQuestionComponent} from './dovuiconggiao/pages/upsert-question/ups
 import {environment} from "../environments/environment";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from "@angular/material/button";
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {TopicSelectComponent} from './dovuiconggiao/components/topic-select/topic-select.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import { QuestionComponent } from './dovuiconggiao/components/question/question.component';
 
 
 @NgModule({
@@ -18,7 +24,9 @@ import {MatButtonModule} from "@angular/material/button";
     AppComponent,
     LayoutComponent,
     LandingComponent,
-    UpsertQuestionComponent
+    UpsertQuestionComponent,
+    TopicSelectComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +35,12 @@ import {MatButtonModule} from "@angular/material/button";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatStepperModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

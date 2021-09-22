@@ -1,0 +1,25 @@
+.option {
+  min-height: 40px;
+  cursor: pointer;
+  background-color: white;
+  transition: transform .2s, background-color .2s;
+}
+
+.option:hover {
+  transform: scale(1.1);
+  box-shadow: 5px 10px 18px rgba(136, 136, 136, 0.29);
+}
+
+.option:active {
+  transform: scale(1.0);
+  background-color: lightgreen;
+}
+
+.p-5 {
+  padding: 50px 200px !important;
+}
+
+.question-img {
+  height: auto;
+  width: 50%;
+}
