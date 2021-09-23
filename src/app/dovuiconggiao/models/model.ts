@@ -4,7 +4,7 @@ export interface Question {
   img: string;
   options: Option[];
   topics: Topic[]
-  author: User;
+  author?: User;
   authorId: string
 }
 

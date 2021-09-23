@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {QuestionsService} from "../../services/questions.service";
 
 @Component({
   selector: 'question',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private questionService: QuestionsService) {
+  }
 
   ngOnInit(): void {
+    this.questionService.addQuestions({authorId: "", content: "zxczxc", id: "", img: "zxczxczxc", options: [], topics: []});
   }
 
 }
