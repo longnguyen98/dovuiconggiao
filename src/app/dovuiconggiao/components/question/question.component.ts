@@ -13,7 +13,7 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.questionService.addQuestions({authorId: "", content: "zxczxc", id: "", img: "zxczxczxc", options: [], topics: []});
+    // this.questionService.addQuestions({authorId: "", content: "zxczxc", id: "", img: "zxczxczxc", options: [], topics: []});
   }
 
 }
