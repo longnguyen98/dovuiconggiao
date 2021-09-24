@@ -34,11 +34,12 @@ export class QuestionComponent implements OnInit {
     // this.questionService.list().then(function (r: QuerySnapshot) {
     //   console.log(r);
     // });
-
+    let list: any[] = [];
     this.questionService.list().then((qs: QuerySnapshot) => {
       qs.forEach((doc) => {
-        console.log(doc.data());
+        list.push(doc.data());
       });
+      console.log(list);
     });
   }
 

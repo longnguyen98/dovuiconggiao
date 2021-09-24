@@ -11,6 +11,5 @@ export class QuestionsService extends CRUDFirestoreService<Question> {
   constructor(private store: AngularFirestore) {
     super(store, COLLECTIONS.QUESTIONS);
   }
-
 }
 
