@@ -1,7 +1,6 @@
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {COLLECTIONS, Question} from "../models/model";
 import {Injectable} from "@angular/core";
-import firebase from "firebase/compat";
 import {CRUDFirestoreService} from "./crud.service";
 
 @Injectable({
