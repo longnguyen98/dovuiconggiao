@@ -9,13 +9,11 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(private afs: AngularFirestore) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.afs.doc<any>('/questions/mk4EgiHwr6Xl6gvkOP7d').get().subscribe((doc) => {
-      console.log(doc.data());
-    });
+
   }
 
   ngAfterViewInit() {

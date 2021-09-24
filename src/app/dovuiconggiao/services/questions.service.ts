@@ -1,21 +1,16 @@
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {Question} from "../models/model";
-import {v4 as uuid} from "uuid";
+import {COLLECTIONS, Question} from "../models/model";
 import {Injectable} from "@angular/core";
+import firebase from "firebase/compat";
+import {CRUDFirestoreService} from "./crud.service";
+
 @Injectable({
   providedIn: 'root',
 })
-export class QuestionsService {
-
-  questionsCollection: any;
-
-  constructor(private firestore: AngularFirestore) {
-    this.questionsCollection = this.firestore.collection<Question>('questions');
+export class QuestionsService extends CRUDFirestoreService<Question> {
+  constructor(private store: AngularFirestore) {
+    super(store, COLLECTIONS.QUESTIONS);
   }
 
-  addQuestions(question: Question): Question {
-    question.id = uuid();
-    this.questionsCollection.add(question);
-    return question;
-  }
 }
+
