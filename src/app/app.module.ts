@@ -18,6 +18,8 @@ import {TopicSelectComponent} from './dovuiconggiao/components/topic-select/topi
 import {MatStepperModule} from '@angular/material/stepper';
 import { QuestionComponent } from './dovuiconggiao/components/question/question.component';
 import { PlayComponent } from './dovuiconggiao/pages/play/play.component';
+import { CKEditorModule } from 'ckeditor4-angular';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { PlayComponent } from './dovuiconggiao/pages/play/play.component';
     MatSelectModule,
     MatInputModule,
     MatStepperModule,
+    CKEditorModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
