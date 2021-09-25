@@ -13,11 +13,11 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    Swal.fire(
-      'Đố vui Công Giáo Hello!',
-      '',
-      'info'
-    );
+    // Swal.fire(
+    //   'Đố vui Công Giáo Hello!',
+    //   '',
+    //   'info'
+    // );
   }
 
 }
