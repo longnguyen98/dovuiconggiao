@@ -17,6 +17,7 @@ import {MatInputModule} from '@angular/material/input';
 import {TopicSelectComponent} from './dovuiconggiao/components/topic-select/topic-select.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { QuestionComponent } from './dovuiconggiao/components/question/question.component';
+import { PlayComponent } from './dovuiconggiao/pages/play/play.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { QuestionComponent } from './dovuiconggiao/components/question/question.
     LandingComponent,
     UpsertQuestionComponent,
     TopicSelectComponent,
-    QuestionComponent
+    QuestionComponent,
+    PlayComponent
   ],
   imports: [
     BrowserModule,

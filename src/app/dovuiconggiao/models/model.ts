@@ -1,5 +1,8 @@
-export interface Question {
+export interface BaseModel {
   id: string;
+}
+
+export interface Question extends BaseModel {
   content: string;
   img: string;
   options: Option[];
@@ -8,16 +11,14 @@ export interface Question {
   authorId: string
 }
 
-export interface Option {
-  id: string;
+export interface Option extends BaseModel {
   content: string;
   img: string;
   correct: boolean;
   questionId: string;
 }
 
-export interface User{
-  id: string;
+export interface User extends BaseModel {
   name0: string;
   name1: string;
   name2: string;
@@ -27,14 +28,12 @@ export interface User{
   email: string;
 }
 
-export interface Topic {
-  id: string;
+export interface Topic extends BaseModel {
   name: string;
   description: string;
 }
 
-export interface Record{
-  id: string;
+export interface Record extends BaseModel {
   topic: Topic;
   topicId: string;
   score: number;
@@ -43,4 +42,8 @@ export interface Record{
   user: User;
   userId: string;
 }
+
+export const COLLECTIONS = {
+  QUESTIONS: 'questions'
+};
 
