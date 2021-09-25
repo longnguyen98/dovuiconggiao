@@ -17,6 +17,8 @@ import {MatInputModule} from '@angular/material/input';
 import {TopicSelectComponent} from './dovuiconggiao/components/topic-select/topic-select.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { QuestionComponent } from './dovuiconggiao/components/question/question.component';
+import { CKEditorModule } from 'ckeditor4-angular';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -40,6 +42,8 @@ import { QuestionComponent } from './dovuiconggiao/components/question/question.
     MatSelectModule,
     MatInputModule,
     MatStepperModule,
+    CKEditorModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
