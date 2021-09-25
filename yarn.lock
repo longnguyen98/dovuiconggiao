@@ -3162,6 +3162,19 @@ cjson@^0.3.1:
   dependencies:
     json-parse-helpfulerror "^1.0.3"
 
+ckeditor4-angular@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/ckeditor4-angular/-/ckeditor4-angular-2.2.2.tgz#94c33823f6262564047b64a36a11336d7017ee44"
+  integrity sha512-myTTh3JGknHfylBfxaqU5ZjEmQVGtj5C6bcvFrhBBQ1MwTlQIO2zHrtYbNc4wudkjVfizDh3jk6DioBLlaISpw==
+  dependencies:
+    ckeditor4-integrations-common "^1.0.0"
+    tslib "^2.0.0"
+
+ckeditor4-integrations-common@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ckeditor4-integrations-common/-/ckeditor4-integrations-common-1.0.0.tgz#a8afc33b94877b4d01362c7c73aa9eec162b2d20"
+  integrity sha512-OAoQT/gYrHkg0qgzf6MS/rndYhq3SScLVQ3rtXQeuCE8ju7nFHg3qZ7WGA2XpFxcZzsMP6hhugXqdel5vbcC3g==
+
 class-utils@^0.3.5:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/class-utils/-/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"

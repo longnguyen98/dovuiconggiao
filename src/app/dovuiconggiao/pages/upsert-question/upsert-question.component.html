@@ -1,71 +1,82 @@
-<div class="container px-4 py-5 question-bg" id="featured-3">
+<div class="container px-4 py-2">
   <h2 class="pb-2 border-bottom">Câu hỏi</h2>
-  <ckeditor ></ckeditor>
+  <ckeditor></ckeditor>
   <div class="row g-4 py-5 row-cols-1 row-cols-lg-4">
-    <div class="feature col">
+    <div class="col">
       <!-- <div class="feature-icon bg-primary bg-success">
         <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"></use></svg>
       </div> -->
       <div>
-        <input class="styled-checkbox" id="checkbox-1" type="checkbox" value="" checked>
-        <label for="checkbox-1">Đúng</label>
+        <mat-slide-toggle  color="primary">
+          Đáp án đúng
+        </mat-slide-toggle>
       </div>
-      <h2>Đáp án A</h2>
       <div class="md-form mb-4 pink-textarea active-pink-textarea-2">
-        <i class="fas fa-angle-double-right prefix"></i>
-        <textarea id="form23" class="form-control" rows="3"></textarea>
+        <mat-form-field class="information col-6" appearance="outline">
+          <i class="fas fa-angle-double-right prefix"></i>
+          <mat-label>Đáp án A</mat-label>
+          <input matInput type="text"/>
+        </mat-form-field>
       </div>
     </div>
-    <div class="feature col">
+    <div class="col">
       <div>
-        <input class="styled-checkbox" id="checkbox-2" type="checkbox" value="" checked>
-        <label for="checkbox-2">Đúng</label>
+        <mat-slide-toggle  color="primary">
+          Đáp án đúng
+        </mat-slide-toggle>
       </div>
-      <h2>Đáp án B</h2>
+
       <div class="md-form mb-4 pink-textarea active-pink-textarea-2">
-        <i class="fas fa-angle-double-right prefix"></i>
-        <textarea id="form23" class="form-control" rows="3"></textarea>
-        <!-- <label for="form23">Material textarea with an always colorful prefix</label> -->
+        <mat-form-field class="information col-6" appearance="outline">
+          <i class="fas fa-angle-double-right prefix"></i>
+          <mat-label>Đáp án B</mat-label>
+          <input matInput type="text"/>
+          <!-- <label for="form23">Material textarea with an always colorful prefix</label> -->
+        </mat-form-field>
       </div>
     </div>
-    <div class="feature col">
+    <div class="col">
       <div>
-        <input class="styled-checkbox" id="checkbox-3" type="checkbox" value="" checked>
-        <label for="checkbox-3">Đúng</label>
+        <mat-slide-toggle checked="true" color="primary">
+          Đáp án đúng
+        </mat-slide-toggle>
       </div>
-      <h2>Đáp án C</h2>
       <div class="md-form mb-4 pink-textarea active-pink-textarea-2">
-        <i class="fas fa-angle-double-right prefix"></i>
-        <textarea id="form23" class="form-control" rows="3"></textarea>
+        <mat-form-field class="information col-6" appearance="outline">
+          <i class="fas fa-angle-double-right prefix"></i>
+          <mat-label>Đáp án C</mat-label>
+          <input matInput type="text"/>
+        </mat-form-field>
       </div>
     </div>
-    <div class="feature col">
+    <div class="col">
       <div>
-        <input class="styled-checkbox" id="checkbox-3" type="checkbox" value="" checked>
-        <label for="checkbox-3">Đúng</label>
+        <mat-slide-toggle  color="primary">
+          Đáp án đúng
+        </mat-slide-toggle>
       </div>
-      <h2>Đáp án C</h2>
       <div class="md-form mb-4 pink-textarea active-pink-textarea-2">
-        <i class="fas fa-angle-double-right prefix"></i>
-        <textarea id="form23" class="form-control" rows="3"></textarea>
+        <mat-form-field class="information col-6" appearance="outline">
+          <i class="fas fa-angle-double-right prefix"></i>
+          <mat-label>Đáp án D</mat-label>
+          <input matInput type="text"/>
+        </mat-form-field>
       </div>
     </div>
   </div>
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Nhập thông tin người đóng góp
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <mat-form-field class="information" appearance="fill">
-      <mat-label>Tên thánh và họ tên</mat-label>
+  <h2 class="pb-2 border-bottom">Bạn có muốn lưu lại thông tin của mình trên câu hỏi này?</h2>
+  <div class="row">
+    <mat-form-field class="col-6" appearance="outline">
+      <mat-label>Tên Thánh, họ và tên</mat-label>
       <input matInput placeholder="Ex. Giuse Nguyễn Văn A" value="">
     </mat-form-field>
-    <p></p>
-    <mat-form-field class="information" appearance="fill">
+    <mat-form-field class="col-6" appearance="outline">
       <mat-label>Giáo xứ</mat-label>
       <input matInput placeholder="Ex. Dĩ An" value="">
     </mat-form-field>
-  </mat-expansion-panel>
-  <button mat-raised-button color="primary">Gửi</button>
+  </div>
+  <div class="d-flex justify-content-end">
+    <button mat-raised-button color="warn" style="width: 200px">Hủy</button>
+    <button mat-raised-button color="primary" style="width: 200px">Gửi</button>
+  </div>
 </div>

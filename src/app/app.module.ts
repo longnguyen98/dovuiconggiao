@@ -20,6 +20,7 @@ import { QuestionComponent } from './dovuiconggiao/components/question/question.
 import { PlayComponent } from './dovuiconggiao/pages/play/play.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatInputModule,
     MatStepperModule,
     CKEditorModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
