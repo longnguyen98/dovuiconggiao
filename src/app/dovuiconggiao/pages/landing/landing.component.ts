@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-landing',
@@ -12,7 +13,11 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    Swal.fire(
+      'Đố vui Công Giáo Hello!',
+      '',
+      'info'
+    );
   }
 
 }
