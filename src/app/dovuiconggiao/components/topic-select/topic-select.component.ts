@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Topic} from "../../models/model";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'topic-select',
@@ -9,6 +10,7 @@ import {Topic} from "../../models/model";
 export class TopicSelectComponent implements OnInit {
 
   topics: Topic[] = [];
+  topicsFormControl = new FormControl();
 
   constructor() {
     this.topics.push({id: '1', name: 'Cựu Ước', description: ''});
@@ -19,6 +21,7 @@ export class TopicSelectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.topicsFormControl.setValue(['1', '3']);
   }
 
 }

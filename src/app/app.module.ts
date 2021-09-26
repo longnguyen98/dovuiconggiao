@@ -21,6 +21,7 @@ import { PlayComponent } from './dovuiconggiao/pages/play/play.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -33,22 +34,23 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     QuestionComponent,
     PlayComponent
   ],
-  imports: [
-    BrowserModule,
-    RouterModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatSelectModule,
-    MatInputModule,
-    MatStepperModule,
-    CKEditorModule,
-    MatExpansionModule,
-    MatSlideToggleModule
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatStepperModule,
+        CKEditorModule,
+        MatExpansionModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

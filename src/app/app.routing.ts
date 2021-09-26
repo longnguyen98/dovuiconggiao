@@ -8,6 +8,7 @@ import {PlayComponent} from "./dovuiconggiao/pages/play/play.component";
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'question', component: UpsertQuestionComponent },
+  { path: 'question/:id', component: UpsertQuestionComponent },
   { path: 'play', component: PlayComponent }
 ];
 

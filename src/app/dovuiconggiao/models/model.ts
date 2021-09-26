@@ -6,7 +6,8 @@ export interface Question extends BaseModel {
   content: string;
   img: string;
   options: Option[];
-  topics: Topic[]
+  topicIds: string[];
+  topics?: Topic[]
   author?: User;
   authorId: string
 }

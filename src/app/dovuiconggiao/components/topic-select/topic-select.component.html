@@ -1,6 +1,6 @@
 <mat-form-field appearance="outline" style="width: 100%">
   <mat-label>Chọn chủ đề</mat-label>
-  <mat-select multiple placeholder="...">
-    <mat-option *ngFor="let topic of topics" [value]="topic.name">{{topic.name}}</mat-option>
+  <mat-select multiple placeholder="..." [formControl]="topicsFormControl">
+    <mat-option *ngFor="let topic of topics" [value]="topic.id">{{topic.name}}</mat-option>
   </mat-select>
 </mat-form-field>
