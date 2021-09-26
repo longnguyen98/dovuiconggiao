@@ -1,61 +1,54 @@
 <div class="container px-4 py-2">
-  <h2 class="pb-2 border-bottom">Câu hỏi</h2>
-  <ckeditor></ckeditor>
-  <div class="row g-4 py-5 row-cols-1 row-cols-lg-4">
-    <div class="col">
-      <!-- <div class="feature-icon bg-primary bg-success">
-        <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"></use></svg>
-      </div> -->
-      <div>
-        <mat-slide-toggle  color="primary">
-          Đáp án đúng
-        </mat-slide-toggle>
-      </div>
-      <div class="md-form mb-4 pink-textarea active-pink-textarea-2">
+  <div class="row mb-4">
+    <div class="col-lg-6 col-sm-12">
+      <h2 class="pb-2 border-bottom">Câu hỏi</h2>
+      <topic-select></topic-select>
+      <ckeditor></ckeditor>
+    </div>
+    <div class="col-lg-6 col-sm-12">
+      <h2 class="pb-2 border-bottom">Các đáp án</h2>
+      <div class="">
+        <div>
+          <mat-slide-toggle color="primary">
+            Đáp án đúng
+          </mat-slide-toggle>
+        </div>
         <mat-form-field class="information col-6" appearance="outline">
           <i class="fas fa-angle-double-right prefix"></i>
           <mat-label>Đáp án A</mat-label>
           <input matInput type="text"/>
         </mat-form-field>
       </div>
-    </div>
-    <div class="col">
-      <div>
-        <mat-slide-toggle  color="primary">
-          Đáp án đúng
-        </mat-slide-toggle>
-      </div>
-
-      <div class="md-form mb-4 pink-textarea active-pink-textarea-2">
+      <div class="">
+        <div>
+          <mat-slide-toggle color="primary">
+            Đáp án đúng
+          </mat-slide-toggle>
+        </div>
         <mat-form-field class="information col-6" appearance="outline">
           <i class="fas fa-angle-double-right prefix"></i>
           <mat-label>Đáp án B</mat-label>
           <input matInput type="text"/>
-          <!-- <label for="form23">Material textarea with an always colorful prefix</label> -->
         </mat-form-field>
       </div>
-    </div>
-    <div class="col">
-      <div>
-        <mat-slide-toggle checked="true" color="primary">
-          Đáp án đúng
-        </mat-slide-toggle>
-      </div>
-      <div class="md-form mb-4 pink-textarea active-pink-textarea-2">
+      <div class="">
+        <div>
+          <mat-slide-toggle checked="true" color="primary">
+            Đáp án đúng
+          </mat-slide-toggle>
+        </div>
         <mat-form-field class="information col-6" appearance="outline">
           <i class="fas fa-angle-double-right prefix"></i>
           <mat-label>Đáp án C</mat-label>
           <input matInput type="text"/>
         </mat-form-field>
       </div>
-    </div>
-    <div class="col">
-      <div>
-        <mat-slide-toggle  color="primary">
-          Đáp án đúng
-        </mat-slide-toggle>
-      </div>
-      <div class="md-form mb-4 pink-textarea active-pink-textarea-2">
+      <div class="">
+        <div>
+          <mat-slide-toggle color="primary">
+            Đáp án đúng
+          </mat-slide-toggle>
+        </div>
         <mat-form-field class="information col-6" appearance="outline">
           <i class="fas fa-angle-double-right prefix"></i>
           <mat-label>Đáp án D</mat-label>
@@ -64,7 +57,8 @@
       </div>
     </div>
   </div>
-  <h2 class="pb-2 border-bottom">Bạn có muốn lưu lại thông tin của mình trên câu hỏi này?</h2>
+  <mat-divider></mat-divider>
+  <h2 class="pb-2 mt-4">Bạn có muốn lưu lại thông tin của mình trên câu hỏi này?</h2>
   <div class="row">
     <mat-form-field class="col-6" appearance="outline">
       <mat-label>Tên Thánh, họ và tên</mat-label>
