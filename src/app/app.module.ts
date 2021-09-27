@@ -16,12 +16,13 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {TopicSelectComponent} from './dovuiconggiao/components/topic-select/topic-select.component';
 import {MatStepperModule} from '@angular/material/stepper';
-import { QuestionComponent } from './dovuiconggiao/components/question/question.component';
-import { PlayComponent } from './dovuiconggiao/pages/play/play.component';
-import { CKEditorModule } from 'ckeditor4-angular';
+import {QuestionComponent} from './dovuiconggiao/components/question/question.component';
+import {PlayComponent} from './dovuiconggiao/pages/play/play.component';
+import {CKEditorModule} from 'ckeditor4-angular';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -34,23 +35,25 @@ import {ReactiveFormsModule} from "@angular/forms";
     QuestionComponent,
     PlayComponent
   ],
-    imports: [
-        BrowserModule,
-        RouterModule,
-        AppRoutingModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatDividerModule,
-        MatSelectModule,
-        MatInputModule,
-        MatStepperModule,
-        CKEditorModule,
-        MatExpansionModule,
-        MatSlideToggleModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    RouterModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatStepperModule,
+    CKEditorModule,
+    MatExpansionModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

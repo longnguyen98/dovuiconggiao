@@ -20,18 +20,19 @@ export interface Option extends BaseModel {
 }
 
 export interface User extends BaseModel {
-  name0: string;
-  name1: string;
-  name2: string;
-  name3: string;
-  location: string;
-  avatar: string;
-  email: string;
+  name0?: string;
+  name1?: string;
+  name2?: string;
+  name3?: string;
+  location?: string;
+  avatar?: string;
+  email?: string;
 }
 
 export interface Topic extends BaseModel {
   name: string;
   description: string;
+  order: number;
 }
 
 export interface Record extends BaseModel {
@@ -45,6 +46,7 @@ export interface Record extends BaseModel {
 }
 
 export const COLLECTIONS = {
-  QUESTIONS: 'questions'
+  QUESTIONS: 'questions',
+  TOPICS: 'topics'
 };
 

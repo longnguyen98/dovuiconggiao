@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Topic} from "../../models/model";
 import {FormControl} from "@angular/forms";
+import {TopicsService} from "../../services/topics.service";
+import firebase from "firebase/compat";
+import QuerySnapshot = firebase.firestore.QuerySnapshot;
 
 @Component({
   selector: 'topic-select',
@@ -11,17 +14,32 @@ export class TopicSelectComponent implements OnInit {
 
   topics: Topic[] = [];
   topicsFormControl = new FormControl();
+  loading = true;
 
-  constructor() {
-    this.topics.push({id: '1', name: 'Cựu Ước', description: ''});
-    this.topics.push({id: '2', name: 'Tân Ước', description: ''});
-    this.topics.push({id: '3', name: 'Giáo Lý', description: ''});
-    this.topics.push({id: '4', name: 'Phụng vụ', description: ''});
-    this.topics.push({id: '5', name: 'Thánh ca', description: ''});
+  constructor(private topicService: TopicsService) {
+    topicService.list().then((qs: QuerySnapshot) => {
+      if (!qs.empty) {
+        let topics: Topic[] = [];
+        qs.forEach(function (doc) {
+          topics.push(<Topic>doc.data());
+        });
+        this.topics = topics.sort(function (a, b) {
+          return a.order - b.order;
+        });
+        this.loading = false;
+      }
+    });
+  }
+
+  getSelectedTopics(): Topic[] {
+    return this.topics.filter((t) => {
+      let ids: string[] = this.topicsFormControl.value;
+      return ids.includes(t.id);
+    });
   }
 
   ngOnInit(): void {
-    this.topicsFormControl.setValue(['1', '3']);
+
   }
 
 }

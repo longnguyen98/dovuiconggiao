@@ -4,7 +4,7 @@
       <topic-select #topicSelectComponent></topic-select>
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Nội dung câu hỏi</mat-label>
-        <textarea matInput rows="20" [value]="question.content"></textarea>
+        <textarea matInput rows="20" [(ngModel)]="question.content"></textarea>
       </mat-form-field>
     </div>
     <div class="col-lg-6 col-sm-12">
@@ -16,7 +16,7 @@
       </div>
       <div *ngFor="let o of question.options; index as i">
         <div>
-          <mat-slide-toggle color="primary" [checked]="o.correct" (change)="correctCheckboxEvent(i)">
+          <mat-slide-toggle color="primary" [checked]="o.correct" [(ngModel)]="question.options[i].correct" (change)="correctCheckboxEvent(i)">
             Đáp án đúng
           </mat-slide-toggle>
         </div>
@@ -24,7 +24,7 @@
           <div class="col-10">
             <mat-form-field class="col-6 w-100" appearance="outline">
               <mat-label>Đáp án {{alphabet[i]}}</mat-label>
-              <input matInput type="text" [value]="o.content"/>
+              <input matInput type="text" [(ngModel)]="question.options[i].content"/>
             </mat-form-field>
           </div>
           <div class="col-2">
@@ -41,16 +41,17 @@
     <div class="row">
       <mat-form-field class="col-6" appearance="outline">
         <mat-label>Tên Thánh, họ và tên</mat-label>
-        <input matInput placeholder="Ex. Giuse Nguyễn Văn A" value="">
+        <input matInput placeholder="Ex. Giuse Nguyễn Văn A" [(ngModel)]="question.author!.name0">
       </mat-form-field>
       <mat-form-field class="col-6" appearance="outline">
         <mat-label>Giáo xứ</mat-label>
-        <input matInput placeholder="Ex. Dĩ An" value="">
+        <input matInput placeholder="Ex. Dĩ An" [(ngModel)]="question.author!.location">
       </mat-form-field>
     </div>
     <div class="d-flex justify-content-end">
-      <button mat-raised-button color="warn" style="width: 200px" routerLink="/">Hủy</button>
-      <button mat-raised-button color="primary" style="width: 200px" (click)="submitQuestion()">Gửi</button>
+      <button mat-raised-button color="warn" style="width: 200px" type="button" routerLink="/">Hủy</button>
+      <button mat-raised-button color="primary" style="width: 200px" type="button" (click)="submitQuestion()">Gửi
+      </button>
     </div>
   </div>
 </div>
