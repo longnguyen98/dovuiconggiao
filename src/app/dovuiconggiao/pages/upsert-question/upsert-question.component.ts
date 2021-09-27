@@ -6,10 +6,8 @@ import {CONSTANTS} from "../../constants/constants";
 import {TopicSelectComponent} from "../../components/topic-select/topic-select.component";
 import Swal from "sweetalert2";
 import {QuestionsService} from "../../services/questions.service";
-import {v4 as uuid} from 'uuid';
 import firebase from "firebase/compat";
-import QuerySnapshot = firebase.firestore.QuerySnapshot;
-import {DocumentSnapshot} from "@angular/fire/compat/firestore";
+import {AngularFirestore, DocumentSnapshot} from "@angular/fire/compat/firestore";
 
 @Component({
   selector: 'app-upsert-question',
@@ -34,26 +32,26 @@ export class UpsertQuestionComponent implements OnInit {
   alphabet = CONSTANTS.alphabet;
 
 
-  constructor(private route: ActivatedRoute, private questionsService: QuestionsService, private router: Router) {
+  constructor(private route: ActivatedRoute, private questionsService: QuestionsService, private router: Router, private afs: AngularFirestore) {
     this.questionId = this.route.snapshot.paramMap.get('id');
     console.log('questionId: ', this.questionId);
   }
 
   ngOnInit(): void {
     //log list question
-    console.log('QUESTIONS LIST');
-    this.questionsService.list().then((qs) => {
-      qs.forEach((doc) => {
-        console.log(doc.data());
-      });
-    });
+    // console.log('QUESTIONS LIST');
+    // this.questionsService.list().then((qs) => {
+    //   qs.forEach((doc) => {
+    //     console.log(doc.data());
+    //   });
+    // });
     if (!this.questionId) {
       for (let i = 0; i < 4; i++) {
         let emptyOption: Option = {content: "", correct: false, id: "", img: "", questionId: ""}
         this.question.options.push(emptyOption);
       }
     } else {
-      this.questionsService.get(this.questionId).then((ds: DocumentSnapshot<Question>) => {
+      this.questionsService.get(this.questionId, (ds:DocumentSnapshot<Question>) => {
         if (ds.exists) {
           this.question = ds.data();
           this.topicSelect?.topicsFormControl.setValue(this.question.topicIds);
@@ -62,7 +60,7 @@ export class UpsertQuestionComponent implements OnInit {
             console.log('Document doesn\'t exist: ' + this.questionId);
           });
         }
-      }).catch((err) => {
+      }, (err: any) => {
         Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
           console.log(err);
         });
@@ -101,17 +99,12 @@ export class UpsertQuestionComponent implements OnInit {
       });
     } else {
       if (!this.questionId) {
-        Swal.fire({
-          title: 'Chờ xíu nha!',
-          html: '<img src="/assets/loading.gif" alt="loading" style="width: 100px;height: auto"/>',
-          showCancelButton: false,
-          showConfirmButton: false
-        });
+        this.showLoading();
         //add Question
-        this.question.id = uuid();
+        this.question.id = this.afs.createId();
         this.question.topicIds = this.topicSelect!.topicsFormControl.value;
         this.question.topics = this.topicSelect!.getSelectedTopics();
-        this.questionsService.createOrUpdate(this.question).then(() => {
+        this.questionsService.create(this.question).then(() => {
           Swal.close();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
             this.router.navigateByUrl('/');
@@ -120,9 +113,32 @@ export class UpsertQuestionComponent implements OnInit {
           Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
             console.log(err);
           });
-        })
+        });
+      } else {
+        this.showLoading();
+        this.question.topicIds = this.topicSelect!.topicsFormControl.value;
+        this.question.topics = this.topicSelect!.getSelectedTopics();
+        this.questionsService.update(this.questionId, this.question, () => {
+          Swal.close();
+          Swal.fire('OK gòi đó!', '', 'success').then(r => {
+            this.router.navigateByUrl('/');
+          });
+        }, (err: any) => {
+          Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
+            console.log(err);
+          });
+        });
       }
     }
+  }
+
+  showLoading(): void {
+    Swal.fire({
+      title: 'Chờ xíu nha!',
+      html: '<img src="/assets/loading.gif" alt="loading" style="width: 100px;height: auto"/>',
+      showCancelButton: false,
+      showConfirmButton: false
+    });
   }
 
 }
