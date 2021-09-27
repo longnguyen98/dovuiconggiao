@@ -11,7 +11,7 @@ import { Question, User } from '../../models/model';
 })
 
 export class AdminComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'question', 'author'];
+  displayedColumns: string[] = ['id', 'content', 'author'];
   dataSource = new MatTableDataSource<Question>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
