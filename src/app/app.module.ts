@@ -23,7 +23,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import { AdminComponent } from './dovuiconggiao/components/admin/admin.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     UpsertQuestionComponent,
     TopicSelectComponent,
     QuestionComponent,
-    PlayComponent
+    PlayComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatSlideToggleModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
