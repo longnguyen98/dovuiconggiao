@@ -22,7 +22,9 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {ReactiveFormsModule} from "@angular/forms";
-
+import { AdminComponent } from './dovuiconggiao/components/admin/admin.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     UpsertQuestionComponent,
     TopicSelectComponent,
     QuestionComponent,
-    PlayComponent
+    PlayComponent,
+    AdminComponent
   ],
     imports: [
         BrowserModule,
@@ -49,7 +52,9 @@ import {ReactiveFormsModule} from "@angular/forms";
         CKEditorModule,
         MatExpansionModule,
         MatSlideToggleModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatTableModule,
+        MatPaginatorModule
     ],
   providers: [],
   bootstrap: [AppComponent]
