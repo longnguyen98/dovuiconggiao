@@ -3,6 +3,7 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { Question, User } from '../../models/model';
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-admin',
@@ -17,6 +18,8 @@ export class AdminComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit() {
+    $('.nav-link.active').removeClass('active');
+    $('.nav-link[page=admin]').addClass('active');
     this.dataSource.paginator = this.paginator;
   }
 }

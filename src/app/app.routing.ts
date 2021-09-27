@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {LandingComponent} from "./dovuiconggiao/pages/landing/landing.component";
 import {UpsertQuestionComponent} from "./dovuiconggiao/pages/upsert-question/upsert-question.component";
 import {PlayComponent} from "./dovuiconggiao/pages/play/play.component";
-import { AdminComponent } from './dovuiconggiao/components/admin/admin.component';
+import { AdminComponent } from './dovuiconggiao/pages/admin/admin.component';
 
 
 const routes: Routes = [

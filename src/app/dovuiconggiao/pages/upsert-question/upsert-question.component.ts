@@ -9,6 +9,7 @@ import {QuestionsService} from "../../services/questions.service";
 import {v4 as uuid} from 'uuid';
 import firebase from "firebase/compat";
 import QuerySnapshot = firebase.firestore.QuerySnapshot;
+import {DocumentSnapshot} from "@angular/fire/compat/firestore";
 
 @Component({
   selector: 'app-upsert-question',
@@ -51,13 +52,27 @@ export class UpsertQuestionComponent implements OnInit {
         let emptyOption: Option = {content: "", correct: false, id: "", img: "", questionId: ""}
         this.question.options.push(emptyOption);
       }
+    } else {
+      this.questionsService.get(this.questionId).then((ds: DocumentSnapshot<Question>) => {
+        if (ds.exists) {
+          this.question = ds.data();
+          this.topicSelect?.topicsFormControl.setValue(this.question.topicIds);
+        } else {
+          Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', '404', 'error').then(r => {
+            console.log('Document doesn\'t exist: ' + this.questionId);
+          });
+        }
+      }).catch((err) => {
+        Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
+          console.log(err);
+        });
+      });
     }
   }
 
   ngAfterViewInit() {
     $('.nav-link.active').removeClass('active');
     $('.nav-link[page=question]').addClass('active');
-
   }
 
   addOption(): void {
@@ -80,13 +95,24 @@ export class UpsertQuestionComponent implements OnInit {
       Swal.fire('Phải có ít nhất 1 đáp án đúng', '', 'error').then(r => {
         //do nothing :))
       });
+    } else if (this.topicSelect?.getSelectedTopics().length === 0) {
+      Swal.fire('Phải có ít nhất 1 chủ đề được chọn', '', 'error').then(r => {
+        //do nothing :))
+      });
     } else {
       if (!this.questionId) {
+        Swal.fire({
+          title: 'Chờ xíu nha!',
+          html: '<img src="/assets/loading.gif" alt="loading" style="width: 100px;height: auto"/>',
+          showCancelButton: false,
+          showConfirmButton: false
+        });
         //add Question
         this.question.id = uuid();
         this.question.topicIds = this.topicSelect!.topicsFormControl.value;
         this.question.topics = this.topicSelect!.getSelectedTopics();
         this.questionsService.createOrUpdate(this.question).then(() => {
+          Swal.close();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
             this.router.navigateByUrl('/');
           });

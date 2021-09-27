@@ -32,6 +32,9 @@ export class TopicSelectComponent implements OnInit {
   }
 
   getSelectedTopics(): Topic[] {
+    if (!this.topicsFormControl.value) {
+      return [];
+    }
     return this.topics.filter((t) => {
       let ids: string[] = this.topicsFormControl.value;
       return ids.includes(t.id);

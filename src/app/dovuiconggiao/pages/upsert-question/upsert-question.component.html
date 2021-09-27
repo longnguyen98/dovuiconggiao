@@ -4,7 +4,7 @@
       <topic-select #topicSelectComponent></topic-select>
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Nội dung câu hỏi</mat-label>
-        <textarea matInput rows="20" [(ngModel)]="question.content"></textarea>
+        <textarea matInput rows="20" [(ngModel)]="question.content" required></textarea>
       </mat-form-field>
     </div>
     <div class="col-lg-6 col-sm-12">
@@ -24,7 +24,7 @@
           <div class="col-10">
             <mat-form-field class="col-6 w-100" appearance="outline">
               <mat-label>Đáp án {{alphabet[i]}}</mat-label>
-              <input matInput type="text" [(ngModel)]="question.options[i].content"/>
+              <input matInput type="text" [(ngModel)]="question.options[i].content" required/>
             </mat-form-field>
           </div>
           <div class="col-2">

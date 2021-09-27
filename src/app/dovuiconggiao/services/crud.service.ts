@@ -1,6 +1,4 @@
-import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/compat/firestore";
-import {Question} from "../models/model";
-import {Observable} from "rxjs";
+import {AngularFirestore, AngularFirestoreCollection, DocumentSnapshot} from "@angular/fire/compat/firestore";
 import firebase from "firebase/compat";
 import QuerySnapshot = firebase.firestore.QuerySnapshot;
 
