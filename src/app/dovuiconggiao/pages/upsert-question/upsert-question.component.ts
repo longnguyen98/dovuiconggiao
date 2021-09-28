@@ -6,7 +6,8 @@ import {CONSTANTS} from "../../constants/constants";
 import {TopicSelectComponent} from "../../components/topic-select/topic-select.component";
 import Swal from "sweetalert2";
 import {QuestionsService} from "../../services/questions.service";
-import {AngularFirestore, DocumentSnapshot} from "@angular/fire/firestore";
+import {DocumentSnapshot} from "@angular/fire/firestore";
+import {AuthenticationComponent} from "../../components/authentication/authentication.component";
 
 @Component({
   selector: 'app-upsert-question',
@@ -31,19 +32,15 @@ export class UpsertQuestionComponent implements OnInit {
   alphabet = CONSTANTS.alphabet;
 
 
-  constructor(private route: ActivatedRoute, private questionsService: QuestionsService, private router: Router, private afs: AngularFirestore) {
+  constructor(private route: ActivatedRoute,
+              private questionsService: QuestionsService,
+              private router: Router,
+              private auth: AuthenticationComponent) {
     this.questionId = this.route.snapshot.paramMap.get('id');
     console.log('questionId: ', this.questionId);
   }
 
   ngOnInit(): void {
-    //log list question
-    // console.log('QUESTIONS LIST');
-    // this.questionsService.list().then((qs) => {
-    //   qs.forEach((doc) => {
-    //     console.log(doc.data());
-    //   });
-    // });
     if (!this.questionId) {
       for (let i = 0; i < 4; i++) {
         let emptyOption: Option = {content: "", correct: false, id: "", img: "", questionId: ""}
@@ -65,6 +62,7 @@ export class UpsertQuestionComponent implements OnInit {
         });
       });
     }
+
   }
 
   ngAfterViewInit() {

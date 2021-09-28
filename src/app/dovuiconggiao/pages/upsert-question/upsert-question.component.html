@@ -37,15 +37,16 @@
       </div>
     </div>
     <mat-divider></mat-divider>
-    <h2 class="pb-2 mt-4">Bạn có muốn lưu lại thông tin của mình trên câu hỏi này?</h2>
+    <h2 class="pb-2 mt-4" *ngIf="!questionId">Bạn có muốn lưu lại thông tin của mình trên câu hỏi này?</h2>
+    <h2 class="pb-2 mt-4" *ngIf="questionId">Thông tin người đăng</h2>
     <div class="row">
       <mat-form-field class="col-6" appearance="outline">
         <mat-label>Tên Thánh, họ và tên</mat-label>
-        <input matInput placeholder="Ex. Giuse Nguyễn Văn A" [(ngModel)]="question.author!.name0">
+        <input matInput placeholder="Ex. Giuse Nguyễn Văn A" [(ngModel)]="question.author!.name0" [disabled]="!!questionId">
       </mat-form-field>
       <mat-form-field class="col-6" appearance="outline">
         <mat-label>Giáo xứ</mat-label>
-        <input matInput placeholder="Ex. Dĩ An" [(ngModel)]="question.author!.location">
+        <input matInput placeholder="Ex. Dĩ An" [(ngModel)]="question.author!.location" [disabled]="!!questionId">
       </mat-form-field>
     </div>
     <div class="d-flex justify-content-end">

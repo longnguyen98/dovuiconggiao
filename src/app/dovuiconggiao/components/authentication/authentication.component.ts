@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/auth";
 import {User} from "../../models/model";
 
@@ -7,6 +7,7 @@ import {User} from "../../models/model";
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.css']
 })
+@Injectable({providedIn: 'root'})
 export class AuthenticationComponent implements OnInit {
   user: User;
 
@@ -18,6 +19,10 @@ export class AuthenticationComponent implements OnInit {
         this.user.id = u.uid;
       }
     });
+  }
+
+  currentUser(): any {
+    return this.fAuth.user.toPromise();
   }
 
   ngOnInit(): void {
