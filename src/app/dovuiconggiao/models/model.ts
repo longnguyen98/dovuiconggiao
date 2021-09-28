@@ -10,7 +10,7 @@ export interface Question extends BaseModel {
   topics?: Topic[]
   author?: User;
   authorId: string
-  createdTime?: string;
+  createdTime: string;
 }
 
 export interface Option extends BaseModel {
