@@ -1,7 +1,5 @@
-import {AngularFirestore, AngularFirestoreCollection, DocumentSnapshot} from "@angular/fire/compat/firestore";
-import firebase from "firebase/compat";
-import QuerySnapshot = firebase.firestore.QuerySnapshot;
 import {BaseModel} from "../models/model";
+import {AngularFirestore, AngularFirestoreCollection, QuerySnapshot} from "@angular/fire/firestore";
 
 
 export class CRUDFirestoreService<Model> {
@@ -29,7 +27,7 @@ export class CRUDFirestoreService<Model> {
     this.collection.doc(id).set(model).then(() => onSuccess()).catch((err) => onError(err));
   }
 
-  list(): Promise<QuerySnapshot> {
+  list(): Promise<QuerySnapshot<any>> {
     return this.collection.get().toPromise();
   }
 

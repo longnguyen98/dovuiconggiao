@@ -6,8 +6,7 @@ import {CONSTANTS} from "../../constants/constants";
 import {TopicSelectComponent} from "../../components/topic-select/topic-select.component";
 import Swal from "sweetalert2";
 import {QuestionsService} from "../../services/questions.service";
-import firebase from "firebase/compat";
-import {AngularFirestore, DocumentSnapshot} from "@angular/fire/compat/firestore";
+import {AngularFirestore, DocumentSnapshot} from "@angular/fire/firestore";
 
 @Component({
   selector: 'app-upsert-question',
@@ -135,7 +134,7 @@ export class UpsertQuestionComponent implements OnInit {
   showLoading(): void {
     Swal.fire({
       title: 'Chờ xíu nha!',
-      html: '<img src="https://firebasestorage.googleapis.com/v0/b/dovuiconggiao.appspot.com/o/dovuiconggiao-assets%2Floading.gif?alt=media" alt="loading" style="width: 100px;height: auto"/>',
+      html: '<img src="/assets/loading.gif" alt="loading" style="width: 100px;height: auto"/>',
       showCancelButton: false,
       showConfirmButton: false
     });

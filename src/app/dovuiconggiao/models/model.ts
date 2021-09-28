@@ -21,7 +21,7 @@ export interface Option extends BaseModel {
 }
 
 export interface User extends BaseModel {
-  name0?: string;
+  name0: string|null;
   name1?: string;
   name2?: string;
   name3?: string;

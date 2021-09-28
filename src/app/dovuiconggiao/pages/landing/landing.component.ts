@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import * as $ from "jquery";
+import {FirebaseUISignInSuccessWithAuthResult} from "firebaseui-angular";
+import {AngularFireAuth} from "@angular/fire/auth";
+
 // import Swal from 'sweetalert2';
 
 @Component({
@@ -8,18 +11,13 @@ import * as $ from "jquery";
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
-
   constructor() {
-
   }
 
   ngOnInit(): void {
-    // Swal.fire(
-    //   'Đố vui Công Giáo Hello!',
-    //   '',
-    //   'info'
-    // );
+
   }
+
   ngAfterViewInit() {
     $('.nav-link.active').removeClass('active');
     $('.nav-link[page=landing]').addClass('active');

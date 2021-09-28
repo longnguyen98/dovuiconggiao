@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {QuestionsService} from "../../services/questions.service";
-import firebase from "firebase/compat";
-import QuerySnapshot = firebase.firestore.QuerySnapshot;
-import {QueryDocumentSnapshot} from "@angular/fire/compat/firestore";
+import {QuerySnapshot} from "@angular/fire/firestore";
 import {Question} from "../../models/model";
 
 @Component({
@@ -35,8 +33,8 @@ export class QuestionComponent implements OnInit {
     //   console.log(r);
     // });
     let list: any[] = [];
-    this.questionService.list().then((qs: QuerySnapshot) => {
-      qs.forEach((doc) => {
+    this.questionService.list().then((qs: QuerySnapshot<Question>) => {
+      qs.forEach((doc:any) => {
         list.push(doc.data());
       });
       console.log(list);

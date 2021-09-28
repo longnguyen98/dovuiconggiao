@@ -6,9 +6,6 @@ import {RouterModule} from "@angular/router";
 import {LandingComponent} from './dovuiconggiao/pages/landing/landing.component';
 import {AppRoutingModule} from "./app.routing";
 import {UpsertQuestionComponent} from './dovuiconggiao/pages/upsert-question/upsert-question.component';
-import {environment} from "../environments/environment";
-import {AngularFireModule} from "@angular/fire/compat";
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from "@angular/material/button";
 import {MatDividerModule} from '@angular/material/divider';
@@ -23,10 +20,16 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { AdminComponent } from './dovuiconggiao/pages/admin/admin.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import {AdminComponent} from './dovuiconggiao/pages/admin/admin.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatIconModule} from '@angular/material/icon';
+import {FirebaseUIModule} from "firebaseui-angular";
+import {firebaseConfig, firebaseUiAuthConfig} from "./dovuiconggiao/constants/config";
+import {AngularFireModule} from "@angular/fire";
+import {AngularFirestoreModule} from "@angular/fire/firestore";
+import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/auth";
+import { AuthenticationComponent } from './dovuiconggiao/components/authentication/authentication.component';
 
 @NgModule({
   declarations: [
@@ -37,13 +40,14 @@ import {MatIconModule} from '@angular/material/icon';
     TopicSelectComponent,
     QuestionComponent,
     PlayComponent,
-    AdminComponent
+    AdminComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -59,7 +63,9 @@ import {MatIconModule} from '@angular/material/icon';
     FormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

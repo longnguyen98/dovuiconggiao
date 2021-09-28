@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import * as $ from 'jquery';
-import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Component({
   selector: 'app-layout',

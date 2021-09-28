@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Topic} from "../../models/model";
 import {FormControl} from "@angular/forms";
 import {TopicsService} from "../../services/topics.service";
-import firebase from "firebase/compat";
-import QuerySnapshot = firebase.firestore.QuerySnapshot;
+import {QuerySnapshot} from "@angular/fire/firestore";
+
 
 @Component({
   selector: 'topic-select',
@@ -17,7 +17,7 @@ export class TopicSelectComponent implements OnInit {
   loading = true;
 
   constructor(private topicService: TopicsService) {
-    topicService.list().then((qs: QuerySnapshot) => {
+    topicService.list().then((qs: QuerySnapshot<Topic>) => {
       if (!qs.empty) {
         let topics: Topic[] = [];
         qs.forEach(function (doc) {
