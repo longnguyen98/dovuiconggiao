@@ -106,7 +106,7 @@ export class UpsertQuestionComponent implements OnInit {
         this.questionsService.create(this.question, () => {
           Swal.close();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
-            this.router.navigateByUrl('/');
+            this.router.navigateByUrl('admin');
           });
         }, (err: any) => {
           Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
@@ -121,7 +121,7 @@ export class UpsertQuestionComponent implements OnInit {
         this.questionsService.update(this.questionId, this.question, () => {
           Swal.close();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
-            this.router.navigateByUrl('/');
+            this.router.navigateByUrl('admin');
           });
         }, (err: any) => {
           Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
@@ -135,7 +135,7 @@ export class UpsertQuestionComponent implements OnInit {
   showLoading(): void {
     Swal.fire({
       title: 'Chờ xíu nha!',
-      html: '<img src="/assets/loading.gif" alt="loading" style="width: 100px;height: auto"/>',
+      html: '<img src="https://firebasestorage.googleapis.com/v0/b/dovuiconggiao.appspot.com/o/dovuiconggiao-assets%2Floading.gif?alt=media" alt="loading" style="width: 100px;height: auto"/>',
       showCancelButton: false,
       showConfirmButton: false
     });

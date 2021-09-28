@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import * as $ from "jquery";
 // import Swal from 'sweetalert2';
 
 @Component({
@@ -18,6 +19,10 @@ export class LandingComponent implements OnInit {
     //   '',
     //   'info'
     // );
+  }
+  ngAfterViewInit() {
+    $('.nav-link.active').removeClass('active');
+    $('.nav-link[page=landing]').addClass('active');
   }
 
 }
