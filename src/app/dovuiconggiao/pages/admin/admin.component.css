@@ -2,20 +2,13 @@
 /* Question Table */
 table {
     width: 100%;
-}  
+}
 .mat-column-select {
     overflow: initial;
 }
-.question-column {
-    width: 70%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 0;
-}
-.author-column {
-    width: 20%;
-    padding-left: 3px;
+
+.truncate {
+    /*width: 200px;*/
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -1,6 +1,7 @@
 import {AngularFirestore, AngularFirestoreCollection, DocumentSnapshot} from "@angular/fire/compat/firestore";
 import firebase from "firebase/compat";
 import QuerySnapshot = firebase.firestore.QuerySnapshot;
+import {BaseModel} from "../models/model";
 
 
 export class CRUDFirestoreService<Model> {
@@ -12,21 +13,20 @@ export class CRUDFirestoreService<Model> {
     this.collection = this.firestore.collection<Model>(collectionPath);
   }
 
-  create(model: Model): Promise<any> {
-    return this.collection.add(model);
+  create(model: BaseModel, onSuccess: any, onError: any): Promise<any> {
+    return this.collection.add(model).then((dr) => {
+      model.id = dr.id;
+      this.update(dr.id, model, onSuccess, onError);
+    });
   }
 
   //Read
   get(id: string, onSuccess: any, onError: any): void {
-    this.collection.ref.where('id', '==', id).get().then((qs) => {
-      qs.docs[0].ref.get().then((ds)=>onSuccess(ds)).catch(err => onError(err));
-    });
+    this.collection.doc(id).get().toPromise().then((qs) => onSuccess(qs)).catch((err) => onError(err));
   }
 
-  update(id: string, model: Model, onSuccess: any, onError: any): void {
-    this.collection.ref.where('id', '==', id).get().then(qs => {
-      qs.docs[0].ref.set(model).then(onSuccess).catch(err => onError(err));
-    });
+  update(id: string, model: BaseModel, onSuccess: any, onError: any): void {
+    this.collection.doc(id).set(model).then(() => onSuccess()).catch((err) => onError(err));
   }
 
   list(): Promise<QuerySnapshot> {

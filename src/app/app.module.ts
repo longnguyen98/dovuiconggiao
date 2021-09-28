@@ -26,6 +26,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AdminComponent } from './dovuiconggiao/pages/admin/admin.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatProgressSpinnerModule,
     FormsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

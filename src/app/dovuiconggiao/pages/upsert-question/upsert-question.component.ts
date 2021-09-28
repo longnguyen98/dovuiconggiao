@@ -51,7 +51,7 @@ export class UpsertQuestionComponent implements OnInit {
         this.question.options.push(emptyOption);
       }
     } else {
-      this.questionsService.get(this.questionId, (ds:DocumentSnapshot<Question>) => {
+      this.questionsService.get(this.questionId, (ds: DocumentSnapshot<Question>) => {
         if (ds.exists) {
           this.question = ds.data();
           this.topicSelect?.topicsFormControl.setValue(this.question.topicIds);
@@ -101,19 +101,19 @@ export class UpsertQuestionComponent implements OnInit {
       if (!this.questionId) {
         this.showLoading();
         //add Question
-        this.question.id = this.afs.createId();
         this.question.topicIds = this.topicSelect!.topicsFormControl.value;
         this.question.topics = this.topicSelect!.getSelectedTopics();
-        this.questionsService.create(this.question).then(() => {
+        this.questionsService.create(this.question, () => {
           Swal.close();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
             this.router.navigateByUrl('/');
           });
-        }).catch(err => {
+        }, (err: any) => {
           Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
             console.log(err);
           });
         });
+
       } else {
         this.showLoading();
         this.question.topicIds = this.topicSelect!.topicsFormControl.value;
