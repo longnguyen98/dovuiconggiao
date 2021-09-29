@@ -26,7 +26,7 @@ export interface User extends BaseModel {
   name2?: string;
   name3?: string;
   location?: string;
-  avatar?: string;
+  avatar?: string|null;
   email?: string;
   roles?: string[]|null;
 }

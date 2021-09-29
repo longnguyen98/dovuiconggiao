@@ -4,6 +4,9 @@ import {MatTableDataSource} from '@angular/material/table';
 import {Question, User} from '../../models/model';
 import * as $ from "jquery";
 import {QuestionsService} from "../../services/questions.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {SecurityUtil} from "../../utils/security.util";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-profile',
@@ -14,20 +17,32 @@ export class ProfileComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['id', 'content', 'topics', 'actions'];
   ELEMENT_DATA: Question[] = [];
   dataSource = new MatTableDataSource<Question>(this.ELEMENT_DATA);
-  isEdit:boolean = false;
+  isEdit: boolean = false;
+  userId: string | null | undefined;
+  user: User;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private questionsService: QuestionsService) {
+  constructor(private questionsService: QuestionsService
+    , private activatedRoute: ActivatedRoute
+    , private router: Router
+    , private security: SecurityUtil) {
+    this.userId = activatedRoute.snapshot.paramMap.get('id');
+    if (this.userId) {
+
+    } else {
+      security.getCurrentUser((user: User) => {
+        this.user = user;
+      }, () => {
+      });
+    }
   }
 
   ngAfterViewInit() {
-    $('.nav-link.active').removeClass('active');
-    $('.nav-link[page=admin]').addClass('active');
     this.dataSource.paginator = this.paginator;
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.questionsService.list().then((qs) => {
       qs.forEach((doc) => {
         this.ELEMENT_DATA.push(<Question>doc.data());
@@ -38,8 +53,9 @@ export class ProfileComponent implements AfterViewInit, OnInit {
     });
 
   }
+
   onEditProfile(): void {
-    if(this.isEdit) {
+    if (this.isEdit) {
       this.isEdit = false;
     } else {
       this.isEdit = true;
