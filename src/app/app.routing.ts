@@ -4,6 +4,7 @@ import {LandingComponent} from "./dovuiconggiao/pages/landing/landing.component"
 import {UpsertQuestionComponent} from "./dovuiconggiao/pages/upsert-question/upsert-question.component";
 import {PlayComponent} from "./dovuiconggiao/pages/play/play.component";
 import { AdminComponent } from './dovuiconggiao/pages/admin/admin.component';
+import { ProfileComponent } from './dovuiconggiao/pages/profile/profile.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'question', component: UpsertQuestionComponent },
   { path: 'question/:id', component: UpsertQuestionComponent },
   { path: 'play', component: PlayComponent },
-  { path: 'admin', component: AdminComponent }
+  { path: 'admin', component: AdminComponent },
+  { path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({

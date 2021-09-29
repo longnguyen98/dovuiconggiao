@@ -31,6 +31,7 @@ import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/auth";
 import { AuthenticationComponent } from './dovuiconggiao/components/authentication/authentication.component';
 import {MatMenuModule} from '@angular/material/menu';
+import { ProfileComponent } from './dovuiconggiao/pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {MatMenuModule} from '@angular/material/menu';
     QuestionComponent,
     PlayComponent,
     AdminComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
