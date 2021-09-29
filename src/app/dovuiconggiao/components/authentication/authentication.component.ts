@@ -11,7 +11,6 @@ export class AuthenticationComponent implements OnInit {
   user: User;
 
   constructor() {
-
   }
 
   ngOnInit(): void {

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~firebaseui/dist/firebaseui.css';
+
 html, body {
   height: 100%;
 }
@@ -8,11 +9,21 @@ body {
   margin: 0;
   -moz-user-select: none;
   -webkit-user-select: none;
-  -ms-user-select:none;
-  user-select:none;
-  -o-user-select:none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none;
 }
 
 button {
   margin: 5px !important;
+}
+
+.layout-menu {
+  overflow: hidden !important;
+  margin-top: 0.5em;
+}
+
+.layout-menu span {
+  top: 2px;
+  position: relative;
 }

@@ -9,10 +9,20 @@
       <li class="nav-item mx-1"><a routerLink="question" class="nav-link" page="question" mat-raised-button>Question</a>
       </li>
       <li class="nav-item mx-1"><a routerLink="admin" class="nav-link" page="admin" mat-raised-button>Admin</a></li>
-      <li *ngIf="!!user" class="nav-item mx-1"><a class="nav-link" mat-raised-button>Xin chào <b>{{user.name0}}</b></a>
+      <li *ngIf="!!user" class="nav-item mx-1">
+        <a class="nav-link" mat-raised-button [matMenuTriggerFor]="menu">Xin chào <b>{{user.name0}}</b></a>
+        <mat-menu #menu="matMenu" class="layout-menu">
+          <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            <span>Trang cá nhân</span>
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Đăng xuất</span>
+          </button>
+        </mat-menu>
       </li>
     </ul>
-
   </header>
 
   <main style="min-height: 80vh">

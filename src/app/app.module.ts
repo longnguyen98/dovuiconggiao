@@ -30,6 +30,7 @@ import {AngularFireModule} from "@angular/fire";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/auth";
 import { AuthenticationComponent } from './dovuiconggiao/components/authentication/authentication.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { AuthenticationComponent } from './dovuiconggiao/components/authenticati
     MatPaginatorModule,
     MatIconModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
