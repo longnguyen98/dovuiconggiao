@@ -34,8 +34,10 @@ export class AdminComponent implements AfterViewInit, OnInit {
         this.ELEMENT_DATA.push(<Question>doc.data());
       });
       console.log(this.ELEMENT_DATA);
+      this.ELEMENT_DATA.sort((a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime());
       this.dataSource.data = this.ELEMENT_DATA;
     });
+
   }
 }
 

@@ -6,8 +6,8 @@ import {CONSTANTS} from "../../constants/constants";
 import {TopicSelectComponent} from "../../components/topic-select/topic-select.component";
 import Swal from "sweetalert2";
 import {QuestionsService} from "../../services/questions.service";
-import {DocumentSnapshot} from "@angular/fire/firestore";
 import {AuthenticationComponent} from "../../components/authentication/authentication.component";
+import {DocumentSnapshot} from "@angular/fire/firestore";
 
 @Component({
   selector: 'app-upsert-question',
@@ -27,7 +27,8 @@ export class UpsertQuestionComponent implements OnInit {
     img: "",
     options: [],
     topics: [],
-    author: {id: '', name0: '', location: ''}
+    author: {id: '', name0: '', location: ''},
+    createdTime: ''
   };
   alphabet = CONSTANTS.alphabet;
 
@@ -62,7 +63,6 @@ export class UpsertQuestionComponent implements OnInit {
         });
       });
     }
-
   }
 
   ngAfterViewInit() {
@@ -86,6 +86,7 @@ export class UpsertQuestionComponent implements OnInit {
 
 
   submitQuestion(): void {
+    const submitDate = new Date();
     if (!this.question.options.some((o) => o.correct)) {
       Swal.fire('Phải có ít nhất 1 đáp án đúng', '', 'error').then(r => {
         //do nothing :))
@@ -100,6 +101,7 @@ export class UpsertQuestionComponent implements OnInit {
         //add Question
         this.question.topicIds = this.topicSelect!.topicsFormControl.value;
         this.question.topics = this.topicSelect!.getSelectedTopics();
+        this.question.createdTime = submitDate.toDateString();
         this.questionsService.create(this.question, () => {
           Swal.close();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
@@ -115,6 +117,7 @@ export class UpsertQuestionComponent implements OnInit {
         this.showLoading();
         this.question.topicIds = this.topicSelect!.topicsFormControl.value;
         this.question.topics = this.topicSelect!.getSelectedTopics();
+        this.question.createdTime = submitDate.toDateString();
         this.questionsService.update(this.questionId, this.question, () => {
           Swal.close();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
