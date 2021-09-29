@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import * as $ from "jquery";
-import {FirebaseUISignInSuccessWithAuthResult} from "firebaseui-angular";
-import {AngularFireAuth} from "@angular/fire/auth";
 
 // import Swal from 'sweetalert2';
 
