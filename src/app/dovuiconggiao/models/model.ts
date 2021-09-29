@@ -28,6 +28,7 @@ export interface User extends BaseModel {
   location?: string;
   avatar?: string;
   email?: string;
+  roles?: string[]|null;
 }
 
 export interface Topic extends BaseModel {
@@ -48,6 +49,7 @@ export interface Record extends BaseModel {
 
 export const COLLECTIONS = {
   QUESTIONS: 'questions',
-  TOPICS: 'topics'
+  TOPICS: 'topics',
+  USERS: 'users'
 };
 
