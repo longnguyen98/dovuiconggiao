@@ -11,8 +11,10 @@
       <li class="nav-item mx-1"><a routerLink="admin" class="nav-link"
                                    page="admin" mat-raised-button>List</a>
       </li>
-      <li class="nav-item mx-1" *ngIf="user!.roles!.includes(roles.ADMIN)"><a class="nav-link"
-                                                                              page="admin" mat-raised-button>Admin</a>
+      <ng-container *ngIf="!!user">
+        <li class="nav-item mx-1" *ngIf="user!.roles!.includes(roles.ADMIN)"><a class="nav-link"
+                                                                                page="admin" mat-raised-button>Admin</a>
+      </ng-container>
       <li *ngIf="!!user" class="nav-item mx-1">
         <a class="nav-link" mat-raised-button [matMenuTriggerFor]="menu">Xin chào <b>{{user.name0}}</b></a>
         <mat-menu #menu="matMenu" class="layout-menu">
