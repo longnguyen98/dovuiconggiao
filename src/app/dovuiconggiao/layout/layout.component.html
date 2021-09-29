@@ -9,7 +9,10 @@
       <li class="nav-item mx-1"><a routerLink="question" class="nav-link" page="question" mat-raised-button>Question</a>
       </li>
       <li class="nav-item mx-1"><a routerLink="admin" class="nav-link" page="admin" mat-raised-button>Admin</a></li>
+      <li *ngIf="!!user" class="nav-item mx-1"><a class="nav-link" mat-raised-button>Xin chào <b>{{user.name0}}</b></a>
+      </li>
     </ul>
+
   </header>
 
   <main style="min-height: 80vh">

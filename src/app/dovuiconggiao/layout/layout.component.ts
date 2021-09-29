@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import * as $ from 'jquery';
+import {AngularFireAuth} from "@angular/fire/auth";
+import {User} from "../models/model";
 
 @Component({
   selector: 'app-layout',
@@ -7,8 +9,16 @@ import * as $ from 'jquery';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
+  user: User;
 
-  constructor() {
+  constructor(private fAuth: AngularFireAuth) {
+    fAuth.user.subscribe((u) => {
+      if (u) {
+        this.user = {name0: null, id: ""};
+        this.user.name0 = u.displayName;
+        this.user.id = u.uid;
+      }
+    });
   }
 
   ngOnInit(): void {
