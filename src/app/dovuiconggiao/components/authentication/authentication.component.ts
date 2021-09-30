@@ -28,9 +28,10 @@ export class AuthenticationComponent implements OnInit {
         id: authUser!.uid,
         name0: authUser!.displayName,
         email: authUser!.email,
-        avatar: authUser?.photoURL + '?type=large'
+        avatar: authUser?.photoURL + '?type=large',
+        roles: []
       }
-      this.usersService.create(user, () => {
+      this.usersService.update(user.id, user, () => {
       }, (err: any) => {
         Swal.fire({
           title: 'Lỗi khi tạo mới người dùng :<',

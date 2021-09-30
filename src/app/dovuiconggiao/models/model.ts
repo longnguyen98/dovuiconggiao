@@ -12,7 +12,7 @@ export interface Question extends BaseModel {
   topicIds: string[];
   topics?: Topic[]
   author?: User;
-  authorId: string
+  authorId: string | undefined
   createdTime: string;
 }
 

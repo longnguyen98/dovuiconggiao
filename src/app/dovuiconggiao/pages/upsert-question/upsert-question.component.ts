@@ -111,6 +111,7 @@ export class UpsertQuestionComponent implements OnInit {
         this.question.topicIds = this.topicSelect!.topicsFormControl.value;
         this.question.topics = this.topicSelect!.getSelectedTopics();
         this.question.createdTime = submitDate.toDateString();
+        this.question.authorId = this.question.author?.id;
         this.questionsService.create(this.question, () => {
           this.util.hideLoading();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
