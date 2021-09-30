@@ -1,7 +1,7 @@
 <ng-container *ngIf="!!user">
   <div class="container px-4 py-2 profile-bg">
     <div class="cover-block">
-      <img class="cover-image" src="https://1.bp.blogspot.com/-_Ku7knedlMU/WBsOkfJmrZI/AAAAAAAAAaA/ylLbtJvkeRocrgoqx9pwNgOiZc35gkj3QCK4B/s1600/oneway.vn_matthew_16_24_by_emillemily-d32c0gh%2B%25281%2529.jpg"/>
+      <img class="cover-image" src="https://timelinecovers.pro/facebook-cover/download/religious-christian-believe-facebook-cover.jpg"/>
     </div>
     <div class="avatar-block">
       <img  src="{{user.avatar}}" class="avatar"/>
@@ -24,13 +24,13 @@
         </div>
         <div *ngIf="!isEdit">
           <div class="d-flex pb-2" *ngIf="user.location">
-            <mat-icon> location_on</mat-icon><p class="user-detail">Giáo xứ {{user.location}}</p>
+            <mat-icon> location_on</mat-icon><p class="user-detail">Giáo xứ: {{user.location}}</p>
           </div>
           <div class="d-flex pb-2" *ngIf="user.email">
-            <mat-icon> email</mat-icon><p class="user-detail">Email {{user.email}}</p>
+            <mat-icon> email</mat-icon><p class="user-detail">Email: {{user.email}}</p>
           </div>
           <div class="d-flex pb-2" *ngIf="user.name3">
-            <mat-icon> perm_contact_calendar</mat-icon><p class="user-detail">Chức vụ {{user.name3}}</p>
+            <mat-icon> perm_contact_calendar</mat-icon><p class="user-detail">Vai trò: {{user.name3}}</p>
           </div>
         </div>
         <div *ngIf="isEdit">
@@ -43,7 +43,7 @@
             <input matInput type="text" [(ngModel)]="user.email"/>
           </mat-form-field>
           <mat-form-field class="col-6 w-100" appearance="outline">
-            <mat-label>Chức vụ</mat-label>
+            <mat-label>Vai trò</mat-label>
             <input matInput type="text" [(ngModel)]="user.name3"/>
           </mat-form-field>
         </div>

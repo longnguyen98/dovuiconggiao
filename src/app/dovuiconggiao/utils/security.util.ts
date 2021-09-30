@@ -22,16 +22,12 @@ export class SecurityUtil {
     });
     this.auth.authState.subscribe((u) => {
       if (u) {
-        console.log(u);
-        let user: User = {name0: null, id: "", roles: []};
-        user.name0 = u.displayName;
-        user.id = u.uid;
-        user.avatar = u.photoURL +'?type=large';
-        this.userService.get(user.id, (ds: DocumentSnapshot<User>) => {
+        console.log('USER FROM AUTH', u);
+        this.userService.get(u.uid, (ds: DocumentSnapshot<User>) => {
+          console.log('USER FROM DB', ds.data());
           if (ds.exists) {
-            user.roles = ds.data().roles;
+            onUserExist(ds.data());
           }
-          onUserExist(user);
           this.utils.hideLoading();
         }, (err: any) => {
           console.log(err);

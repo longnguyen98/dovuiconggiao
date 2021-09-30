@@ -7,7 +7,7 @@ import {QuestionsService} from "../../services/questions.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SecurityUtil} from "../../utils/security.util";
 import Swal from "sweetalert2";
-import { UsersService } from '../../services/users.service';
+import {UsersService} from '../../services/users.service';
 import {DocumentSnapshot} from "@angular/fire/firestore";
 
 @Component({
@@ -32,29 +32,15 @@ export class ProfileComponent implements AfterViewInit, OnInit {
     , private userService: UsersService) {
     this.userId = activatedRoute.snapshot.paramMap.get('id');
     if (this.userId) {
+
     } else {
       security.getCurrentUser((user: User) => {
-        //  this.user = user;
-        //  console.log(user);
-        this.userService.get(user.id, (qs:any) => {
-          this.user = <User>qs.data();
-          if(!this.user.avatar) {
-            this.user.avatar = user.avatar;
-          }
-          if(!this.user.name0) {
-          this.user.name0 = user.name0;
-          }
-        }, (err: any) => {
-          Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
-            console.log(err);
-          });
-        });
-    
+        this.user = user;
       }, () => {
       });
     }
   }
-  
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
