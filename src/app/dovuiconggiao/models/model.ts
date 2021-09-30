@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import WhereFilterOp = firebase.firestore.WhereFilterOp;
+
 
 export interface BaseModel {
   id: string;
@@ -14,6 +14,8 @@ export interface Question extends BaseModel {
   author?: User;
   authorId: string | undefined
   createdTime: string;
+  status?: number;
+  note?: string;
 }
 
 export interface Option extends BaseModel {

@@ -9,6 +9,7 @@ import {SecurityUtil} from "../../utils/security.util";
 import Swal from "sweetalert2";
 import {UsersService} from '../../services/users.service';
 import {DocumentSnapshot} from "@angular/fire/firestore";
+import {QUESTION_STATUS} from "../../constants/constants";
 
 @Component({
   selector: 'app-profile',
@@ -16,12 +17,13 @@ import {DocumentSnapshot} from "@angular/fire/firestore";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['id', 'content', 'topics', 'actions'];
+  displayedColumns: string[] = ['id', 'content', 'topics', 'status', 'actions'];
   ELEMENT_DATA: Question[] = [];
   dataSource = new MatTableDataSource<Question>(this.ELEMENT_DATA);
   isEdit = false;
   userId: string | null | undefined;
   user: User;
+  status = QUESTION_STATUS;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

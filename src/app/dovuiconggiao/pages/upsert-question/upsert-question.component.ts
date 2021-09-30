@@ -2,14 +2,14 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import * as $ from 'jquery';
 import {Option, Question, User} from "../../models/model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CONSTANTS} from "../../constants/constants";
+import {CONSTANTS, QUESTION_STATUS, ROLES} from "../../constants/constants";
 import {TopicSelectComponent} from "../../components/topic-select/topic-select.component";
 import Swal from "sweetalert2";
 import {QuestionsService} from "../../services/questions.service";
-import {AuthenticationComponent} from "../../components/authentication/authentication.component";
 import {DocumentSnapshot} from "@angular/fire/firestore";
 import {SecurityUtil} from "../../utils/security.util";
 import {Utils} from "../../utils/utils";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-upsert-question',
@@ -34,29 +34,33 @@ export class UpsertQuestionComponent implements OnInit {
   };
   alphabet = CONSTANTS.alphabet;
   disableAuthor: boolean = false;
+  status = QUESTION_STATUS;
+  isAdmin: boolean | undefined = false;
 
 
   constructor(private route: ActivatedRoute,
               private questionsService: QuestionsService,
               private router: Router,
               private security: SecurityUtil,
-              private util: Utils) {
+              private util: Utils,
+              private location: Location) {
     this.questionId = this.route.snapshot.paramMap.get('id');
 
   }
 
   ngOnInit(): void {
+    this.security.getCurrentUser((user: User) => {
+      this.question.author = user;
+      this.isAdmin = user.roles?.includes(ROLES.ADMIN);
+    }, () => {
+    });
     if (!this.questionId) {
       for (let i = 0; i < 4; i++) {
         let emptyOption: Option = {content: "", correct: false, id: "", img: "", questionId: ""}
         this.question.options.push(emptyOption);
       }
-      this.security.getCurrentUser((user: User) => {
-        this.question.author = user;
-        this.disableAuthor = true;
-      }, () => {
-      });
     } else {
+      this.disableAuthor = true;
       this.questionsService.get(this.questionId, (ds: DocumentSnapshot<Question>) => {
         if (ds.exists) {
           this.question = ds.data();
@@ -115,7 +119,7 @@ export class UpsertQuestionComponent implements OnInit {
         this.questionsService.create(this.question, () => {
           this.util.hideLoading();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
-            this.router.navigateByUrl('admin');
+            this.back();
           });
         }, (err: any) => {
           Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
@@ -140,6 +144,9 @@ export class UpsertQuestionComponent implements OnInit {
         });
       }
     }
+  }
+  back():void{
+    this.location.back();
   }
 
 }
