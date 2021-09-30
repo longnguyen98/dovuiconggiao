@@ -11,17 +11,41 @@
     <div class="row mb-4">
       <div class="col-lg-5 col-sm-12">
         <div class="d-flex justify-content-between pb-2">
-          <h2 class="">Giới thiệu</h2>
-          <button class="btn btn-primary" (click)="onEditProfile()">Edit</button>
+          <h2 style="margin-top: 8px;">Giới thiệu</h2>
+          <div>
+            <button mat-icon-button *ngIf="isEdit" (click)="onSaveProfile()">
+              <mat-icon>done</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onEditProfile()">
+              <mat-icon *ngIf="!isEdit">edit</mat-icon>
+              <mat-icon *ngIf="isEdit">close</mat-icon>
+            </button>
         </div>
-        <div class="d-flex pb-2">
-          <mat-icon> location_on</mat-icon><p> Giáo xứ Dĩ An</p>
         </div>
-        <div class="d-flex pb-2">
-          <mat-icon> email</mat-icon><p> Email acbs@gmail.com</p>
+        <div *ngIf="!isEdit">
+          <div class="d-flex pb-2" *ngIf="user.location">
+            <mat-icon> location_on</mat-icon><p class="user-detail">Giáo xứ {{user.location}}</p>
+          </div>
+          <div class="d-flex pb-2" *ngIf="user.email">
+            <mat-icon> email</mat-icon><p class="user-detail">Email {{user.email}}</p>
+          </div>
+          <div class="d-flex pb-2" *ngIf="user.name3">
+            <mat-icon> perm_contact_calendar</mat-icon><p class="user-detail">Chức vụ {{user.name3}}</p>
+          </div>
         </div>
-        <div class="d-flex pb-2">
-          <mat-icon> perm_contact_calendar</mat-icon><p> Chức vụ GLV</p>
+        <div *ngIf="isEdit">
+          <mat-form-field class="col-6 w-100" appearance="outline">
+            <mat-label>Giáo xứ</mat-label>
+            <input matInput type="text" [(ngModel)]="user.location"/>
+          </mat-form-field>
+          <mat-form-field class="col-6 w-100" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" [(ngModel)]="user.email"/>
+          </mat-form-field>
+          <mat-form-field class="col-6 w-100" appearance="outline">
+            <mat-label>Chức vụ</mat-label>
+            <input matInput type="text" [(ngModel)]="user.name3"/>
+          </mat-form-field>
         </div>
       </div>
       <div class="col-lg-7 col-sm-12">
