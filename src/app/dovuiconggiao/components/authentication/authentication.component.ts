@@ -1,6 +1,6 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {User} from "../../models/model";
-import {FirebaseUISignInSuccessWithAuthResult} from "firebaseui-angular";
+import {FirebaseuiAngularLibraryService, FirebaseUISignInSuccessWithAuthResult} from "firebaseui-angular";
 import {UsersService} from "../../services/users.service";
 import {SecurityUtil} from "../../utils/security.util";
 import Swal from "sweetalert2";
@@ -15,7 +15,8 @@ import {Router} from "@angular/router";
 export class AuthenticationComponent implements OnInit {
   user: User;
 
-  constructor(private usersService: UsersService, private securiy: SecurityUtil, private router: Router) {
+  constructor(private usersService: UsersService, private securiy: SecurityUtil, private router: Router, private fbUi: FirebaseuiAngularLibraryService) {
+
   }
 
   ngOnInit(): void {

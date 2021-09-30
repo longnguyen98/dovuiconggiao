@@ -51,6 +51,7 @@ export class UpsertQuestionComponent implements OnInit {
   ngOnInit(): void {
     this.security.getCurrentUser((user: User) => {
       this.question.author = user;
+      this.disableAuthor = true;
       this.isAdmin = user.roles?.includes(ROLES.ADMIN);
     }, () => {
     });
@@ -60,7 +61,6 @@ export class UpsertQuestionComponent implements OnInit {
         this.question.options.push(emptyOption);
       }
     } else {
-      this.disableAuthor = true;
       this.questionsService.get(this.questionId, (ds: DocumentSnapshot<Question>) => {
         if (ds.exists) {
           this.question = ds.data();
@@ -145,7 +145,8 @@ export class UpsertQuestionComponent implements OnInit {
       }
     }
   }
-  back():void{
+
+  back(): void {
     this.location.back();
   }
 

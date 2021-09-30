@@ -38,9 +38,10 @@ export class ProfileComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
+    $('.nav-link.active').removeClass('active');
+    $('.nav-link[page=profile]').addClass('active');
     this.dataSource.paginator = this.paginator;
   }
-
   ngOnInit(): void {
     if (this.userId) {
 
