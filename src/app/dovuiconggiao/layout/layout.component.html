@@ -1,7 +1,7 @@
 <div class="container px-5" style="background-color: white">
   <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-      <span class="fs-4 fw-bold">ĐỐ VUI CÔNG GIÁO</span>
+      <img class="logo" src="favicon.ico" alt="logo"/> <span class="fs-4 fw-bold" style="font-family: Serif,serif">ĐỐ VUI CÔNG GIÁO</span>
     </a>
 
     <ul class="nav nav-pills">
@@ -14,7 +14,8 @@
         <li class="nav-item mx-1" *ngIf="user!.roles!.includes(roles.ADMIN)"><a class="nav-link"
                                                                                 mat-raised-button>Admin</a>
         <li class="nav-item mx-1">
-          <a class="nav-link" mat-raised-button [matMenuTriggerFor]="menu">Xin chào <b class="text-success">{{user.name0}}</b> nha</a>
+          <a class="nav-link" mat-raised-button [matMenuTriggerFor]="menu">Xin chào <b
+            class="text-success">{{user.name0}}</b> nha</a>
           <mat-menu #menu="matMenu" class="layout-menu">
             <button mat-menu-item routerLink="profile">
               <mat-icon>person</mat-icon>

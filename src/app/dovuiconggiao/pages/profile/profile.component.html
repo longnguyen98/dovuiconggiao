@@ -1,15 +1,14 @@
 <ng-container *ngIf="!!user">
   <div class="container px-4 py-2 profile-bg">
     <div class="cover-block">
-      <img class="cover-image" src="https://timelinecovers.pro/facebook-cover/download/religious-christian-believe-facebook-cover.jpg"/>
+      <img class="cover-image" src="https://timelinecovers.pro/facebook-cover/download/religious-christian-believe-facebook-cover.jpg" alt="cover"/>
     </div>
     <div class="avatar-block">
-      <img  src="{{user.avatar}}" class="avatar"/>
+      <img src="{{user.avatar}}" class="avatar" alt="avatar"/>
       <p class="name">{{user.name0}}</p>
     </div>
-    <mat-divider></mat-divider>
-    <div class="row mb-4">
-      <div class="col-lg-5 col-sm-12">
+    <div class="row my-2 justify-content-between">
+      <div class="col-lg-4 p-2 col-sm-12 border rounded">
         <div class="d-flex justify-content-between pb-2">
           <h2 style="margin-top: 8px;">Giới thiệu</h2>
           <div>
@@ -48,7 +47,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="col-lg-7 col-sm-12">
+      <div class="col-lg-8 p-2 col-sm-12 rounded">
         <div class="d-flex justify-content-between pb-2">
           <h2 class="">Câu hỏi đã đóng góp</h2>
         </div>
@@ -63,7 +62,7 @@
             <topic-select #topicSelectComponent></topic-select>
           </div>
         </div>
-        <div class="border rounded">
+        <div class="rounded border shadow">
           <table mat-table [dataSource]="dataSource">
             <!-- Position Column -->
             <ng-container matColumnDef="id">
