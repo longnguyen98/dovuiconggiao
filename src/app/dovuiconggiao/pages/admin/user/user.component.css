@@ -1,0 +1,16 @@
+
+/* Question Table */
+table {
+    width: 100%;
+}
+.mat-column-select {
+    overflow: initial;
+}
+
+.truncate {
+    /*width: 200px;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 0;
+}

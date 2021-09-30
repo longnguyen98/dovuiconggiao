@@ -32,6 +32,8 @@ import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/auth";
 import { AuthenticationComponent } from './dovuiconggiao/components/authentication/authentication.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { ProfileComponent } from './dovuiconggiao/pages/profile/profile.component';
+import { UserComponent } from './dovuiconggiao/pages/admin/user/user.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { ProfileComponent } from './dovuiconggiao/pages/profile/profile.componen
     PlayComponent,
     AdminComponent,
     AuthenticationComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { ProfileComponent } from './dovuiconggiao/pages/profile/profile.componen
     MatIconModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     AngularFireAuthModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
