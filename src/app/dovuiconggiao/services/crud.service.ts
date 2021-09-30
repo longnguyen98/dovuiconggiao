@@ -1,5 +1,5 @@
 import {BaseModel} from "../models/model";
-import {AngularFirestore, AngularFirestoreCollection, QuerySnapshot} from "@angular/fire/firestore";
+import {AngularFirestore, AngularFirestoreCollection, Query, QuerySnapshot} from "@angular/fire/firestore";
 
 
 export class CRUDFirestoreService<Model> {
@@ -29,6 +29,26 @@ export class CRUDFirestoreService<Model> {
 
   list(): Promise<QuerySnapshot<any>> {
     return this.collection.get().toPromise();
+  }
+
+  query(queries: any[], onSucces: any): void {
+    let ref = this.collection.ref;
+    let query: Query = ref.where(queries[0].field, queries[0].op, queries[0].value);
+    for (let i = 1; i < queries.length; i++) {
+      let q = queries[i];
+      query = query.where(q.field, q.op, q.value);
+    }
+    query.get().then((qs) => {
+      if (!qs.empty) {
+        let docs: any[] = [];
+        qs.forEach((doc) => {
+          docs.push(doc.data());
+        });
+        onSucces(docs);
+      }
+    }).catch((err) => {
+      console.log('FIRESTORE ERROR', err);
+    });
   }
 
   //Delete

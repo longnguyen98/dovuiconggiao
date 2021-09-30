@@ -30,15 +30,9 @@ export class ProfileComponent implements AfterViewInit, OnInit {
     , private router: Router
     , private security: SecurityUtil
     , private userService: UsersService) {
-    this.userId = activatedRoute.snapshot.paramMap.get('id');
-    if (this.userId) {
 
-    } else {
-      security.getCurrentUser((user: User) => {
-        this.user = user;
-      }, () => {
-      });
-    }
+    this.userId = activatedRoute.snapshot.paramMap.get('id');
+
   }
 
   ngAfterViewInit() {
@@ -46,32 +40,22 @@ export class ProfileComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.questionsService.list().then((qs) => {
-      qs.forEach((doc) => {
-        this.ELEMENT_DATA.push(<Question>doc.data());
+    if (this.userId) {
+
+    } else {
+      this.security.getCurrentUser((user: User) => {
+        this.user = user;
+        this.questionsService.query([{
+          field: 'authorId',
+          op: '==',
+          value: this.user.id
+        }], (docs: Question[]) => {
+          console.log(docs);
+          this.dataSource.data = docs.sort((a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime());
+        });
+      }, () => {
       });
-      console.log(this.ELEMENT_DATA);
-      this.ELEMENT_DATA.sort((a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime());
-      this.dataSource.data = this.ELEMENT_DATA;
-    });
-    // if (this.userId) {
-    //   console.log(this.user);
-    //   this.userService.get(this.userId, (ds: DocumentSnapshot<User>) => {
-    //     if (ds.exists) {
-    //       this.user.location = ds.data().location;
-    //       this.user.email = ds.data().email;
-    //       this.user.name3 = ds.data().name3;
-    //     } else {
-    //       Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', '404', 'error').then(r => {
-    //         console.log('Document doesn\'t exist: ' + this.userId);
-    //       });
-    //     }
-    //   }, (err: any) => {
-    //     Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
-    //       console.log(err);
-    //     });
-    //   });
-    // }
+    }
   }
 
   onEditProfile(): void {

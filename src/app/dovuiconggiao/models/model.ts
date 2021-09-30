@@ -1,3 +1,6 @@
+import firebase from "firebase";
+import WhereFilterOp = firebase.firestore.WhereFilterOp;
+
 export interface BaseModel {
   id: string;
 }
@@ -21,14 +24,14 @@ export interface Option extends BaseModel {
 }
 
 export interface User extends BaseModel {
-  name0: string|null;
+  name0: string | null;
   name1?: string;
   name2?: string;
   name3?: string;
   location?: string;
-  avatar?: string|null;
-  email?: string|null;
-  roles?: string[]|null;
+  avatar?: string | null;
+  email?: string | null;
+  roles?: string[] | null;
 }
 
 export interface Topic extends BaseModel {
@@ -52,4 +55,6 @@ export const COLLECTIONS = {
   TOPICS: 'topics',
   USERS: 'users'
 };
+
+
 

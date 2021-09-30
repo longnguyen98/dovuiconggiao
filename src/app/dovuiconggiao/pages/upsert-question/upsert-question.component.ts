@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import * as $ from 'jquery';
-import {Option, Question} from "../../models/model";
+import {Option, Question, User} from "../../models/model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CONSTANTS} from "../../constants/constants";
 import {TopicSelectComponent} from "../../components/topic-select/topic-select.component";
@@ -8,6 +8,8 @@ import Swal from "sweetalert2";
 import {QuestionsService} from "../../services/questions.service";
 import {AuthenticationComponent} from "../../components/authentication/authentication.component";
 import {DocumentSnapshot} from "@angular/fire/firestore";
+import {SecurityUtil} from "../../utils/security.util";
+import {Utils} from "../../utils/utils";
 
 @Component({
   selector: 'app-upsert-question',
@@ -31,14 +33,16 @@ export class UpsertQuestionComponent implements OnInit {
     createdTime: ''
   };
   alphabet = CONSTANTS.alphabet;
+  disableAuthor: boolean = false;
 
 
   constructor(private route: ActivatedRoute,
               private questionsService: QuestionsService,
               private router: Router,
-              private auth: AuthenticationComponent) {
+              private security: SecurityUtil,
+              private util: Utils) {
     this.questionId = this.route.snapshot.paramMap.get('id');
-    console.log('questionId: ', this.questionId);
+
   }
 
   ngOnInit(): void {
@@ -47,6 +51,11 @@ export class UpsertQuestionComponent implements OnInit {
         let emptyOption: Option = {content: "", correct: false, id: "", img: "", questionId: ""}
         this.question.options.push(emptyOption);
       }
+      this.security.getCurrentUser((user: User) => {
+        this.question.author = user;
+        this.disableAuthor = true;
+      }, () => {
+      });
     } else {
       this.questionsService.get(this.questionId, (ds: DocumentSnapshot<Question>) => {
         if (ds.exists) {
@@ -97,13 +106,13 @@ export class UpsertQuestionComponent implements OnInit {
       });
     } else {
       if (!this.questionId) {
-        this.showLoading();
+        this.util.showLoading();
         //add Question
         this.question.topicIds = this.topicSelect!.topicsFormControl.value;
         this.question.topics = this.topicSelect!.getSelectedTopics();
         this.question.createdTime = submitDate.toDateString();
         this.questionsService.create(this.question, () => {
-          Swal.close();
+          this.util.hideLoading();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
             this.router.navigateByUrl('admin');
           });
@@ -114,12 +123,12 @@ export class UpsertQuestionComponent implements OnInit {
         });
 
       } else {
-        this.showLoading();
+        this.util.showLoading();
         this.question.topicIds = this.topicSelect!.topicsFormControl.value;
         this.question.topics = this.topicSelect!.getSelectedTopics();
         this.question.createdTime = submitDate.toDateString();
         this.questionsService.update(this.questionId, this.question, () => {
-          Swal.close();
+          this.util.hideLoading();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
             this.router.navigateByUrl('admin');
           });
@@ -130,15 +139,6 @@ export class UpsertQuestionComponent implements OnInit {
         });
       }
     }
-  }
-
-  showLoading(): void {
-    Swal.fire({
-      title: 'Chờ xíu nha!',
-      html: '<img src="/assets/loading.gif" alt="loading" style="width: 100px;height: auto"/>',
-      showCancelButton: false,
-      showConfirmButton: false
-    });
   }
 
 }
