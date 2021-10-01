@@ -2,10 +2,11 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import * as $ from "jquery";
-import { UsersService } from 'src/app/dovuiconggiao/services/users.service';
-import { User } from 'src/app/dovuiconggiao/models/model';
+import {UsersService} from 'src/app/dovuiconggiao/services/users.service';
+import {User} from 'src/app/dovuiconggiao/models/model';
 import {FormControl} from "@angular/forms";
 import Swal from "sweetalert2";
+import {ROLE_LIST, ROLES} from "../../../constants/constants";
 
 @Component({
   selector: 'app-user',
@@ -19,6 +20,7 @@ export class UserComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<User>(this.ELEMENT_DATA);
   rolesFormControl = new FormControl();
   roles: string[] = [];
+  allRoles = ROLE_LIST;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -39,6 +41,10 @@ export class UserComponent implements AfterViewInit, OnInit {
       });
       this.dataSource.data = this.ELEMENT_DATA;
     });
+  }
+
+  saveRole(id: string, roles: string[]) {
+    alert(id + '/////' + roles);
   }
 }
 

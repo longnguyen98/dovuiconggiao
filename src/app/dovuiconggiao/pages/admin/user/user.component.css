@@ -14,3 +14,7 @@ table {
     white-space: nowrap;
     max-width: 0;
 }
+mat-form-field{
+  margin-top: 10px !important;
+  margin-bottom: -8px !important;
+}
