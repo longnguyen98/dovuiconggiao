@@ -22,9 +22,7 @@ export class SecurityUtil {
     });
     this.auth.authState.subscribe((u) => {
       if (u) {
-        console.log('USER FROM AUTH', u);
         this.userService.get(u.uid, (ds: DocumentSnapshot<User>) => {
-          console.log('USER FROM DB', ds.data());
           if (ds.exists) {
             onUserExist(ds.data());
           }
