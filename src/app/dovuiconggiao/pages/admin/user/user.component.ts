@@ -4,6 +4,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import * as $ from "jquery";
 import { UsersService } from 'src/app/dovuiconggiao/services/users.service';
 import { User } from 'src/app/dovuiconggiao/models/model';
+import {FormControl} from "@angular/forms";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-user',
@@ -12,9 +14,11 @@ import { User } from 'src/app/dovuiconggiao/models/model';
 })
 
 export class UserComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['id', 'name0', 'email', 'location', 'name3'];
+  displayedColumns: string[] = ['id', 'name0', 'email', 'location', 'name3', 'roles'];
   ELEMENT_DATA: User[] = [];
   dataSource = new MatTableDataSource<User>(this.ELEMENT_DATA);
+  rolesFormControl = new FormControl();
+  roles: string[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -33,10 +37,8 @@ export class UserComponent implements AfterViewInit, OnInit {
       qs.forEach((doc) => {
         this.ELEMENT_DATA.push(<User>doc.data());
       });
-      console.log("Users:"+this.ELEMENT_DATA);
       this.dataSource.data = this.ELEMENT_DATA;
     });
-
   }
 }
 

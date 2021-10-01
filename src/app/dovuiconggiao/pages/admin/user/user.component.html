@@ -8,7 +8,7 @@
     <!-- Question Column -->
     <ng-container matColumnDef="name0">
       <th mat-header-cell *matHeaderCellDef> Tên</th>
-      <td mat-cell *matCellDef="let element" class="truncate" style="width: 30%"> {{element.name0}} </td>
+      <td mat-cell *matCellDef="let element" class="truncate" style="width: 20%"> {{element.name0}} </td>
     </ng-container>
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef> Email</th>
@@ -23,14 +23,20 @@
     <ng-container matColumnDef="name3">
         <th mat-header-cell *matHeaderCellDef> Chức vụ</th>
         <td mat-cell *matCellDef="let element" class="truncate" style="width: 10%"> {{element.name3}} </td>
-      </ng-container>    
+    </ng-container>    
 
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef></th>
+    <ng-container matColumnDef="roles">
+      <th mat-header-cell *matHeaderCellDef>Role</th>
       <td mat-cell *matCellDef="let element" style="width: 10%">
-        <button mat-button color="primary" routerLink="/question/{{element.id}}">
-          <mat-icon>edit</mat-icon>
-        </button>
+        <mat-form-field appearance="legacy">
+          <!-- <mat-label>None</mat-label> -->
+          <mat-select multiple [ngModel]= "element.roles">
+            <mat-option *ngFor="let role of element.roles" [value]="role">{{role}}</mat-option>
+            <!-- <mat-option value="admin">Admin</mat-option>
+            <mat-option value="manager">Quản lý</mat-option>
+            <mat-option value="user">Người dùng</mat-option> -->
+          </mat-select>
+        </mat-form-field>
       </td>
     </ng-container>
 
