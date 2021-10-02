@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import {UsersService} from '../../services/users.service';
 import {DocumentSnapshot} from "@angular/fire/firestore";
 import {QUESTION_STATUS} from "../../constants/constants";
+// import * as internal from 'stream';
 
 @Component({
   selector: 'app-profile',
@@ -24,6 +25,7 @@ export class ProfileComponent implements AfterViewInit, OnInit {
   userId: string | null | undefined;
   user: User;
   status = QUESTION_STATUS;
+  totalQuestion = 0;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -55,6 +57,7 @@ export class ProfileComponent implements AfterViewInit, OnInit {
         }], (docs: Question[]) => {
           console.log(docs);
           this.dataSource.data = docs.sort((a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime());
+          this.totalQuestion = this.dataSource.data.length;
         });
       }, () => {
       });

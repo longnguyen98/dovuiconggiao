@@ -19,6 +19,7 @@ export class UserComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<User>(this.ELEMENT_DATA);
   rolesFormControl = new FormControl();
   roles: string[] = [];
+  totalUser = 0;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -38,6 +39,8 @@ export class UserComponent implements AfterViewInit, OnInit {
         this.ELEMENT_DATA.push(<User>doc.data());
       });
       this.dataSource.data = this.ELEMENT_DATA;
+      this.totalUser = this.dataSource.data.length;
+      console.log(this.totalUser);
     });
   }
 }
