@@ -41,6 +41,14 @@ export class TopicSelectComponent implements OnInit {
     });
   }
 
+  getSelectedTopicIds(): string[] {
+    if (this.topicsFormControl.value) {
+      return this.topicsFormControl.value;
+    } else {
+      return [];
+    }
+  }
+
   ngOnInit(): void {
 
   }

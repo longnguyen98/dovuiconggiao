@@ -1,5 +1,12 @@
 import {BaseModel} from "../models/model";
-import {AngularFirestore, AngularFirestoreCollection, Query, QuerySnapshot} from "@angular/fire/firestore";
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  DocumentData,
+  Query,
+  QuerySnapshot
+} from "@angular/fire/firestore";
+import {Observable} from "rxjs";
 
 
 export class CRUDFirestoreService<Model> {
@@ -45,10 +52,16 @@ export class CRUDFirestoreService<Model> {
           docs.push(doc.data());
         });
         onSucces(docs);
+      } else {
+        console.log('NO_RECORDS');
       }
     }).catch((err) => {
       console.log('FIRESTORE ERROR', err);
     });
+  }
+
+  valueChanges(id: string, field: string): Observable<DocumentData | undefined> {
+    return this.collection.doc(id).valueChanges({idField: field});
   }
 
   //Delete
