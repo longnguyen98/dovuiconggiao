@@ -28,12 +28,13 @@ import {FirebaseUIModule} from "firebaseui-angular";
 import {firebaseConfig, firebaseUiAuthConfig} from "./dovuiconggiao/constants/config";
 import {AngularFireModule} from "@angular/fire";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
-import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/auth";
-import { AuthenticationComponent } from './dovuiconggiao/components/authentication/authentication.component';
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {AuthenticationComponent} from './dovuiconggiao/components/authentication/authentication.component';
 import {MatMenuModule} from '@angular/material/menu';
-import { ProfileComponent } from './dovuiconggiao/pages/profile/profile.component';
-import { UserComponent } from './dovuiconggiao/pages/admin/user/user.component';
+import {ProfileComponent} from './dovuiconggiao/pages/profile/profile.component';
+import {UserComponent} from './dovuiconggiao/pages/admin/user/user.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {CountdownModule} from 'ngx-countdown';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     AngularFireAuthModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    CountdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

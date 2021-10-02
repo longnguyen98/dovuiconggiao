@@ -3,6 +3,9 @@
   cursor: pointer;
   background-color: white;
   transition: transform .2s, box-shadow .2s;
+  text-align: start !important;
+  padding-left: 3em !important;
+  padding-top: 9px !important;
 }
 
 .option:hover {
@@ -21,8 +24,7 @@
 
 .question-img {
   height: auto;
-  width: 50%;
-  transition: transform .2s;
+  width: 40%;
 }
 
 .option-img {

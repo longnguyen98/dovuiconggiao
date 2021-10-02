@@ -7,6 +7,9 @@ export const ROLES = {
   ADMIN: 'admin',
   VERIFIER: 'verifier'
 }
+
+export const ROLE_LIST = ['admin', 'Manager', 'user'];
+
 export const QUESTION_STATUS = [
   {
     id: 0, name: 'Chờ duyệt'
