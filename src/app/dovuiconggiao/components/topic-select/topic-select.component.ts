@@ -17,7 +17,7 @@ export class TopicSelectComponent implements OnInit {
   loading = true;
 
   constructor(private topicService: TopicsService) {
-    topicService.list().then((qs: QuerySnapshot<Topic>) => {
+    topicService.listThenStore().then((qs: QuerySnapshot<Topic>) => {
       if (!qs.empty) {
         let topics: Topic[] = [];
         qs.forEach(function (doc) {

@@ -1265,6 +1265,13 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
+"@datorama/akita-ngdevtools@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@datorama/akita-ngdevtools/-/akita-ngdevtools-6.0.1.tgz#8e3a1ff00146c1e3e8c5da8e5a30445557c3c4c8"
+  integrity sha512-jEsFTHQNJwLv+bSayHyGzI6zW3tVPUpx3yrWHKQGTc2cMsbhcjuId+o/Q6VkyMzM4vew3Itasz5XrrZTooakIw==
+  dependencies:
+    rxjs "6.6.7"
+
 "@datorama/akita@^6.2.3":
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/@datorama/akita/-/akita-6.2.3.tgz#90c42a1820b020ac09b31959fd8c533a404c80a8"

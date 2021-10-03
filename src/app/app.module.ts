@@ -35,6 +35,7 @@ import {ProfileComponent} from './dovuiconggiao/pages/profile/profile.component'
 import {UserComponent} from './dovuiconggiao/pages/admin/user/user.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {CountdownModule} from 'ngx-countdown';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import {CountdownModule} from 'ngx-countdown';
     AngularFireAuthModule,
     MatMenuModule,
     MatTabsModule,
-    CountdownModule
+    CountdownModule,
+    AkitaNgDevtools.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,6 +10,7 @@ import {DocumentSnapshot} from "@angular/fire/firestore";
 import {SecurityUtil} from "../../utils/security.util";
 import {Utils} from "../../utils/utils";
 import {Location} from '@angular/common';
+import {QuestionQuery, QuestionStore} from "../../repository/question.store";
 
 @Component({
   selector: 'app-upsert-question',
@@ -30,51 +31,62 @@ export class UpsertQuestionComponent implements OnInit {
     options: [],
     topics: [],
     author: {id: '', name0: '', location: ''},
-    createdTime: ''
+    createdTime: '',
+    status: 0
   };
   alphabet = CONSTANTS.alphabet;
   disableAuthor: boolean = false;
   status = QUESTION_STATUS;
   isAdmin: boolean | undefined = false;
 
-
   constructor(private route: ActivatedRoute,
               private questionsService: QuestionsService,
               private router: Router,
               private security: SecurityUtil,
               private util: Utils,
-              private location: Location) {
+              private location: Location,
+              private localStore: QuestionStore,
+              private localQuery: QuestionQuery) {
     this.questionId = this.route.snapshot.paramMap.get('id');
 
   }
 
   ngOnInit(): void {
-    this.security.getCurrentUser((user: User) => {
+    if (this.security.currentUser) {
+      let user = this.security.currentUser;
       this.question.author = user;
       this.disableAuthor = true;
       this.isAdmin = user.roles?.includes(ROLES.ADMIN);
-    }, () => {
-    });
-    if (!this.questionId) {
-      for (let i = 0; i < 4; i++) {
-        let emptyOption: Option = {content: "", correct: false, id: "", img: "", questionId: ""}
-        this.question.options.push(emptyOption);
+    }
+    // this.security.getCurrentUser((user: User) => {
+    //
+    // }, () => {
+    // });
+    if (this.questionId) {
+      if (this.localQuery.hasEntity(this.questionId)) {
+        this.question = {...<Question>this.localQuery.getEntity(this.questionId)};
+        this.topicSelect?.topicsFormControl.setValue(this.question!.topicIds);
+      } else {
+        this.questionsService.get(this.questionId, (ds: DocumentSnapshot<Question>) => {
+          if (ds.exists) {
+            this.question = ds.data();
+            this.topicSelect?.topicsFormControl.setValue(this.question!.topicIds);
+          } else {
+            Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', '404', 'error').then(r => {
+              console.log('Document doesn\'t exist: ' + this.questionId);
+            });
+          }
+        }, (err: any) => {
+          Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
+            console.log(err);
+          });
+        });
       }
     } else {
-      this.questionsService.get(this.questionId, (ds: DocumentSnapshot<Question>) => {
-        if (ds.exists) {
-          this.question = ds.data();
-          this.topicSelect?.topicsFormControl.setValue(this.question.topicIds);
-        } else {
-          Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', '404', 'error').then(r => {
-            console.log('Document doesn\'t exist: ' + this.questionId);
-          });
-        }
-      }, (err: any) => {
-        Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
-          console.log(err);
-        });
-      });
+      for (let i = 0; i < 4; i++) {
+        let emptyOption: Option = {content: "", correct: false, id: "", img: "", questionId: ""}
+        this.question!.options.push(emptyOption);
+      }
     }
   }
 

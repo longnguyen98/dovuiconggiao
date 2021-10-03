@@ -4,7 +4,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {Question, User} from '../../models/model';
 import * as $ from "jquery";
 import {QuestionsService} from "../../services/questions.service";
-import { UserComponent } from './user/user.component';
+import {UserComponent} from './user/user.component';
 
 @Component({
   selector: 'app-admin',
@@ -16,7 +16,7 @@ export class AdminComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['id', 'content', 'topics', 'author', 'location', 'actions'];
   ELEMENT_DATA: Question[] = [];
   dataSource = new MatTableDataSource<Question>(this.ELEMENT_DATA);
-  totalUser =  UserComponent.prototype.totalUser;
+  totalUser = UserComponent.prototype.totalUser;
   totalQuestion = 0;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -31,16 +31,13 @@ export class AdminComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.questionsService.list().then((qs) => {
+    this.questionsService.listQuestionThenStore().then((qs) => {
       qs.forEach((doc) => {
         this.ELEMENT_DATA.push(<Question>doc.data());
       });
-      console.log(this.ELEMENT_DATA);
-      this.ELEMENT_DATA.sort((a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime());
-      this.dataSource.data = this.ELEMENT_DATA;
+      this.dataSource.data = this.ELEMENT_DATA.sort((a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime());
       this.totalQuestion = this.dataSource.data.length;
     });
-
   }
 }
 

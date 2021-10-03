@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 @Injectable({providedIn: "root"})
 export class SecurityUtil {
 
+  currentUser: User;
   constructor(private afs: AngularFirestore, private auth: AngularFireAuth, private userService: UsersService, private utils: Utils) {
 
   }
@@ -24,6 +25,7 @@ export class SecurityUtil {
       if (u) {
         this.userService.get(u.uid, (ds: DocumentSnapshot<User>) => {
           if (ds.exists) {
+            this.currentUser = ds.data();
             onUserExist(ds.data());
           }
           this.utils.hideLoading();
