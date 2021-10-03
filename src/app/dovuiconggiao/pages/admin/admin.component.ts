@@ -24,6 +24,7 @@ export class AdminComponent implements AfterViewInit, OnInit {
   @ViewChild('userComponent', {static: true}) userComponent: UserComponent;
 
   constructor(private questionsService: QuestionsService, private router: Router) {
+
   }
 
   ngAfterViewInit() {
@@ -53,10 +54,7 @@ export class AdminComponent implements AfterViewInit, OnInit {
     }).then(value => {
       if (value.isConfirmed) {
         this.questionsService.delete(id).then(() => {
-          this.ELEMENT_DATA = this.ELEMENT_DATA.filter((q) => q.id !== id);
-          this.router.navigateByUrl("/").then(() => {
-            this.router.navigateByUrl("/admin");
-          });
+          this.dataSource.data = this.ELEMENT_DATA.filter((q) => q.id !== id);
         });
       }
     });
