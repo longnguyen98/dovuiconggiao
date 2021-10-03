@@ -6,6 +6,10 @@
         <h2 class="">Thống kê</h2>
         <p>Số lượng câu hỏi: {{totalQuestion}}</p>
         <p>Số lượng người dùng: {{totalUser}}</p>
+        <div>
+          <input type="file" id="file-upload" name="fileUpload" accept=".xlxs, .xls" (change)="fileUpload($event)">
+          <!-- <label for="file-upload">Import</label> -->
+        </div>
       </div>
       </div>
     </div>

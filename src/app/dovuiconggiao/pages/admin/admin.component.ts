@@ -1,11 +1,12 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {Question, User} from '../../models/model';
+import {Option, Question, User} from '../../models/model';
 import * as $ from "jquery";
 import {QuestionsService} from "../../services/questions.service";
 import { UserComponent } from './user/user.component';
-
+import * as XLXS from 'xlsx';
+import { JsonpClientBackend } from '@angular/common/http';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -38,10 +39,26 @@ export class AdminComponent implements AfterViewInit, OnInit {
       console.log(this.ELEMENT_DATA);
       this.ELEMENT_DATA.sort((a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime());
       this.dataSource.data = this.ELEMENT_DATA;
-      this.totalQuestion = this.dataSource.data.length;
+      this.totalQuestion = this.ELEMENT_DATA.length;
     });
 
   }
+  fileUpload(event:any) {
+    console.log(event);
+    const selectedFile = event.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.readAsBinaryString(selectedFile);
+    // fileReader.readAsBinaryString(selectedFile);
+    fileReader.onload = (even:any) => {
+      let binaryData = even.target.result;
+      let workbook = XLXS.read(binaryData, {type: 'binary'})
+      console.log(workbook);
+      workbook.SheetNames.forEach(element => {
+        let dataSheet = XLXS.utils.sheet_to_json(workbook.Sheets[element]);
+        console.log(dataSheet);
+      });
+    }
+}
 }
 
 
