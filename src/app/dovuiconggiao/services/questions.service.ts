@@ -28,6 +28,14 @@ export class QuestionsService extends CRUDFirestoreService<Question> {
     }).toPromise();
   }
 
+  getAllIds(query: any, callBack: any) {
+    this.questionCollection.ref.where(query.field, query.op, query.value).get().then((qs) => {
+      callBack(qs.docs.map((doc) => {
+        return doc.id;
+      }));
+    });
+  }
+
 
 }
 

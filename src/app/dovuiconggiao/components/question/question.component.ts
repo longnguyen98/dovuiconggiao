@@ -32,13 +32,13 @@ export class QuestionComponent implements OnInit {
     // this.questionService.list().then(function (r: QuerySnapshot) {
     //   console.log(r);
     // });
-    let list: any[] = [];
-    this.questionService.list().then((qs: QuerySnapshot<Question>) => {
-      qs.forEach((doc:any) => {
-        list.push(doc.data());
-      });
-      console.log(list);
-    });
+    // let list: any[] = [];
+    // this.questionService.list().then((qs: QuerySnapshot<Question>) => {
+    //   qs.forEach((doc:any) => {
+    //     list.push(doc.data());
+    //   });
+    //   console.log(list);
+    // });
   }
 
 }

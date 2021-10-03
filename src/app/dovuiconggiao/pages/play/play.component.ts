@@ -2,10 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {CountdownComponent, CountdownConfig, CountdownEvent} from "ngx-countdown";
 import {QuestionsService} from "../../services/questions.service";
 import {TopicSelectComponent} from "../../components/topic-select/topic-select.component";
-import {QueryDocumentSnapshot} from "@angular/fire/firestore";
 import {Question} from "../../models/model";
 import Swal from "sweetalert2";
 import {Utils} from "../../utils/utils";
+import {from} from "rxjs";
 
 @Component({
   selector: 'app-play',
@@ -20,6 +20,10 @@ export class PlayComponent implements OnInit {
   //
   countDownConfig: CountdownConfig = {leftTime: 60, format: "mm:ss.SS", demand: true}
   questions: Question[] = [];
+  questionIds: string[] = [];
+
+  //
+
 
   constructor(private questionService: QuestionsService,
               private util: Utils) {
@@ -32,13 +36,22 @@ export class PlayComponent implements OnInit {
   onStart() {
     if (this.topicSelect.getSelectedTopicIds().length !== 0) {
       this.util.showLoading();
-      this.questionService.query([{
+      this.questionService.getAllIds({
         field: 'topicIds',
         op: 'array-contains-any',
         value: this.topicSelect.topicsFormControl.value
-      }], (docs: Question[]) => {
-        this.util.hideLoading();
-        this.questions = docs;
+      }, (ids: any) => {
+        console.log(ids);
+        this.questionIds = ids;
+        this.questionService.query([{
+          field: 'id',
+          op: 'in',
+          value: this.questionIds,
+          limit: 5
+        }], (docs: Question[]) => {
+          this.util.hideLoading();
+          this.questions.push(...docs);
+        });
       });
     } else {
       Swal.fire('Êi bro, phải chọn ít nhất 1 chủ đề nhen', '', 'error').then(r => {
@@ -51,6 +64,23 @@ export class PlayComponent implements OnInit {
   onTimeout(event: CountdownEvent): void {
     if (event.action === "done") {
 
+    }
+  }
+
+  popQuestion() {
+    this.questions = this.questions.slice(0, this.questions.length - 1);
+    console.log('POP', this.questions);
+    console.log('POP', this.questions.length);
+    if (this.questions.length < 3) {
+      this.questionService.query([{
+        field: 'id',
+        op: 'in',
+        value: this.questionIds,
+        limit: 5
+      }], (docs: Question[]) => {
+        this.questions.push(...docs);
+        console.log('NEW LENGTH', this.questions.length);
+      });
     }
   }
 

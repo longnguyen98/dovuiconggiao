@@ -38,12 +38,15 @@ export class CRUDFirestoreService<Model> {
     return this.collection.get().toPromise();
   }
 
-  query(queries: any[], onSucces: any): void {
+  query(queries: any[], onSucces: any, limit?: number): void {
     let ref = this.collection.ref;
     let query: Query = ref.where(queries[0].field, queries[0].op, queries[0].value);
     for (let i = 1; i < queries.length; i++) {
       let q = queries[i];
       query = query.where(q.field, q.op, q.value);
+      if (q.limit) {
+        query = query.limit(q.limit);
+      }
     }
     query.get().then((qs) => {
       if (!qs.empty) {
