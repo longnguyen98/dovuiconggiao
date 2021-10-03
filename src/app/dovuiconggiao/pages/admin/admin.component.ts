@@ -6,6 +6,8 @@ import * as $ from "jquery";
 import {QuestionsService} from "../../services/questions.service";
 import {UserComponent} from './user/user.component';
 import * as XLXS from 'xlsx';
+import Swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin',
@@ -17,12 +19,11 @@ export class AdminComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['id', 'content', 'topics', 'author', 'location', 'actions'];
   ELEMENT_DATA: Question[] = [];
   dataSource = new MatTableDataSource<Question>(this.ELEMENT_DATA);
-  totalUser = UserComponent.prototype.totalUser;
   totalQuestion = 0;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('userComponent', {static: true}) userComponent: UserComponent;
 
-
-  constructor(private questionsService: QuestionsService) {
+  constructor(private questionsService: QuestionsService, private router: Router) {
   }
 
   ngAfterViewInit() {
@@ -41,43 +42,26 @@ export class AdminComponent implements AfterViewInit, OnInit {
     });
   }
 
-  fileUpload(event: any) {
-    const selectedFile = event.target.files[0];
-    const fileReader = new FileReader();
-    fileReader.readAsBinaryString(selectedFile);
-    // fileReader.readAsBinaryString(selectedFile);
-    fileReader.onload = (even: any) => {
-      let binaryData = even.target.result;
-      let workbook = XLXS.read(binaryData, {type: 'binary'})
-      workbook.SheetNames.forEach(element => {
-        let dataSheet: any[] = XLXS.utils.sheet_to_json(workbook.Sheets[element]);
-        let keys = Object.keys( dataSheet[0]);
-        for (let i = 1; i < dataSheet.length; i++) {
-          let row = dataSheet[i];
-          let content = row[keys[0]];
-          let options: Option[] = [];
-          for (let j = 1; j < 5; j++) {
-            let o = row[keys[j]];
-            options.push({content: o, correct: false, id: "", img: "", questionId: ""});
-          }
-          let correctIndex = row[keys[5]];
-          options[parseInt(correctIndex)].correct = true;
-          let topicIds = row[keys[6]];
-          //
-          let q: Question = {
-            authorId: undefined,
-            content: content,
-            createdTime: new Date().toDateString(),
-            id: "",
-            img: "",
-            options: options,
-            topicIds: topicIds.split(",")
-          }
-          console.log(q);
-        }
-      });
-    }
+  onDelete(id: string): void {
+    Swal.fire({
+      title: 'Xóa hen?',
+      html: 'xóa là mất luôn đó nha!',
+      icon: 'question',
+      confirmButtonText: 'Okey',
+      cancelButtonText: 'Chotto matte',
+      showCancelButton: true
+    }).then(value => {
+      if (value.isConfirmed) {
+        this.questionsService.delete(id).then(() => {
+          this.ELEMENT_DATA = this.ELEMENT_DATA.filter((q) => q.id !== id);
+          this.router.navigateByUrl("/").then(() => {
+            this.router.navigateByUrl("/admin");
+          });
+        });
+      }
+    });
   }
+
 }
 
 

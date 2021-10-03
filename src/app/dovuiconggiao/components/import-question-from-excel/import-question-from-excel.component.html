@@ -1,0 +1,8 @@
+<input type="file" id="file-upload" name="fileUpload" style="display:none;" accept=".xlsx, .xls"
+       (change)="fileUpload($event)">
+<a class="me-2" mat-raised-button color="accent"
+   href="https://firebasestorage.googleapis.com/v0/b/dovuiconggiao.appspot.com/o/dovuiconggiao-assets%2Fquestion_import.xlsx?alt=media"><mat-icon class="me-2">cloud_download</mat-icon>Tải file mẫu
+</a>
+<button mat-raised-button color="primary" onClick="$('#file-upload').trigger('click');"><mat-icon class="me-2">cloud_upload</mat-icon>Nhập câu hỏi từ
+  Excel
+</button>

@@ -42,7 +42,6 @@ export class UserComponent implements AfterViewInit, OnInit {
       });
       this.dataSource.data = this.ELEMENT_DATA;
       this.totalUser = this.dataSource.data.length;
-      console.log(this.totalUser);
     });
   }
 

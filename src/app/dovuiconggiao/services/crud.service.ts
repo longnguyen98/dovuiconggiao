@@ -7,6 +7,7 @@ import {
   QuerySnapshot
 } from "@angular/fire/firestore";
 import {Observable} from "rxjs";
+import {AngularFireDatabase} from "@angular/fire/database";
 
 
 export class CRUDFirestoreService<Model> {
@@ -18,8 +19,8 @@ export class CRUDFirestoreService<Model> {
     this.collection = this.firestore.collection<Model>(collectionPath);
   }
 
-  create(model: BaseModel, onSuccess: any, onError: any): Promise<any> {
-    return this.collection.add(model).then((dr) => {
+  create(model: BaseModel, onSuccess: any, onError: any) {
+    this.collection.add(model).then((dr) => {
       model.id = dr.id;
       this.update(dr.id, model, onSuccess, onError);
     });
@@ -69,6 +70,6 @@ export class CRUDFirestoreService<Model> {
 
   //Delete
   delete(id: string): Promise<void> {
-    return this.collection.doc<Model>().delete();
+    return this.collection.doc<Model>(id).delete();
   }
 }
