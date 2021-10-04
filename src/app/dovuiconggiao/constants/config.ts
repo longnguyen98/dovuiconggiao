@@ -1,7 +1,6 @@
 import {firebase, firebaseui} from "firebaseui-angular";
 
 export const firebaseUiAuthConfig: firebaseui.auth.Config = {
-  signInFlow: 'popup',
   signInOptions: [
     {
       provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
