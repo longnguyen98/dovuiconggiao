@@ -9,7 +9,7 @@
                                                       mat-raised-button>Home</a>
       </li>
       <li class="nav-item mx-1 responsive-mobile"><a routerLink="/" class="nav-link active" page="landing"
-                                                     mat-mini-fab>
+                                                     mat-stroked-button>
         <mat-icon>home</mat-icon>
       </a></li>
 
@@ -17,7 +17,7 @@
                                                       mat-raised-button>Question</a>
       </li>
       <li class="nav-item mx-1 responsive-mobile"><a routerLink="question" class="nav-link" page="question"
-                                                     mat-mini-fab>
+                                                     mat-stroked-button>
         <mat-icon>collections_bookmark</mat-icon>
       </a>
       </li>
@@ -29,13 +29,13 @@
         <li class="nav-item mx-1 responsive-mobile" *ngIf="user!.roles!.includes(roles.ADMIN)"><a class="nav-link"
                                                                                                   routerLink="admin"
                                                                                                   page="admin"
-                                                                                                  mat-mini-fab>
+                                                                                                  mat-stroked-button>
           <mat-icon>verified_user</mat-icon>
         </a>
         <li class="nav-item mx-1">
           <a class="nav-link responsive-desktop" mat-raised-button page="profile" [matMenuTriggerFor]="menu">Xin chào <b
             class="text-danger">{{user.name0}}</b> nha</a>
-          <a class="nav-link responsive-mobile px-2" style="width: max-content" mat-mini-fab page="profile"
+          <a class="nav-link responsive-mobile px-2" style="width: max-content" mat-stroked-button page="profile"
              [matMenuTriggerFor]="menu">
             <mat-icon>person</mat-icon>
             <b class="text-danger">{{user.name0}}</b></a>
