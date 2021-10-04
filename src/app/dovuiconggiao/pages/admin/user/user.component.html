@@ -1,8 +1,10 @@
 <table mat-table [dataSource]="dataSource">
   <!-- Position Column -->
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> STT</th>
-    <td mat-cell *matCellDef="let element;let i = index;" style="width: 10%"> {{i + 1}} </td>
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element;let i = index;" style="width: 10%"><img src="{{element.avatar}}" alt="avt"
+                                                                                  class="rounded-circle"
+                                                                                  style="width: 75%"></td>
   </ng-container>
 
   <!-- Question Column -->
