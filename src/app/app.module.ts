@@ -13,7 +13,6 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {TopicSelectComponent} from './dovuiconggiao/components/topic-select/topic-select.component';
 import {MatStepperModule} from '@angular/material/stepper';
-import {QuestionComponent} from './dovuiconggiao/components/question/question.component';
 import {PlayComponent} from './dovuiconggiao/pages/play/play.component';
 import {CKEditorModule} from 'ckeditor4-angular';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -36,7 +35,7 @@ import {UserComponent} from './dovuiconggiao/pages/admin/user/user.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {CountdownModule} from 'ngx-countdown';
 import {AkitaNgDevtools} from '@datorama/akita-ngdevtools';
-import { ImportQuestionFromExcelComponent } from './dovuiconggiao/components/import-question-from-excel/import-question-from-excel.component';
+import {ImportQuestionFromExcelComponent} from './dovuiconggiao/components/import-question-from-excel/import-question-from-excel.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +44,6 @@ import { ImportQuestionFromExcelComponent } from './dovuiconggiao/components/imp
     LandingComponent,
     UpsertQuestionComponent,
     TopicSelectComponent,
-    QuestionComponent,
     PlayComponent,
     AdminComponent,
     AuthenticationComponent,

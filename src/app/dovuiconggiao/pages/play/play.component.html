@@ -3,15 +3,29 @@
     <div class="col-lg-6 mx-auto">
       <topic-select #topicSelector></topic-select>
     </div>
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3" >
-      <button mat-raised-button color="primary" class="px-4 bg-primary" style="width: 300px" (click)="onStart()">Bắt đầu!
-      </button>
-      <button mat-raised-button color="accent" class="px-4 bg-primary" style="width: 300px" (click)="popQuestion()">Pop
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3">
+      <button mat-raised-button color="primary" class="px-4 bg-primary" style="width: 300px" (click)="onStart()">Bắt
+        đầu!
       </button>
     </div>
   </div>
-  <div *ngIf="isStart">
+  <div [hidden]="!isStart">
     <countdown #countdown [config]="countDownConfig" style="font-size: 30pt" (event)="onTimeout($event)"></countdown>
-    <question></question>
+    <div class="text-center">
+      <h3>Điểm: {{score}}</h3>
+    </div>
+    <div class="px-2 py-3 m-5 shadow rounded-3" *ngIf="question">
+      <div class="px-5">
+        <img class="img-fluid rounded border px-3 mx-3 question-img"
+             src="https://um-insight.net/downloads/313/download/Holy-Bible.jpg?cb=d7c66cda21ffa0b59262145100eec59f"
+             alt="question_img">
+        <mat-divider class="my-3"></mat-divider>
+        <h1 class="text-center">{{question.content}}</h1>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="col-4 m-1 p-1 rounded border option"
+             *ngFor="let o of question.options; let i = index" (click)="onOptionSelect(o)">{{alphabet[i] + '. ' + o.content}}</div>
+      </div>
+    </div>
   </div>
 </div>

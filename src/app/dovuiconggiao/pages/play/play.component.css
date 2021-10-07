@@ -1,0 +1,35 @@
+.option {
+  min-height: 40px;
+  cursor: pointer;
+  background-color: white;
+  transition: transform .2s, box-shadow .2s;
+  text-align: start !important;
+  padding-left: 3em !important;
+  padding-top: 9px !important;
+}
+
+.option:hover {
+  transform: scale(1.2);
+  box-shadow: 5px 10px 18px rgba(136, 136, 136, 0.29);
+}
+
+.option:active {
+  transform: scale(1.1);
+  box-shadow: none;
+}
+
+.p-5 {
+  padding: 50px 200px !important;
+}
+
+.question-img {
+  height: auto;
+  width: 40%;
+}
+
+.option-img {
+  display: flex;
+  margin: auto !important;
+  height: auto;
+  width: 80%;
+}

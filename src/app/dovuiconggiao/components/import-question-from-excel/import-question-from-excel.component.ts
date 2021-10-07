@@ -46,7 +46,7 @@ export class ImportQuestionFromExcelComponent implements OnInit {
             options.push({content: o, correct: false, id: "", img: "", questionId: ""});
           }
           let correctIndex = row[keys[5]];
-          options[parseInt(correctIndex)].correct = true;
+          options[parseInt(correctIndex) - 1].correct = true;
           let topicIds = row[keys[6]];
           //
           let q: Question = {
