@@ -9,7 +9,18 @@ import {Question} from "../../models/model";
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-
+  question: Question = {
+    topicIds: [],
+    authorId: "",
+    content: "aaaaa",
+    id: "",
+    img: "",
+    options: [],
+    topics: [],
+    author: {id: '', name0: '', location: ''},
+    createdTime: '',
+    status: 0
+  };
 
   constructor(private questionService: QuestionsService) {
   }

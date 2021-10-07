@@ -1,13 +1,17 @@
 <div class="px-4 py-2 my-2 text-center">
-  <div class="col-lg-6 mx-auto">
-    <topic-select #topicSelector></topic-select>
+  <div *ngIf="!isStart">
+    <div class="col-lg-6 mx-auto">
+      <topic-select #topicSelector></topic-select>
+    </div>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3" >
+      <button mat-raised-button color="primary" class="px-4 bg-primary" style="width: 300px" (click)="onStart()">Bắt đầu!
+      </button>
+      <button mat-raised-button color="accent" class="px-4 bg-primary" style="width: 300px" (click)="popQuestion()">Pop
+      </button>
+    </div>
   </div>
-  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3">
-    <button mat-raised-button color="primary" class="px-4 bg-primary" style="width: 300px" (click)="onStart()">Bắt đầu!
-    </button>
-    <button mat-raised-button color="accent" class="px-4 bg-primary" style="width: 300px" (click)="popQuestion()">Pop
-    </button>
+  <div *ngIf="isStart">
+    <countdown #countdown [config]="countDownConfig" style="font-size: 30pt" (event)="onTimeout($event)"></countdown>
+    <question></question>
   </div>
-  <countdown #countdown [config]="countDownConfig" style="font-size: 30pt" (event)="onTimeout($event)"></countdown>
-  <question></question>
 </div>

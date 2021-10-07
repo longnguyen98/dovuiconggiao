@@ -6,6 +6,7 @@ import {Question} from "../../models/model";
 import Swal from "sweetalert2";
 import {Utils} from "../../utils/utils";
 import {from} from "rxjs";
+import { QuestionComponent } from '../../components/question/question.component';
 
 @Component({
   selector: 'app-play',
@@ -17,10 +18,13 @@ export class PlayComponent implements OnInit {
   private countdown: CountdownComponent;
   @ViewChild('topicSelector', {static: false})
   private topicSelect: TopicSelectComponent
+  @ViewChild('questionComponent', {static: true})
+  private questionComponent : QuestionComponent;
   //
   countDownConfig: CountdownConfig = {leftTime: 60, format: "mm:ss.SS", demand: true}
   questions: Question[] = [];
   questionIds: string[] = [];
+  isStart = false;
 
   //
 
@@ -51,8 +55,11 @@ export class PlayComponent implements OnInit {
         }], (docs: Question[]) => {
           this.util.hideLoading();
           this.questions.push(...docs);
+          console.log(this.questions[0]);
+          this.questionComponent.question = this.questions[0];
         });
       });
+      this.isStart = true;
     } else {
       Swal.fire('Êi bro, phải chọn ít nhất 1 chủ đề nhen', '', 'error').then(r => {
         //do nothing :))
