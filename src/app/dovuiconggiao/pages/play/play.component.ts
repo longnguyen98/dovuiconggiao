@@ -19,14 +19,18 @@ export class PlayComponent implements OnInit {
   @ViewChild('topicSelector', {static: false})
   private topicSelect: TopicSelectComponent
   //
-  countDownConfig: CountdownConfig = {leftTime: 60, format: "mm:ss.SS", demand: true}
+  countDownConfig: CountdownConfig = {leftTime: 30, format: "mm:ss.SS", demand: true}
   questions: Question[] = [];
   questionIds: string[] = [];
   isStart = false;
+  showResult = false;
+  totalAnswer = 0;
+  rightAnswer = 0;
   //
   question: Question | undefined;
   alphabet = CONSTANTS.alphabet;
   score = 0;
+  bonus = 11;
 
   constructor(private questionService: QuestionsService,
               private util: Utils) {
@@ -34,6 +38,11 @@ export class PlayComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setInterval(() => {
+      if (this.bonus > 0 && this.isStart) {
+        this.bonus--;
+      }
+    }, 1000);
   }
 
   onStart() {
@@ -56,6 +65,7 @@ export class PlayComponent implements OnInit {
           let random = Math.floor(Math.random() * this.questions.length);
           this.loadQuestion(this.questions[random]);
           this.isStart = true;
+          this.showResult = false;
           this.countdown.begin();
         });
       });
@@ -69,7 +79,15 @@ export class PlayComponent implements OnInit {
   onOptionSelect(option: Option) {
     this.countdown.pause();
     this.questions = this.questions.filter((q) => q.id !== this.question?.id);
-    this.score += option.correct ? 1 : 0;
+    this.totalAnswer++;
+    this.rightAnswer += option.correct ? 1 : 0;
+    let score = (option.correct ? (10 + this.bonus) : 0);
+    let html = ''
+    if (this.score < 100 && this.score + score > 100) {
+      html = '<img src="/assets/100.gif" alt="loading" style="width: 200px;height: auto"/>'
+    }
+    this.score += score;
+    this.bonus = 11;
     if (this.questions.length < 3) {
       this.questionService.query([{
         field: 'id',
@@ -80,24 +98,28 @@ export class PlayComponent implements OnInit {
         this.questions.push(...docs);
       });
     }
+
     Swal.fire({
       icon: option.correct ? 'success' : 'error',
       showConfirmButton: false,
+      title: score != 0 ? ('+ ' + score) : ':<',
+      html: html
     });
     setTimeout(() => {
       this.loadQuestion(this.questions[Math.floor(Math.random() * this.questions.length)]);
       Swal.close();
       this.countdown.resume();
-    }, 700);
+    }, 1000);
   }
 
   nextQuestion() {
 
   }
 
-  onTimeout(event: CountdownEvent): void {
+  onTimerCount(event: CountdownEvent): void {
     if (event.action === "done") {
-
+      this.isStart = false;
+      this.showResult = true;
     }
   }
 

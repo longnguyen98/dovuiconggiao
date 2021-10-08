@@ -9,11 +9,16 @@
       </button>
     </div>
   </div>
-  <div [hidden]="!isStart">
-    <countdown #countdown [config]="countDownConfig" style="font-size: 30pt" (event)="onTimeout($event)"></countdown>
-    <div class="text-center">
-      <h3>Điểm: {{score}}</h3>
+  <div [hidden]="!isStart" class="unselectable" unselectable="on" onselectstart="return false;"
+       onmousedown="return false;">
+    <countdown #countdown [config]="countDownConfig" style="font-size: 30pt" (event)="onTimerCount($event)"></countdown>
+    <div class="text-center m-2">
+      <h3>Điểm thưởng: {{bonus}}</h3>
     </div>
+    <div class="text-center m-2">
+      <h1>Điểm: {{score}}</h1>
+    </div>
+
     <div class="px-2 py-3 m-5 shadow rounded-3" *ngIf="question">
       <div class="px-5">
         <img class="img-fluid rounded border px-3 mx-3 question-img"
@@ -24,8 +29,39 @@
       </div>
       <div class="row d-flex justify-content-center">
         <div class="col-4 m-1 p-1 rounded border option"
-             *ngFor="let o of question.options; let i = index" (click)="onOptionSelect(o)">{{alphabet[i] + '. ' + o.content}}</div>
+             *ngFor="let o of question.options; let i = index"
+             (click)="onOptionSelect(o)">{{alphabet[i] + '. ' + o.content}}</div>
       </div>
     </div>
+  </div>
+  <div [hidden]="!showResult">
+    <table class="table table-bordered rounded border fw-bold shadow text-start" style="width: max-content;margin: auto">
+      <tbody>
+      <tr style="background: #aabfff">
+        <td>
+          <mat-icon>grade</mat-icon>
+          <span class="result-span">Điểm của bạn:</span></td>
+        <td class="text-center"><span class="result-value">{{score}}</span></td>
+      </tr>
+      <tr style="background: #FDC168">
+        <td>
+          <mat-icon>help_outline</mat-icon>
+          <span class="result-span">Số câu đã trả lời:</span></td>
+        <td class="text-center"><span class="result-value">{{totalAnswer}}</span></td>
+      </tr>
+      <tr style="background: #91d1be">
+        <td>
+          <mat-icon>done</mat-icon>
+          <span class="result-span">Số câu đúng:</span></td>
+        <td class="text-center px-3"><span class="result-value">{{rightAnswer}}</span></td>
+      </tr>
+      <tr style="background: #ec7b7d;">
+        <td>
+          <mat-icon>clear</mat-icon>
+          <span class="result-span">Số câu sai:</span></td>
+        <td class="text-center px-3"><span class="result-value">{{totalAnswer - rightAnswer}}</span></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
