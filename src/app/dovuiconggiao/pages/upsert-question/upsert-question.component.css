@@ -89,3 +89,20 @@
   top: -5px;
   left: 10px;
 }
+
+.status-blog {
+ margin-left: 30px;
+ margin-top: 15px;
+}
+.status-blog h3 span {
+  margin-top: 13px;
+}
+.label {
+  color: white;
+  padding: 8px;
+  font-family: Arial;
+  border-radius: 50%;
+}
+.success {background-color: #04AA6D;}
+.info {background-color: #2196F3;}
+.danger {background-color: #f44336;}

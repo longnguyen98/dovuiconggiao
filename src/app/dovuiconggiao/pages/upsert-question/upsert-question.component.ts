@@ -38,6 +38,7 @@ export class UpsertQuestionComponent implements OnInit {
   disableAuthor: boolean = false;
   status = QUESTION_STATUS;
   isAdmin: boolean | undefined = false;
+  stt = true;
 
   constructor(private route: ActivatedRoute,
               private questionsService: QuestionsService,
@@ -160,6 +161,38 @@ export class UpsertQuestionComponent implements OnInit {
 
   back(): void {
     this.location.back();
+  }
+
+  approvalQuestion(status:string): void {
+    if (!status) {
+      Swal.fire('Something false', '', 'error').then(r => {
+        //do nothing :))
+      });
+    
+    } else {
+      if (!this.questionId) {
+        Swal.fire('Something false', '', 'error').then(r => {
+          //do nothing :))
+        });
+      } else {
+        if (status == 'approved') {          
+          this.question.status = 1;
+        } else {          
+          this.question.status = 2;
+        }
+        this.util.showLoading();
+        this.question.topicIds = this.topicSelect!.topicsFormControl.value;
+        this.questionsService.update(this.questionId, this.question, () => {
+        this.util.hideLoading();
+          Swal.fire('OK gòi đó!', '', 'success').then(r => {
+          });
+        }, (err: any) => {
+          Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
+            console.log(err);
+          });
+        });
+      }
+    }
   }
 
 }

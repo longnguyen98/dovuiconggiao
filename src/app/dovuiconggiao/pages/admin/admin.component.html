@@ -1,6 +1,6 @@
 <div class="container px-4 py-2">
   <div class="row mb-4">
-    <div class="col-lg-2 col-sm-12">
+    <!-- <div class="col-lg-2 col-sm-12">
       <div class="d-flex justify-content-between pb-2">
         <div class="row">
           <h2 class="">Thống kê</h2>
@@ -8,11 +8,18 @@
           <p>Số lượng người dùng: {{userComponent.totalUser}}</p>
         </div>
       </div>
-    </div>
-    <div class="col-lg-10 col-sm-12">
+    </div> -->
+    <div class="col-lg-12 col-sm-12">
       <mat-tab-group>
-        <mat-tab label="Questions" style="overflow: hidden;">
-          <div class="row d-flex justify-content-between">
+        <mat-tab label="Thống kê">
+          <div class="row dashboard">
+            <h2>Thống kê</h2>
+            <p>Số lượng câu hỏi: {{totalQuestion}}</p>
+            <p>Số lượng người dùng: {{userComponent.totalUser}}</p>
+          </div>
+        </mat-tab>
+        <mat-tab label="Câu hỏi" style="overflow: hidden;">
+          <div class="row d-flex justify-content-between" style="width: 100%;">
             <div class="col-6">
               <mat-form-field class="w-100" appearance="outline">
                 <mat-label>Tìm kiếm</mat-label>
@@ -80,7 +87,7 @@
             <p></p>
           </div>
         </mat-tab>
-        <mat-tab label="Users">
+        <mat-tab label="Tài khoản">
           <div class="row" style="width: 100%;">
             <mat-form-field class="w-100" appearance="outline">
               <mat-label>Tìm kiếm</mat-label>
