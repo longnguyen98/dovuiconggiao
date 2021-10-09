@@ -163,27 +163,28 @@ export class UpsertQuestionComponent implements OnInit {
     this.location.back();
   }
 
-  approvalQuestion(status:string): void {
+  approvalQuestion(status: string): void {
     if (!status) {
       Swal.fire('Something false', '', 'error').then(r => {
         //do nothing :))
       });
-    
+
     } else {
       if (!this.questionId) {
         Swal.fire('Something false', '', 'error').then(r => {
           //do nothing :))
         });
       } else {
-        if (status == 'approved') {          
+        if (status == 'approved') {
           this.question.status = 1;
-        } else {          
+        } else {
           this.question.status = 2;
         }
         this.util.showLoading();
         this.question.topicIds = this.topicSelect!.topicsFormControl.value;
         this.questionsService.update(this.questionId, this.question, () => {
-        this.util.hideLoading();
+          this.localStore.upsert(this.questionId!, this.question);
+          this.util.hideLoading();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
           });
         }, (err: any) => {

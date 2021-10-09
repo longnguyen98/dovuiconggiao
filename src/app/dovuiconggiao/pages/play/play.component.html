@@ -1,5 +1,5 @@
 <div class="px-4 py-2 my-2 text-center">
-  <div *ngIf="!isStart">
+  <div *ngIf="!isStart && !showResult">
     <div class="col-lg-6 mx-auto">
       <topic-select #topicSelector></topic-select>
     </div>
@@ -9,33 +9,38 @@
       </button>
     </div>
   </div>
-  <div [hidden]="!isStart" class="unselectable" unselectable="on" onselectstart="return false;"
+  <div [hidden]="!isStart" class="unselectable row" unselectable="on" onselectstart="return false;"
        onmousedown="return false;">
-    <countdown #countdown [config]="countDownConfig" style="font-size: 30pt" (event)="onTimerCount($event)"></countdown>
-    <div class="text-center m-2">
-      <h3>Điểm thưởng: {{bonus}}</h3>
-    </div>
-    <div class="text-center m-2">
-      <h1>Điểm: {{score}}</h1>
-    </div>
-
-    <div class="px-2 py-3 m-5 shadow rounded-3" *ngIf="question">
-      <div class="px-5">
-        <img class="img-fluid rounded border px-3 mx-3 question-img"
-             src="https://um-insight.net/downloads/313/download/Holy-Bible.jpg?cb=d7c66cda21ffa0b59262145100eec59f"
-             alt="question_img">
-        <mat-divider class="my-3"></mat-divider>
-        <h1 class="text-center">{{question.content}}</h1>
+    <div class="col-lg-2 col-sm-12 mt-3">
+      <countdown #countdown [config]="countDownConfig" style="font-size: 30pt"
+                 (event)="onTimerCount($event)"></countdown>
+      <div class="text-center m-2">
+        <h3>Điểm thưởng: {{bonus}}</h3>
       </div>
-      <div class="row d-flex justify-content-center">
-        <div class="col-4 m-1 p-1 rounded border option"
-             *ngFor="let o of question.options; let i = index"
-             (click)="onOptionSelect(o)">{{alphabet[i] + '. ' + o.content}}</div>
+      <div class="text-center m-2">
+        <h1>Điểm: {{score}}</h1>
+      </div>
+    </div>
+    <div class="col-lg-10 col-sm-12">
+      <div class="px-2 py-3 shadow rounded-3" *ngIf="question">
+        <div class="px-5">
+          <img class="img-fluid rounded border px-3 mx-3 question-img"
+               src="https://um-insight.net/downloads/313/download/Holy-Bible.jpg?cb=d7c66cda21ffa0b59262145100eec59f"
+               alt="question_img">
+          <mat-divider class="my-3"></mat-divider>
+          <h1 class="text-center">{{question.content}}</h1>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-4 m-1 p-1 rounded border option"
+               *ngFor="let o of question.options; let i = index"
+               (click)="onOptionSelect(o)">{{alphabet[i] + '. ' + o.content}}</div>
+        </div>
       </div>
     </div>
   </div>
   <div [hidden]="!showResult">
-    <table class="table table-bordered rounded border fw-bold shadow text-start" style="width: max-content;margin: auto">
+    <table class="table table-bordered rounded border fw-bold shadow text-start"
+           style="width: max-content;margin: auto">
       <tbody>
       <tr style="background: #aabfff">
         <td>

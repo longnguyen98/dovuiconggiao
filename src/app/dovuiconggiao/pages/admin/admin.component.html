@@ -11,13 +11,6 @@
     </div> -->
     <div class="col-lg-12 col-sm-12">
       <mat-tab-group>
-        <mat-tab label="Thống kê">
-          <div class="row dashboard">
-            <h2>Thống kê</h2>
-            <p>Số lượng câu hỏi: {{totalQuestion}}</p>
-            <p>Số lượng người dùng: {{userComponent.totalUser}}</p>
-          </div>
-        </mat-tab>
         <mat-tab label="Câu hỏi" style="overflow: hidden;">
           <div class="row d-flex justify-content-between" style="width: 100%;">
             <div class="col-6">
@@ -32,7 +25,6 @@
           </div>
           <div class="justify-content-end d-flex mb-3">
             <excel-import></excel-import>
-
           </div>
           <div class="border rounded">
             <table mat-table [dataSource]="dataSource">
@@ -96,6 +88,13 @@
           </div>
           <div class="border rounded">
             <app-user #userComponent></app-user>
+          </div>
+        </mat-tab>
+        <mat-tab label="Thống kê">
+          <div class="row dashboard">
+            <h2>Thống kê</h2>
+            <p>Số lượng câu hỏi: {{totalQuestion}}</p>
+            <p>Số lượng người dùng: {{userComponent.totalUser}}</p>
           </div>
         </mat-tab>
       </mat-tab-group>

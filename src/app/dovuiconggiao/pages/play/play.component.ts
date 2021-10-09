@@ -22,6 +22,7 @@ export class PlayComponent implements OnInit {
   countDownConfig: CountdownConfig = {leftTime: 30, format: "mm:ss.SS", demand: true}
   questions: Question[] = [];
   questionIds: string[] = [];
+  tempQuestionIds: string[] = [];
   isStart = false;
   showResult = false;
   totalAnswer = 0;
@@ -47,11 +48,12 @@ export class PlayComponent implements OnInit {
 
   onStart() {
     if (this.topicSelect.getSelectedTopicIds().length !== 0) {
+      console.log(this.topicSelect.getSelectedTopicIds());
       this.util.showLoading();
       this.questionService.getAllIds({
         field: 'topicIds',
         op: 'array-contains-any',
-        value: this.topicSelect.topicsFormControl.value
+        value: this.topicSelect.getSelectedTopicIds()
       }, (ids: any) => {
         this.questionIds = ids;
         this.questionService.query([{
@@ -78,14 +80,26 @@ export class PlayComponent implements OnInit {
 
   onOptionSelect(option: Option) {
     this.countdown.pause();
+    let score = 0;
+    if (option.correct) {
+      this.rightAnswer++;
+      score = 10 + this.bonus;
+      this.questionIds = this.questionIds.filter((id) => id !== this.question?.id);
+      this.tempQuestionIds.push(<string>this.question?.id);
+      if (this.questionIds.length < 1) {
+        this.questionIds.push(...this.tempQuestionIds);
+        this.tempQuestionIds = [];
+      }
+    }
+    console.log(this.questionIds);
+    console.log(this.tempQuestionIds);
+
     this.questions = this.questions.filter((q) => q.id !== this.question?.id);
     this.totalAnswer++;
-    this.rightAnswer += option.correct ? 1 : 0;
-    let score = (option.correct ? (10 + this.bonus) : 0);
     let html = ''
-    if (this.score < 100 && this.score + score > 100) {
-      html = '<img src="/assets/100.gif" alt="loading" style="width: 200px;height: auto"/>'
-    }
+    // if (this.score < 100 && this.score + score > 100) {
+    //   html = '<img src="/assets/100.gif" alt="loading" style="width: 200px;height: auto"/>'
+    // }
     this.score += score;
     this.bonus = 11;
     if (this.questions.length < 3) {
@@ -98,11 +112,10 @@ export class PlayComponent implements OnInit {
         this.questions.push(...docs);
       });
     }
-
     Swal.fire({
       icon: option.correct ? 'success' : 'error',
       showConfirmButton: false,
-      title: score != 0 ? ('+ ' + score) : ':<',
+      title: score != 0 ? ('+ ' + score) : '',
       html: html
     });
     setTimeout(() => {
@@ -110,10 +123,6 @@ export class PlayComponent implements OnInit {
       Swal.close();
       this.countdown.resume();
     }, 1000);
-  }
-
-  nextQuestion() {
-
   }
 
   onTimerCount(event: CountdownEvent): void {
@@ -130,19 +139,12 @@ export class PlayComponent implements OnInit {
 
   shuffle(array: Option[]) {
     let currentIndex = array.length, randomIndex;
-
-    // While there remain elements to shuffle...
     while (currentIndex != 0) {
-
-      // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-
-      // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex], array[currentIndex]];
     }
-
     return array;
   }
 
