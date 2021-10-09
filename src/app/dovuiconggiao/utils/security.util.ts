@@ -9,7 +9,8 @@ import Swal from "sweetalert2";
 @Injectable({providedIn: "root"})
 export class SecurityUtil {
 
-  currentUser: User;
+  currentUser: User | null = null;
+
   constructor(private afs: AngularFirestore, private auth: AngularFireAuth, private userService: UsersService, private utils: Utils) {
 
   }

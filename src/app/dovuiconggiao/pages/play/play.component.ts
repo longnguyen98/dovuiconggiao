@@ -2,10 +2,12 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {CountdownComponent, CountdownConfig, CountdownEvent} from "ngx-countdown";
 import {QuestionsService} from "../../services/questions.service";
 import {TopicSelectComponent} from "../../components/topic-select/topic-select.component";
-import {Option, Question} from "../../models/model";
+import {Option, Question, Record} from "../../models/model";
 import Swal from "sweetalert2";
 import {Utils} from "../../utils/utils";
 import {CONSTANTS} from "../../constants/constants";
+import {RecordService} from "../../services/record.service";
+import {SecurityUtil} from "../../utils/security.util";
 
 
 @Component({
@@ -27,6 +29,7 @@ export class PlayComponent implements OnInit {
   showResult = false;
   totalAnswer = 0;
   rightAnswer = 0;
+  topicId = '';
   //
   question: Question | undefined;
   alphabet = CONSTANTS.alphabet;
@@ -34,7 +37,9 @@ export class PlayComponent implements OnInit {
   bonus = 11;
 
   constructor(private questionService: QuestionsService,
-              private util: Utils) {
+              private util: Utils,
+              private recordService: RecordService,
+              private security: SecurityUtil) {
 
   }
 
@@ -48,8 +53,8 @@ export class PlayComponent implements OnInit {
 
   onStart() {
     if (this.topicSelect.getSelectedTopicIds().length !== 0) {
-      console.log(this.topicSelect.getSelectedTopicIds());
       this.util.showLoading();
+      this.topicId = this.topicSelect.getSelectedTopicIds()[0];
       this.questionService.getAllIds({
         field: 'topicIds',
         op: 'array-contains-any',
@@ -90,10 +95,9 @@ export class PlayComponent implements OnInit {
         this.questionIds.push(...this.tempQuestionIds);
         this.tempQuestionIds = [];
       }
+    } else {
+      score = -10;
     }
-    console.log(this.questionIds);
-    console.log(this.tempQuestionIds);
-
     this.questions = this.questions.filter((q) => q.id !== this.question?.id);
     this.totalAnswer++;
     let html = ''
@@ -115,7 +119,7 @@ export class PlayComponent implements OnInit {
     Swal.fire({
       icon: option.correct ? 'success' : 'error',
       showConfirmButton: false,
-      title: score != 0 ? ('+ ' + score) : '',
+      title: score > 0 ? ('+ ' + score) : score + '',
       html: html
     });
     setTimeout(() => {
@@ -129,7 +133,27 @@ export class PlayComponent implements OnInit {
     if (event.action === "done") {
       this.isStart = false;
       this.showResult = true;
+      //
+      if (this.security.currentUser !== null) {
+        let record: Record = {
+          rightAnswer: this.rightAnswer,
+          totalAnswer: this.totalAnswer,
+          createdDate: new Date().toDateString(),
+          id: "",
+          score: this.score,
+          topicId: this.topicId,
+          userId: this.security.currentUser!.id
+        };
+        this.recordService.create(record, () => {
+        }, () => {
+        });
+      }
     }
+  }
+
+  saveRecord(record: Record) {
+
+
   }
 
   loadQuestion(q: Question) {

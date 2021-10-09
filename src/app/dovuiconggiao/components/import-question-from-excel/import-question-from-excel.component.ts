@@ -50,7 +50,7 @@ export class ImportQuestionFromExcelComponent implements OnInit {
           let topicIds = row[keys[6]];
           //
           let q: Question = {
-            authorId: this.security.currentUser.id,
+            authorId: this.security.currentUser!.id,
             content: content,
             createdTime: new Date().toDateString(),
             id: "",
@@ -58,7 +58,7 @@ export class ImportQuestionFromExcelComponent implements OnInit {
             options: options,
             topicIds: topicIds.split(","),
             status: 0,
-            author: this.security.currentUser,
+            author: this.security.currentUser!,
             topics: []
           }
           if (q.topicIds.length !== 0) {

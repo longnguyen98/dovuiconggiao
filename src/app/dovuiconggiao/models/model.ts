@@ -43,19 +43,21 @@ export interface Topic extends BaseModel {
 }
 
 export interface Record extends BaseModel {
-  topic: Topic;
+  topic?: Topic;
   topicId: string;
   score: number;
-  time: string;
+  totalAnswer:number;
+  rightAnswer:number;
   createdDate: string;
-  user: User;
+  user?: User;
   userId: string;
 }
 
 export const COLLECTIONS = {
   QUESTIONS: 'questions',
   TOPICS: 'topics',
-  USERS: 'users'
+  USERS: 'users',
+  RECORDS:'records'
 };
 
 

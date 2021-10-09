@@ -34,9 +34,6 @@
         <!-- <mat-label>None</mat-label> -->
         <mat-select multiple (ngModelChange)="isChangeRole = true" [(ngModel)]="element.roles" (closed)="saveRole(element.id,element.roles)">
           <mat-option *ngFor="let role of allRoles" [value]="role">{{role}}</mat-option>
-          <!-- <mat-option value="admin">Admin</mat-option>
-          <mat-option value="manager">Quản lý</mat-option>
-          <mat-option value="user">Người dùng</mat-option> -->
         </mat-select>
       </mat-form-field>
     </td>
