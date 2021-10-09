@@ -75,8 +75,8 @@
     </div>
 
     <div class="d-flex justify-content-end">
-      <button mat-raised-button class="success" style="width: 200px" type="button" (click)="approvalQuestion('approved')">Duyệt</button>
-      <button mat-raised-button color="warn" style="width: 200px" type="button" (click)="approvalQuestion('reject')">Ẩn</button>
+      <button mat-raised-button class="success" style="width: 200px" type="button" *ngIf="isAdmin" (click)="approvalQuestion('approved')">Duyệt</button>
+      <button mat-raised-button color="warn" style="width: 200px" type="button" *ngIf="isAdmin" (click)="approvalQuestion('reject')">Ẩn</button>
       <button mat-raised-button color="warn" style="width: 200px" type="button" (click)="back()">Quay lại</button>
       <button mat-raised-button color="primary" style="width: 200px" type="button" (click)="submitQuestion()">Gửi
       </button>
