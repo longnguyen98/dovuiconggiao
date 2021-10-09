@@ -106,3 +106,20 @@
 .success {background-color: #04AA6D;}
 .info {background-color: #2196F3;}
 .danger {background-color: #f44336;}
+
+.file-upload {
+	margin: 5px 5px 25px;
+}
+.file-upload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+  z-index: 10;
+	font-size: 20px;
+	cursor: pointer;
+	height: 36px;
+	opacity: 0;
+	filter: alpha(opacity=0); }
+

@@ -2,6 +2,20 @@
   <div class="row mb-4">
     <div class="col-lg-6 col-sm-12">
       <topic-select #topicSelectComponent></topic-select>
+      <!-- <input (change)="picked($event)" type="file"> -->
+      <!-- <input type="file" id="file-upload" name="fileUpload" style="display:none;" accept=".png, .jpg" (change)="picked($event)"/>
+
+      <button mat-raised-button color="primary" onClick="$('#file-upload').trigger('click');">
+        <mat-icon class="me-2">add_photo_alternate</mat-icon>Tải ảnh
+      </button> -->
+      <div class="file-upload mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        <span>Tải ảnh</span>
+          <input type="file" class="upload" (change)="picked($event)" accept=".png, .jpg"/>
+      </div>
+      <label *ngIf="!(imgUrl == '')">{{imgUrl}}</label>
+        <button mat-icon-button *ngIf="!(imgUrl == '')" (click)="clearImg()">
+          <mat-icon>close</mat-icon>
+        </button>    
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Nội dung câu hỏi</mat-label>
         <textarea matInput rows="20" [(ngModel)]="question.content" required></textarea>
@@ -78,8 +92,21 @@
       <button mat-raised-button class="success" style="width: 200px" type="button" *ngIf="isAdmin" (click)="approvalQuestion('approved')">Duyệt</button>
       <button mat-raised-button color="warn" style="width: 200px" type="button" *ngIf="isAdmin" (click)="approvalQuestion('reject')">Ẩn</button>
       <button mat-raised-button color="warn" style="width: 200px" type="button" (click)="back()">Quay lại</button>
+      <button mat-raised-button color="primary" style="width: 200px" type="button" (click)="preview()">Preview</button>
       <button mat-raised-button color="primary" style="width: 200px" type="button" (click)="submitQuestion()">Gửi
       </button>
+    </div>
+    <div class="col-lg-12 col-sm-12" style="margin-top: 10px;" *ngIf="isPreview">
+      <div class=" hadow rounded-3" *ngIf="question">
+        <div>
+          <img class="img-fluid rounded border px-3 mx-3 question-img"
+               [src]="imgSrc"
+               alt="question_img"
+               *ngIf="imgSrc">
+          <mat-divider class="my-3"></mat-divider>
+          <h1 class="text-center">{{question.content}}</h1>
+        </div>
+      </div>
     </div>
   </div>
 </div>
