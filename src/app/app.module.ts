@@ -37,6 +37,7 @@ import {CountdownModule} from 'ngx-countdown';
 import {AkitaNgDevtools} from '@datorama/akita-ngdevtools';
 import {ImportQuestionFromExcelComponent} from './dovuiconggiao/components/import-question-from-excel/import-question-from-excel.component';
 import { RecordsComponent } from './dovuiconggiao/pages/profile/records/records.component';
+import { RankComponent } from './dovuiconggiao/components/rank/rank.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { RecordsComponent } from './dovuiconggiao/pages/profile/records/records.
     ProfileComponent,
     UserComponent,
     ImportQuestionFromExcelComponent,
-    RecordsComponent
+    RecordsComponent,
+    RankComponent
   ],
   imports: [
     BrowserModule,
