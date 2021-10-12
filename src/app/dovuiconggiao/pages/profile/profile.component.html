@@ -53,65 +53,72 @@
         </div>
       </div>
       <div class="col-lg-8 p-2 col-sm-12 border rounded">
-        <div class="d-flex justify-content-between pb-2">
-          <h2 style="margin-top: 8px;">Câu hỏi đã đóng góp: {{totalQuestion}}</h2>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Tìm kiếm</mat-label>
-              <input matInput type="text"/>
-            </mat-form-field>
-          </div>
-          <div class="col-6">
-            <topic-select #topicSelectComponent></topic-select>
-          </div>
-        </div>
-        <div class="rounded border shadow">
-          <table mat-table [dataSource]="dataSource">
-            <!-- Position Column -->
-            <ng-container matColumnDef="id">
-              <th mat-header-cell *matHeaderCellDef> STT</th>
-              <td mat-cell *matCellDef="let element;let i = index;" style="width: 10%"> {{i + 1}} </td>
-            </ng-container>
-
-            <!-- Question Column -->
-            <ng-container matColumnDef="content">
-              <th mat-header-cell *matHeaderCellDef> Câu hỏi</th>
-              <td mat-cell *matCellDef="let element" class="truncate" style="width: 30%"> {{element.content}} </td>
-            </ng-container>
-            <ng-container matColumnDef="topics">
-              <th mat-header-cell *matHeaderCellDef> Chủ đề</th>
-              <td mat-cell *matCellDef="let element" class="truncate" style="width: 30%"><span
-                *ngFor="let topic of element.topics;let j =index">{{topic.name}} <span
-                *ngIf="j!==element.topics.length-1">| </span></span></td>
-            </ng-container>
-
-            <ng-container matColumnDef="actions">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element" style="width: 10%">
-                <button mat-button color="primary" routerLink="/question/{{element.id}}">
-                  <mat-icon>edit</mat-icon>
-                </button>
-              </td>
-            </ng-container>
-            <ng-container matColumnDef="status">
-              <th mat-header-cell *matHeaderCellDef>Trạng thái</th>
-              <td mat-cell *matCellDef="let element" style="width: 10%">
-                <span>{{status[element.status].name}}</span>
-              </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <!-- <tr mat-row (click)="" *matRowDef="let row; columns: displayedColumns;"></tr> -->
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-
-          <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                         showFirstLastButtons>
-          </mat-paginator>
-          <p></p>
-        </div>
+        <mat-tab-group>
+          <mat-tab label="Câu hỏi đã đóng góp">
+            <div>
+              <h3 style="margin-top: 8px;">Số lượng: {{totalQuestion}}</h3>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <mat-form-field class="w-100" appearance="outline">
+                  <mat-label>Tìm kiếm</mat-label>
+                  <input matInput type="text"/>
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <topic-select #topicSelectComponent></topic-select>
+              </div>
+            </div>
+            <div class="rounded border shadow">
+              <table mat-table [dataSource]="dataSource">
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> STT</th>
+                  <td mat-cell *matCellDef="let element;let i = index;" style="width: 10%"> {{i + 1}} </td>
+                </ng-container>
+    
+                <!-- Question Column -->
+                <ng-container matColumnDef="content">
+                  <th mat-header-cell *matHeaderCellDef> Câu hỏi</th>
+                  <td mat-cell *matCellDef="let element" class="truncate" style="width: 30%"> {{element.content}} </td>
+                </ng-container>
+                <ng-container matColumnDef="topics">
+                  <th mat-header-cell *matHeaderCellDef> Chủ đề</th>
+                  <td mat-cell *matCellDef="let element" class="truncate" style="width: 30%"><span
+                    *ngFor="let topic of element.topics;let j =index">{{topic.name}} <span
+                    *ngIf="j!==element.topics.length-1">| </span></span></td>
+                </ng-container>
+    
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let element" style="width: 10%">
+                    <button mat-button color="primary" routerLink="/question/{{element.id}}">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef>Trạng thái</th>
+                  <td mat-cell *matCellDef="let element" style="width: 10%">
+                    <span>{{status[element.status].name}}</span>
+                  </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <!-- <tr mat-row (click)="" *matRowDef="let row; columns: displayedColumns;"></tr> -->
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+    
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                             showFirstLastButtons>
+              </mat-paginator>
+              <p></p>
+            </div>
+          </mat-tab>
+          <mat-tab label="Lịch sử chơi">
+            <app-records></app-records>
+          </mat-tab>
+        </mat-tab-group>
       </div>
     </div>
   </div>

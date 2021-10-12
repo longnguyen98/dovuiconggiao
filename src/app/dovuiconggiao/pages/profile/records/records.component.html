@@ -1,0 +1,49 @@
+<div class="row">
+    <h3 style="margin-top: 8px;">Số lượng: {{totalRecords}}</h3>
+    <div class="col-6">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Tìm kiếm</mat-label>
+        <input matInput type="text"/>
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <topic-select #topicSelectComponent></topic-select>
+    </div>
+  </div>
+  <div class="rounded border shadow">
+    <table mat-table [dataSource]="dataSource" style="width: 100%;">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> STT</th>
+        <td mat-cell *matCellDef="let element;let i = index;" style="width: 10%"> {{i + 1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="score">
+        <th mat-header-cell *matHeaderCellDef> Điểm </th>
+        <td mat-cell *matCellDef="let element" style="width: 10%"> {{element.score}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="time">
+        <th mat-header-cell *matHeaderCellDef> Thời gian </th>
+        <td mat-cell *matCellDef="let element" style="width: 25%"> {{element.createdDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="rightAnswer">
+        <th mat-header-cell *matHeaderCellDef> Số câu trả lời đúng </th>
+        <td mat-cell *matCellDef="let element" style="width: 20%"> {{element.totalAnswer}} / {{element.rightAnswer}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="topics">
+        <th mat-header-cell *matHeaderCellDef> Chủ đề</th>
+        <td mat-cell *matCellDef="let element" style="width: 25%"> {{getTopicName(element.topicId)}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons>
+    </mat-paginator>
+    <p></p>
+  </div>

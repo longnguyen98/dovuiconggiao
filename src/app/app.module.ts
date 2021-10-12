@@ -36,6 +36,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {CountdownModule} from 'ngx-countdown';
 import {AkitaNgDevtools} from '@datorama/akita-ngdevtools';
 import {ImportQuestionFromExcelComponent} from './dovuiconggiao/components/import-question-from-excel/import-question-from-excel.component';
+import { RecordsComponent } from './dovuiconggiao/pages/profile/records/records.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {ImportQuestionFromExcelComponent} from './dovuiconggiao/components/impor
     AuthenticationComponent,
     ProfileComponent,
     UserComponent,
-    ImportQuestionFromExcelComponent
+    ImportQuestionFromExcelComponent,
+    RecordsComponent
   ],
   imports: [
     BrowserModule,
