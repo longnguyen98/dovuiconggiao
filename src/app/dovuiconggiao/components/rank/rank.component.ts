@@ -9,8 +9,8 @@ import {Topic, Record, User} from 'src/app/dovuiconggiao/models/model';
 import {Utils} from "src/app/dovuiconggiao/utils/utils";
 import {SecurityUtil} from "src/app/dovuiconggiao/utils/security.util";
 import {ActivatedRoute, Router} from "@angular/router";
-import { UsersService } from 'src/app/dovuiconggiao/services/users.service';
-import { DocumentSnapshot } from '@angular/fire/firestore';
+import {UsersService} from 'src/app/dovuiconggiao/services/users.service';
+import {DocumentSnapshot} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-rank',
@@ -18,7 +18,7 @@ import { DocumentSnapshot } from '@angular/fire/firestore';
   styleUrls: ['./rank.component.css']
 })
 export class RankComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['id', 'score', 'userName', 'rightAnswer', 'topics'];
+  displayedColumns: string[] = ['id', 'score', 'userName', 'location', 'rightAnswer', 'topics'];
   ELEMENT_DATA: Record[] = [];
   dataSource = new MatTableDataSource<Record>(this.ELEMENT_DATA);
   totalRecords = 0;
@@ -44,37 +44,40 @@ export class RankComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  getTopicName(topicId : string): string {
+  getTopicName(topicId: string): string {
     let topicName = this.topicsName.find(e => e.id == topicId);
-    if(topicName) {
+    if (topicName) {
       return topicName.name;
     }
     return '';
-
   }
 
-  getUserName(userId : string): string {
-    // let userName: string | null | undefined;
-    // let user!: User;
+  getUserName(userId: string) {
     this.userService.get(userId, (ds: DocumentSnapshot<User>) => {
       if (ds.exists) {
         console.log(ds.data);
-        // user = ds.data();
       }
     }, (err: any) => {
       console.log(err);
     });
-    return "user";
   }
 
   ngOnInit(): void {
     this.recordService.list().then((qs) => {
       qs.forEach((doc) => {
-        this.ELEMENT_DATA.push(<Record>doc.data());
+        let record = <Record>doc.data();
+        this.ELEMENT_DATA.push(record);
       });
       this.dataSource.data = this.ELEMENT_DATA.sort((a, b) => b.score - a.score);
+      this.dataSource.data.forEach((el) => {
+        this.userService.get(el.userId, (ds: DocumentSnapshot<User>) => {
+          el.user = ds.data();
+        }, () => {
+        });
+      });
     });
-    
+
+
     this.topicsService.list().then((qs) => {
       qs.forEach((doc) => {
         this.topicsName.push(<Topic>doc.data());

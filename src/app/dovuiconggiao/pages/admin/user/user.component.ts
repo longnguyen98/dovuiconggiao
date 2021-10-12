@@ -8,6 +8,7 @@ import {FormControl} from "@angular/forms";
 import Swal from "sweetalert2";
 import {ROLE_LIST, ROLES} from "../../../constants/constants";
 import {Utils} from "src/app/dovuiconggiao/utils/utils";
+import {DocumentSnapshot} from "@angular/fire/firestore";
 
 @Component({
   selector: 'app-user',
@@ -48,18 +49,17 @@ export class UserComponent implements AfterViewInit, OnInit {
     });
   }
 
-  saveRole(userId: string, userRoles: string[]) {    
-    if(this.isChangeRole){
+  saveRole(userId: string, userRoles: string[]) {
+    if (this.isChangeRole) {
       this.util.showLoading();
-      if(!userId || !userRoles) {
+      if (!userId || !userRoles) {
         this.util.hideLoading();
         Swal.fire('Something false', '', 'error').then(r => {
           //do nothing :))
         });
-      } 
-      else {
+      } else {
         let userToChange = this.dataSource.data.find(e => e.id == userId);
-        if(userToChange){
+        if (userToChange) {
           this.userService.update(userToChange.id, userToChange, () => {
             Swal.fire('OK gòi đó!', '', 'success').then(r => {
             });
