@@ -64,7 +64,7 @@ export class PlayComponent implements OnInit {
         this.questionService.query([{
           field: 'id',
           op: 'in',
-          value: this.questionIds,
+          value: this.questionIds.splice(0,8),
           limit: 5
         }], (docs: Question[]) => {
           this.util.hideLoading();
