@@ -1,14 +1,12 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {Option, Question} from '../../models/model';
+import {Question} from '../../models/model';
 import * as $ from "jquery";
 import {QuestionsService} from "../../services/questions.service";
 import {UserComponent} from './user/user.component';
-import * as XLXS from 'xlsx';
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
-import {CONSTANTS} from "../../constants/constants";
 
 @Component({
   selector: 'app-admin',
@@ -17,7 +15,7 @@ import {CONSTANTS} from "../../constants/constants";
 })
 
 export class AdminComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['id', 'content', 'topics', 'author', 'location', 'actions', 'statusColor'];
+  displayedColumns: string[] = ['id', 'content', 'topics', 'author', 'date', 'actions', 'statusColor'];
   ELEMENT_DATA: Question[] = [];
   dataSource = new MatTableDataSource<Question>(this.ELEMENT_DATA);
   totalQuestion = 0;
