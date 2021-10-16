@@ -69,6 +69,35 @@ export class AdminComponent implements AfterViewInit, OnInit {
     });
   }
 
+  approvalQuestion(status: string, question: Question): void {
+    if (!status) {
+      Swal.fire('Something false', '', 'error').then(r => {
+      });
+
+    } else {
+      if (!question) {
+        Swal.fire('Something false', '', 'error').then(r => {
+          //do nothing :))
+        });
+      } else {
+        if (status == 'approved') {
+          question.status = 1;
+        } else {
+          question.status = 2;
+        }
+        this.questionsService.update(question.id, question, () => {
+          // this.localStore.upsert(this.questionId!, this.question);
+          Swal.fire('OK gòi đó!', '', 'success').then(r => {
+          });
+        }, (err: any) => {
+          Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
+            console.log(err);
+          });
+        });
+      }
+    }
+  }
+
 }
 
 

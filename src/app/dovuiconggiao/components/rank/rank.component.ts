@@ -41,7 +41,7 @@ export class RankComponent implements AfterViewInit, OnInit {
   ngAfterViewInit() {
     $('.nav-link.active').removeClass('active');
     $('.nav-link[page=admin]').addClass('active');
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
   }
 
   getTopicName(topicId: string): string {

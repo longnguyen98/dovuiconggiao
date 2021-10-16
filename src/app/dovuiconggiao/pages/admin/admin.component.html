@@ -70,10 +70,10 @@
                           matTooltipPosition="right">
                     <mat-icon>edit</mat-icon>
                   </button>
-                  <button mat-icon-button class="text-success" matTooltip="Duyệt" matTooltipPosition="right">
+                  <button mat-icon-button class="text-success" matTooltip="Duyệt" matTooltipPosition="right" (click)="approvalQuestion('approved',element)">
                     <mat-icon>check_circle_outline</mat-icon>
                   </button>
-                  <button mat-icon-button class="text-danger" matTooltip="Ẩn" matTooltipPosition="right">
+                  <button mat-icon-button class="text-danger" matTooltip="Ẩn" matTooltipPosition="right" (click)="approvalQuestion('reject',element)">
                     <mat-icon>block</mat-icon>
                   </button>
                   <button mat-icon-button color="warn" (click)="onDelete(element.id)" matTooltip="Xóa"
