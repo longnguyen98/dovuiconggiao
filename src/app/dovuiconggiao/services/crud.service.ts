@@ -39,7 +39,7 @@ export class CRUDFirestoreService<Model> {
     return this.collection.get().toPromise();
   }
 
-  query(queries: any[], onSucces: any, limit?: number): void {
+  query(queries: any[], onSucces: any, onEmpty?: any, limit?: number): void {
     let ref = this.collection.ref;
     let query: Query = ref.where(queries[0].field, queries[0].op, queries[0].value);
     for (let i = 1; i < queries.length; i++) {
@@ -57,6 +57,9 @@ export class CRUDFirestoreService<Model> {
         });
         onSucces(docs);
       } else {
+        if (onEmpty) {
+          onEmpty();
+        }
         console.log('NO_RECORDS');
       }
     }).catch((err) => {

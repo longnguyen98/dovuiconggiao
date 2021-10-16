@@ -43,13 +43,13 @@ export class AdminComponent implements AfterViewInit, OnInit {
       qs.forEach((doc) => {
         this.ELEMENT_DATA.push(<Question>doc.data());
       });
-      this.dataSource.data = this.ELEMENT_DATA.sort((a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime());
+      this.ELEMENT_DATA = this.ELEMENT_DATA.sort((a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime());
+      this.dataSource.data = this.ELEMENT_DATA;
       this.totalQuestion = this.dataSource.data.length;
     });
     this.reportService.getQuestionsReport((data: ReportData) => {
       this.reportData.push(data);
     });
-
   }
 
   onDelete(id: string): void {
@@ -67,6 +67,18 @@ export class AdminComponent implements AfterViewInit, OnInit {
         });
       }
     });
+  }
+
+  filterByStatus(status: number) {
+    if (status >= 0) {
+      this.questionsService.query([{field: 'status', op: '==', value: status}], (docs: Question[]) => {
+        this.dataSource.data = docs.sort((a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime());
+      }, () => {
+        this.dataSource.data = [];
+      });
+    } else {
+      this.dataSource.data = this.ELEMENT_DATA;
+    }
   }
 
   approvalQuestion(status: string, question: Question): void {

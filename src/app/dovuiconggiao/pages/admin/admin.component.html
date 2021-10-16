@@ -26,6 +26,21 @@
           <div class="justify-content-end d-flex mb-3">
             <excel-import></excel-import>
           </div>
+          <div class="justify-content-start d-flex mb-3">
+            <button mat-raised-button class="bg-light" (click)="filterByStatus(-1)">Tất cả</button>
+            <button mat-raised-button class="bg-success text-white" (click)="filterByStatus(1)">
+              <mat-icon class="me-1">check_circle_outline</mat-icon>
+              Đã duyệt
+            </button>
+            <button mat-raised-button class="bg-info text-white" (click)="filterByStatus(0)">
+              <mat-icon class="me-1">access_time</mat-icon>
+              Chờ duyệt
+            </button>
+            <button mat-raised-button class="bg-danger text-white" (click)="filterByStatus(2)">
+              <mat-icon class="me-1">block</mat-icon>
+              Đã ẩn
+            </button>
+          </div>
           <div class="border rounded">
             <table mat-table [dataSource]="dataSource">
               <ng-container matColumnDef="statusColor">
@@ -70,10 +85,12 @@
                           matTooltipPosition="right">
                     <mat-icon>edit</mat-icon>
                   </button>
-                  <button mat-icon-button class="text-success" matTooltip="Duyệt" matTooltipPosition="right" (click)="approvalQuestion('approved',element)">
+                  <button mat-icon-button class="text-success" matTooltip="Duyệt" matTooltipPosition="right"
+                          (click)="approvalQuestion('approved',element)">
                     <mat-icon>check_circle_outline</mat-icon>
                   </button>
-                  <button mat-icon-button class="text-danger" matTooltip="Ẩn" matTooltipPosition="right" (click)="approvalQuestion('reject',element)">
+                  <button mat-icon-button class="text-danger" matTooltip="Ẩn" matTooltipPosition="right"
+                          (click)="approvalQuestion('reject',element)">
                     <mat-icon>block</mat-icon>
                   </button>
                   <button mat-icon-button color="warn" (click)="onDelete(element.id)" matTooltip="Xóa"
