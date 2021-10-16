@@ -61,7 +61,7 @@ export class PlayComponent implements OnInit {
         value: this.topicSelect.getSelectedTopicIds()
       }, (ids: any) => {
         this.questionIds = ids;
-        let random = Math.floor(Math.random() * this.questionIds.length - 5);
+        let random = Math.floor(Math.random() * (this.questionIds.length - 5));
         this.questionService.query([{
           field: 'id',
           op: 'in',
@@ -108,7 +108,7 @@ export class PlayComponent implements OnInit {
     this.score += score;
     this.bonus = 11;
     if (this.questions.length < 3) {
-      let random = Math.floor(Math.random() * this.questionIds.length - 5);
+      let random = Math.floor(Math.random() * (this.questionIds.length - 5));
       this.questionService.query([{
         field: 'id',
         op: 'in',
