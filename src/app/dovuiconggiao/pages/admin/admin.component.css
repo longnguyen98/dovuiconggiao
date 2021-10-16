@@ -3,6 +3,10 @@
 table {
     width: 100%;
 }
+
+table th, table td{
+  padding-left: 10px;
+}
 .mat-column-select {
     overflow: initial;
 }

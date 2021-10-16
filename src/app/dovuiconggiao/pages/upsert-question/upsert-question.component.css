@@ -91,7 +91,6 @@
 }
 
 .status-blog {
- margin-left: 30px;
  margin-top: 15px;
 }
 .status-blog h3 span {
@@ -99,9 +98,10 @@
 }
 .label {
   color: white;
-  padding: 8px;
-  font-family: Arial;
-  border-radius: 50%;
+  padding: 10px 30px;
+  font-family: Arial, serif;
+  border-radius: 10px;
+  font-weight: bold;
 }
 .success {background-color: #04AA6D;}
 .info {background-color: #2196F3;}
