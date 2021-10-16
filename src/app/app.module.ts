@@ -38,6 +38,7 @@ import {AkitaNgDevtools} from '@datorama/akita-ngdevtools';
 import {ImportQuestionFromExcelComponent} from './dovuiconggiao/components/import-question-from-excel/import-question-from-excel.component';
 import { RecordsComponent } from './dovuiconggiao/pages/profile/records/records.component';
 import { RankComponent } from './dovuiconggiao/components/rank/rank.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -55,34 +56,35 @@ import { RankComponent } from './dovuiconggiao/components/rank/rank.component';
     RecordsComponent,
     RankComponent
   ],
-  imports: [
-    BrowserModule,
-    RouterModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatSelectModule,
-    MatInputModule,
-    MatStepperModule,
-    CKEditorModule,
-    MatExpansionModule,
-    MatSlideToggleModule,
-    ReactiveFormsModule,
-    MatProgressSpinnerModule,
-    FormsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatIconModule,
-    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
-    AngularFireAuthModule,
-    MatMenuModule,
-    MatTabsModule,
-    CountdownModule,
-    AkitaNgDevtools.forRoot()
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(firebaseConfig),
+        AngularFirestoreModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatStepperModule,
+        CKEditorModule,
+        MatExpansionModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule,
+        MatProgressSpinnerModule,
+        FormsModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatIconModule,
+        FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+        AngularFireAuthModule,
+        MatMenuModule,
+        MatTabsModule,
+        CountdownModule,
+        AkitaNgDevtools.forRoot(),
+        MatTooltipModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

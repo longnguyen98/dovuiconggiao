@@ -91,35 +91,54 @@
 }
 
 .status-blog {
- margin-top: 15px;
+  margin-top: 10px;
 }
+
 .status-blog h3 span {
   margin-top: 13px;
 }
+
 .label {
   color: white;
-  padding: 10px 30px;
+  padding: 15px 30px;
   font-family: Arial, serif;
   border-radius: 10px;
   font-weight: bold;
 }
-.success {background-color: #04AA6D;}
-.info {background-color: #2196F3;}
-.danger {background-color: #f44336;}
+
+.success {
+  background-color: #04AA6D;
+}
+
+.info {
+  background-color: #2196F3;
+}
+
+.danger {
+  background-color: #f44336;
+}
 
 .file-upload {
-	margin: 5px 5px 25px;
+  margin: 5px 5px 25px;
 }
+
 .file-upload input.upload {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 0;
-	padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
   z-index: 10;
-	font-size: 20px;
-	cursor: pointer;
-	height: 36px;
-	opacity: 0;
-	filter: alpha(opacity=0); }
+  font-size: 20px;
+  cursor: pointer;
+  height: 36px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+mat-icon {
+  position: relative;
+  top: 5px;
+  left: -10px;
+}
 

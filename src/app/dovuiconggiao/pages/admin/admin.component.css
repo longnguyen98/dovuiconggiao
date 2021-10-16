@@ -1,25 +1,32 @@
-
 /* Question Table */
 table {
-    width: 100%;
+  width: 100%;
 }
 
-table th, table td{
-  padding-left: 10px;
+table th, table td {
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  justify-content: center;
 }
+
 .mat-column-select {
-    overflow: initial;
+  overflow: initial;
 }
 
 .truncate {
-    /*width: 200px;*/
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 0;
+  /*width: 200px;*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 0;
 }
 
 .dashboard {
-    width: 100%;
+  width: 100%;
+}
+.status-th{
+  background: linear-gradient(313deg, rgba(220,53,69,1) 0%, rgba(25,135,84,1) 47%, rgba(13,202,240,1) 78%);
+  padding: 0 !important;
 }
 

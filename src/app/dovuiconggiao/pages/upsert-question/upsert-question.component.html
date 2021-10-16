@@ -2,9 +2,9 @@
   <div class="row mb-4">
     <div class="col-lg-2 col-sm-12">
       <h3 class="status-blog">
-        <span *ngIf="question.status == 1" class="label bg-success">Đã Duyệt</span>
-        <span *ngIf="question.status == 0" class="label bg-info">Chờ duyệt</span>
-        <span *ngIf="question.status == 2" class="label bg-danger">Ẩn</span>
+        <span *ngIf="question.status == 1" class="label bg-success"><mat-icon>check_circle_outline</mat-icon> Đã Duyệt</span>
+        <span *ngIf="question.status == 0" class="label bg-info"><mat-icon>access_time</mat-icon>Chờ duyệt</span>
+        <span *ngIf="question.status == 2" class="label bg-danger"><mat-icon>block</mat-icon>Ẩn</span>
       </h3>
     </div>
     <div class="col-lg-10 col-sm-12">
@@ -23,10 +23,10 @@
       <button mat-raised-button color="primary" onClick="$('#file-upload').trigger('click');">
         <mat-icon class="me-2">add_photo_alternate</mat-icon>Tải ảnh
       </button> -->
-<!--      <div class="file-upload mdl-button mdl-js-button mdl-button&#45;&#45;raised mdl-js-ripple-effect">-->
-<!--        <span>Tải ảnh</span>-->
-<!--        <input type="file" class="upload" (change)="picked($event)" accept=".png, .jpg"/>-->
-<!--      </div>-->
+      <!--      <div class="file-upload mdl-button mdl-js-button mdl-button&#45;&#45;raised mdl-js-ripple-effect">-->
+      <!--        <span>Tải ảnh</span>-->
+      <!--        <input type="file" class="upload" (change)="picked($event)" accept=".png, .jpg"/>-->
+      <!--      </div>-->
       <label *ngIf="!(imgUrl == '')">{{imgUrl}}</label>
       <button mat-icon-button *ngIf="!(imgUrl == '')" (click)="clearImg()">
         <mat-icon>close</mat-icon>
@@ -83,12 +83,12 @@
     </div>
 
     <div class="d-flex justify-content-between">
-      <div  *ngIf="isAdmin">
-        <button mat-raised-button class="bg-success text-white" style="width: 200px" type="button"
-                (click)="approvalQuestion('approved')">Duyệt
-        </button>
+      <div *ngIf="isAdmin">
         <button mat-raised-button color="warn" style="width: 200px" type="button"
                 (click)="approvalQuestion('reject')">Ẩn
+        </button>
+        <button mat-raised-button class="bg-success text-white" style="width: 200px" type="button"
+                (click)="approvalQuestion('approved')">Duyệt
         </button>
       </div>
       <div>
