@@ -29,7 +29,7 @@ export class QuestionsService extends CRUDFirestoreService<Question> {
   }
 
   getAllIds(query: any, callBack: any) {
-    this.questionCollection.ref.where(query.field, query.op, query.value).get().then((qs) => {
+    this.questionCollection.ref.where(query.field, query.op, query.value).where('status','==',1).get().then((qs) => {
       callBack(qs.docs.map((doc) => {
         return doc.id;
       }));

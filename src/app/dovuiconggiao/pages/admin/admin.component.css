@@ -29,4 +29,9 @@ table th, table td {
   background: linear-gradient(313deg, rgba(220,53,69,1) 0%, rgba(25,135,84,1) 47%, rgba(13,202,240,1) 78%);
   padding: 0 !important;
 }
+td button{
+  width: 25px !important;
+  height: auto !important;
+  border-radius: 5% !important;
+}
 
