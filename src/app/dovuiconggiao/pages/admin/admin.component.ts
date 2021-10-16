@@ -8,6 +8,7 @@ import {UserComponent} from './user/user.component';
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
 import {ReportService} from "../../services/report.service";
+import {QuestionStore} from "../../repository/question.store";
 
 @Component({
   selector: 'app-admin',
@@ -28,7 +29,8 @@ export class AdminComponent implements AfterViewInit, OnInit {
   //
   reportData: ReportData[] = [];
 
-  constructor(private questionsService: QuestionsService, private router: Router, private reportService: ReportService) {
+  constructor(private questionsService: QuestionsService, private router: Router, private reportService: ReportService,
+              private localStore: QuestionStore,) {
 
   }
 
@@ -86,7 +88,7 @@ export class AdminComponent implements AfterViewInit, OnInit {
           question.status = 2;
         }
         this.questionsService.update(question.id, question, () => {
-          // this.localStore.upsert(this.questionId!, this.question);
+          this.localStore.upsert(question.id!, question);
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
           });
         }, (err: any) => {
