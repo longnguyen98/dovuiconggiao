@@ -12,11 +12,16 @@
         <mat-label>Ghi chú</mat-label>
         <input matInput [(ngModel)]="question.note">
       </mat-form-field>
+      <div *ngIf="!isAdmin">
+        <p>
+          {{question.note}}
+        </p>
+      </div>
     </div>
   </div>
   <div class="row mb-4">
     <div class="col-lg-6 col-sm-12">
-      <topic-select #topicSelectComponent></topic-select>
+      <topic-select #topicSelectComponent [multiple]="true"></topic-select>
       <!-- <input (change)="picked($event)" type="file"> -->
       <!-- <input type="file" id="file-upload" name="fileUpload" style="display:none;" accept=".png, .jpg" (change)="picked($event)"/>
 

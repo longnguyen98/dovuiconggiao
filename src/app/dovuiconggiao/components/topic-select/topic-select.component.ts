@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Topic} from "../../models/model";
 import {FormControl} from "@angular/forms";
 import {TopicsService} from "../../services/topics.service";
@@ -15,6 +15,8 @@ export class TopicSelectComponent implements OnInit {
   topics: Topic[] = [];
   topicsFormControl = new FormControl();
   loading = true;
+  @Input()
+  multiple = false;
 
   constructor(private topicService: TopicsService) {
     topicService.listThenStore().then((qs: QuerySnapshot<Topic>) => {
