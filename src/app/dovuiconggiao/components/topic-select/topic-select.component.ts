@@ -38,14 +38,14 @@ export class TopicSelectComponent implements OnInit {
       return [];
     }
     return this.topics.filter((t) => {
-      let ids: string[] = [this.topicsFormControl.value];
+      let ids: string[] = this.multiple ? this.topicsFormControl.value : [this.topicsFormControl.value];
       return ids.includes(t.id);
     });
   }
 
   getSelectedTopicIds(): string[] {
     if (this.topicsFormControl.value) {
-      return [this.topicsFormControl.value];
+      return this.multiple ? this.topicsFormControl.value : [this.topicsFormControl.value];
     } else {
       return [];
     }
