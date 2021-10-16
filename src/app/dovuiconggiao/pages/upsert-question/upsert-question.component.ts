@@ -212,6 +212,7 @@ export class UpsertQuestionComponent implements OnInit {
           this.localStore.upsert(this.questionId!, this.question);
           this.util.hideLoading();
           Swal.fire('OK gòi đó!', '', 'success').then(r => {
+            this.back();
           });
         }, (err: any) => {
           Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {

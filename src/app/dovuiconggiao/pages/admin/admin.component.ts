@@ -1,12 +1,13 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {Question} from '../../models/model';
+import {Question, ReportData} from '../../models/model';
 import * as $ from "jquery";
 import {QuestionsService} from "../../services/questions.service";
 import {UserComponent} from './user/user.component';
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
+import {ReportService} from "../../services/report.service";
 
 @Component({
   selector: 'app-admin',
@@ -24,8 +25,10 @@ export class AdminComponent implements AfterViewInit, OnInit {
   //
   statusColor = ['bg-info', 'bg-success', 'bg-danger'];
   status = ['Chờ duyệt', 'Đã duyệt', 'Đã ẩn'];
+  //
+  reportData: ReportData[] = [];
 
-  constructor(private questionsService: QuestionsService, private router: Router) {
+  constructor(private questionsService: QuestionsService, private router: Router, private reportService: ReportService) {
 
   }
 
@@ -43,15 +46,19 @@ export class AdminComponent implements AfterViewInit, OnInit {
       this.dataSource.data = this.ELEMENT_DATA.sort((a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime());
       this.totalQuestion = this.dataSource.data.length;
     });
+    this.reportService.getQuestionsReport((data: ReportData) => {
+      this.reportData.push(data);
+    });
+
   }
 
   onDelete(id: string): void {
     Swal.fire({
-      title: 'Xóa hen?',
-      html: 'xóa là mất luôn đó nha!',
+      title: 'Xác nhận xóa',
+      html: 'Dữ liệu sẽ mất và không thể phục hồi',
       icon: 'question',
-      confirmButtonText: 'Okey',
-      cancelButtonText: 'Chotto matte',
+      confirmButtonText: 'Xác nhận',
+      cancelButtonText: 'Hủy',
       showCancelButton: true
     }).then(value => {
       if (value.isConfirmed) {

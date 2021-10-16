@@ -53,6 +53,11 @@ export interface Record extends BaseModel {
   userId: string;
 }
 
+export interface ReportData {
+  topic: Topic,
+  questionCount: number
+}
+
 export const COLLECTIONS = {
   QUESTIONS: 'questions',
   TOPICS: 'topics',

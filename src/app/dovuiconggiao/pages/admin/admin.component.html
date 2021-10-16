@@ -109,6 +109,21 @@
             <h2>Thống kê</h2>
             <p>Số lượng câu hỏi: {{totalQuestion}}</p>
             <p>Số lượng người dùng: {{userComponent.totalUser}}</p>
+            <mat-divider></mat-divider>
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Chủ đề</th>
+                <th>Số lượng câu hỏi</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let report of reportData">
+                <td>{{report.topic.name}}</td>
+                <td>{{report.questionCount}}</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </mat-tab>
       </mat-tab-group>
