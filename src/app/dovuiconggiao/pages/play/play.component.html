@@ -1,9 +1,9 @@
-<div class="px-4 py-2 my-2 text-center">
+<div class="px-lg-4 py-lg-2 my-lg-2 text-center">
   <div *ngIf="!isStart && !showResult">
     <div class="col-lg-6 mx-auto">
       <topic-select #topicSelector></topic-select>
     </div>
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3">
+    <div class="d-grid gap-2 d-sm-flex justify-content-center mb-3">
       <button mat-raised-button color="primary" class="px-4 bg-primary" style="width: 300px" (click)="onStart()">Bắt
         đầu!
       </button>
@@ -11,31 +11,63 @@
   </div>
   <div [hidden]="!isStart" class="unselectable row" unselectable="on" onselectstart="return false;"
        onmousedown="return false;">
-    <div class="col-lg-2 col-sm-12 mt-3">
+    <div class="col-lg-2 mt-lg-3 justify-content-center responsive-desktop">
       <countdown #countdown [config]="countDownConfig" style="font-size: 30pt"
                  (event)="onTimerCount($event)"></countdown>
-      <div class="text-center m-2">
+      <div class="text-center mt-2">
         <h3>Điểm thưởng: {{bonus}}</h3>
       </div>
-      <div class="text-center m-2">
+      <div class="text-center m-1">
         <h1>Điểm: {{score}}</h1>
       </div>
     </div>
-    <div class="col-lg-10 col-sm-12">
-      <div class="px-2 py-3 shadow rounded-3" *ngIf="question">
-        <div class="px-5">
-          <img class="img-fluid rounded border px-3 mx-3 question-img"
-               src="https://um-insight.net/downloads/313/download/Holy-Bible.jpg?cb=d7c66cda21ffa0b59262145100eec59f"
-               alt="question_img">
-          <mat-divider class="my-3"></mat-divider>
-          <h1 class="text-center">{{question.content}}</h1>
+    <div class="col-sm-12 ustify-content-center responsive-mobile">
+      <div class="d-flex justify-content-center">
+        <countdown #countdown [config]="countDownConfig" style="font-size: 15pt;font-weight: bold"
+                   (event)="onTimerCount($event)"></countdown>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="text-center">
+          <h3 class="fw-bold">Thưởng: {{bonus}}</h3>
         </div>
-        <div class="row d-flex justify-content-center">
-          <div class="col-4 m-1 p-1 rounded border option"
-               *ngFor="let o of question.options; let i = index"
-               (click)="onOptionSelect(o)">{{alphabet[i] + '. ' + o.content}}</div>
+        <div class="text-center">
+          <h3 class="fw-bold">Điểm: {{score}}</h3>
         </div>
       </div>
+    </div>
+    <div class="col-lg-10 col-sm-12">
+      <div class="responsive-desktop">
+        <div class="px-2 py-3 border rounded-3" *ngIf="question">
+          <div class="px-5">
+            <img class="img-fluid rounded border px-3 mx-3 question-img"
+                 src="https://um-insight.net/downloads/313/download/Holy-Bible.jpg?cb=d7c66cda21ffa0b59262145100eec59f"
+                 alt="question_img">
+            <mat-divider class="my-3"></mat-divider>
+            <h1 class="text-center">{{question.content}}</h1>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-4 m-1 p-1 rounded border option"
+                 *ngFor="let o of question.options; let i = index"
+                 (click)="onOptionSelect(o)">{{alphabet[i] + '. ' + o.content}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="responsive-mobile">
+        <div class="py-3 rounded-3" *ngIf="question">
+          <div class="px-1">
+            <img class="img-fluid rounded question-img"
+                 src="https://um-insight.net/downloads/313/download/Holy-Bible.jpg?cb=d7c66cda21ffa0b59262145100eec59f"
+                 alt="question_img" style="width: 70%;height: auto">
+            <h3 class="text-center mt-2 mb-3 fw-bold">{{question.content}}</h3>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-10 m-1 p-3 rounded shadow border option"
+                 *ngFor="let o of question.options; let i = index"
+                 (click)="onOptionSelect(o)">{{alphabet[i] + '. ' + o.content}}</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
   <div [hidden]="!showResult">

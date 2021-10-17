@@ -33,3 +33,25 @@ img.logo {
   height: 50px;
   margin-right: 10px;
 }
+
+@media (max-width: 1080px) {
+  .responsive-desktop {
+    display: none !important;
+  }
+
+  .responsive-mobile {
+    display: block !important;
+  }
+}
+
+@media (min-width: 1080px) {
+  .responsive-desktop {
+    display: block !important;
+
+  }
+
+  .responsive-mobile {
+    display: none !important;
+
+  }
+}

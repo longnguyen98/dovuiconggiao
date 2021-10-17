@@ -101,8 +101,6 @@ export class AdminComponent implements AfterViewInit, OnInit {
         }
         this.questionsService.update(question.id, question, () => {
           this.localStore.upsert(question.id!, question);
-          Swal.fire('OK gòi đó!', '', 'success').then(r => {
-          });
         }, (err: any) => {
           Swal.fire('Úi! có lỗi rồi! Chụp ảnh màn hình rồi gửi mấy bạn Dev nha', err, 'error').then(r => {
             console.log(err);

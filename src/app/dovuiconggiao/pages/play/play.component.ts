@@ -74,7 +74,7 @@ export class PlayComponent implements OnInit {
           this.loadQuestion(this.questions[random]);
           this.isStart = true;
           this.showResult = false;
-          this.countdown.begin();
+          // this.countdown.begin();
         });
       });
     } else {

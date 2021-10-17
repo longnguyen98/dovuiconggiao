@@ -1,11 +1,17 @@
-.option {
+.responsive-desktop .option {
   min-height: 40px;
   cursor: pointer;
   background-color: white;
   transition: transform .2s, box-shadow .2s;
   text-align: start !important;
-  padding-left: 3em !important;
+  padding-left: 1em !important;
   padding-top: 9px !important;
+}
+
+.responsive-mobile .option {
+  background-color: white;
+  transition: transform .2s, box-shadow .2s;
+  text-align: start !important;
 }
 
 .option:hover {
@@ -22,7 +28,7 @@
   padding: 50px 200px !important;
 }
 
-.question-img {
+.responsive-desktop .question-img {
   height: auto;
   width: 40%;
 }
