@@ -81,7 +81,7 @@ export class RankComponent implements OnInit {
         processed.push(...recordsByUserAndTopic.map((r)=>r.id));
         temp.push(recordsByUserAndTopic[0]);
       }
-      this.dataSource.data = temp;
+      this.ELEMENT_DATA = temp;
     });
 
 
