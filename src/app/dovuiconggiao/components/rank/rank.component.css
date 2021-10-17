@@ -2,9 +2,58 @@
     .desk-only {
         display: none;
     }
-    
+    .rank {
+        width: 20%;
+    }
+    .name {
+        width: 60%;
+    }
+    .scope {
+        width: 20%;
+    }
   }
   /*desktop*/
   @media (min-width: 1080px) {
+    .rank {
+        width: 10%;
+    }
+  
+    .name {
+        width: 30%;
+    }
+  
+    .scope {
+        width: 10%;
+    } 
+    .totalQuestion{
+        width: 10%;
+    }
+  
+    .topic {
+        width: 20%
+    }
     
+    .time {
+        width: 20%;
+    }
   }
+
+.ranking-header{
+    display: flex;
+    height: 30px;
+    align-items: center;
+    margin-bottom: 2px;
+    text-align: center;
+    background-color: rgb(24, 150, 253);
+}
+.ranking {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    margin-bottom: 5px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+.name {
+    text-align: left;
+}

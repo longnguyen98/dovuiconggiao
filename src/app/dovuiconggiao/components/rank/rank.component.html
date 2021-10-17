@@ -41,10 +41,32 @@
     </mat-paginator> -->
     <!-- <p></p>
   </div> -->
-  <div class="row ranking">
-    <div class="rank">Rank</div>
-    <div class="name">Name</div>
-    <div class="scope">Scope</div>
+  <div class="ranking-header rounded border text-white">
+    <div class="rank">Xếp hạng</div>
+    <div class="name" style="margin-left: 20px;">Thành viên</div>
+    <div class="scope">Điểm</div>
+    <div class="totalQuestion desk-only">Số câu hỏi</div>
+    <div class="topic desk-only">Chủ đề</div>
+    <div class="time desk-only">Thời gian</div>
+  </div>
+  <div class="ranking rounded border" *ngFor="let element of ELEMENT_DATA; let i = index">
+    <div class="rank">
+      <img *ngIf="i==0" src="https://firebasestorage.googleapis.com/v0/b/dovuiconggiao.appspot.com/o/dovuiconggiao-assets%2Ftop1.png?alt=media&token=115a09b7-db41-4d40-b25c-01a4e0e72964"
+            style="width: 40%;">
+      <img *ngIf="i==1" src="https://firebasestorage.googleapis.com/v0/b/dovuiconggiao.appspot.com/o/dovuiconggiao-assets%2Ftop2.png?alt=media&token=0afec015-4062-4daa-bf48-e1fa29e1e1c3"
+            style="width: 40%;">
+      <img *ngIf="i==2" src="https://firebasestorage.googleapis.com/v0/b/dovuiconggiao.appspot.com/o/dovuiconggiao-assets%2Ftop3.png?alt=media&token=cd31d34b-54a7-4340-8e23-d0496a004fd0"
+            style="width: 40%;"> 
+      {{i > 2 ? i : ''}}           
+      
+    </div>
+    <div class="name"><img src="element.user ? element.user.avatar" alt="avt"
+      class="rounded-circle"
+      style="width: 13%"> {{element.user ? element.user.name0 : ''}}</div>
+    <div class="scope">{{element.score}}</div>
+    <div class="totalQuestion desk-only">{{element.rightAnswer}} / {{element.totalAnswer}}</div>
+    <div class="topic desk-only">{{getTopicName(element.topicId)}}</div>
+    <div class="time desk-only">{{element.createdDate}}</div>
   </div>
 </ng-container>
 
