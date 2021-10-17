@@ -1,49 +1,5 @@
 <ng-container>
   <div class="text-center m-3"><h1>Bảng xếp hạng</h1></div>
-  <!--  <div class="rounded border" style="width: 100%;">-->
-  <!--    <table mat-table [dataSource]="dataSource" style="width: 100%;">-->
-
-  <!--      <ng-container matColumnDef="id">-->
-  <!--        <th mat-header-cell *matHeaderCellDef> STT</th>-->
-  <!--        <td mat-cell *matCellDef="let element;let i = index;" style="width: 10%"> {{i + 1}} </td>-->
-  <!--      </ng-container>-->
-
-  <!--      <ng-container matColumnDef="score">-->
-  <!--        <th mat-header-cell *matHeaderCellDef> Điểm</th>-->
-  <!--        <td mat-cell *matCellDef="let element" style="width: 10%"> {{element.score}} </td>-->
-  <!--      </ng-container>-->
-
-  <!--      <ng-container matColumnDef="userName">-->
-  <!--        <th mat-header-cell *matHeaderCellDef> Tên</th>-->
-  <!--        <td mat-cell *matCellDef="let element"-->
-  <!--            style="width: 25%">{{element.user ? (element.user.location ? element.user.location + ' | ' : '') : ''}} {{element.user ? element.user.name0 : ''}} </td>-->
-  <!--      </ng-container>-->
-  <!--      <ng-container matColumnDef="location">-->
-  <!--        <th mat-header-cell *matHeaderCellDef class="desk-only"> Giáo xứ</th>-->
-  <!--        <td mat-cell *matCellDef="let element" class="desk-only"-->
-  <!--            style="width: 25%"> {{element.user ? element.user.location : ''}} </td>-->
-  <!--      </ng-container>-->
-  <!--      <div class="desk-only">-->
-  <!--        <ng-container matColumnDef="rightAnswer">-->
-  <!--          <th mat-header-cell *matHeaderCellDef class="desk-only"> Số câu đúng</th>-->
-  <!--          <td mat-cell *matCellDef="let element" class="desk-only" style="width: 20%"> {{element.rightAnswer}}-->
-  <!--            / {{element.totalAnswer}}</td>-->
-  <!--        </ng-container>-->
-  <!--        <ng-container matColumnDef="topics">-->
-  <!--          <th mat-header-cell *matHeaderCellDef> Chủ đề</th>-->
-  <!--          <td mat-cell *matCellDef="let element" style="width: 25%"> {{getTopicName(element.topicId)}} </td>-->
-  <!--        </ng-container>-->
-  <!--      </div>-->
-  <!--      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
-  <!--      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-  <!--    </table>-->
-
-  <!--    <mat-paginator [pageSizeOptions]="[10, 20]"-->
-  <!--                   showFirstLastButtons>-->
-  <!--    </mat-paginator>-->
-  <!--    <p></p>-->
-  <!--    </mat-paginator>-->
-  <!--  </div>-->
   <div class="ranking-header rounded border text-white">
     <div class="rank">Xếp hạng</div>
     <div class="name" style="margin-left: 20px;">Thành viên</div>
@@ -67,12 +23,13 @@
 
     </div>
     <div class="name"><img src="{{element.user ? element.user.avatar:''}}" alt="avt"
-                           class="rounded-circle"
-                           style="width: 13%"> {{element.user ? element.user.name0 : ''}}</div>
+                           class="rounded-circle me-2"
+                           style="width: 13%"> {{element.user ? element.user.name0 + (element.user.location ? ' | ' + element.user.location : '') : ''}}
+    </div>
     <div class="scope">{{element.score}}</div>
     <div class="totalQuestion desk-only">{{element.rightAnswer}} / {{element.totalAnswer}}</div>
     <div class="topic desk-only">{{getTopicName(element.topicId)}}</div>
-    <div class="time desk-only">{{element.createdDate}}</div>
+    <div class="time desk-only">{{element.createdDate | date: 'dd/MM/YYYY'}}</div>
   </div>
   <!--  <div class="row ranking">-->
   <!--    <div class="rank">Rank</div>-->
