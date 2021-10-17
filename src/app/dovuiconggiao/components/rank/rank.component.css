@@ -1,0 +1,10 @@
+@media (max-width: 1080px) {
+    .desk-only {
+        display: none;
+    }
+    
+  }
+  /*desktop*/
+  @media (min-width: 1080px) {
+    
+  }
