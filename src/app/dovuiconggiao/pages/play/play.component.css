@@ -50,3 +50,18 @@
   position: relative;
   top: 5px;
 }
+/*mobile*/
+@media (max-width: 1080px) {
+  .countdown{
+    font-size: 15pt;
+    font-weight: bold
+  }
+}
+/*desktop*/
+@media (min-width: 1080px) {
+  .countdown{
+    font-size: 30pt;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+}

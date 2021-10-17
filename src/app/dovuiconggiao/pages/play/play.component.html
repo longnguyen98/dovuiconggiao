@@ -11,9 +11,9 @@
   </div>
   <div [hidden]="!isStart" class="unselectable row" unselectable="on" onselectstart="return false;"
        onmousedown="return false;">
+    <countdown #countdown [config]="countDownConfig" class="countdown" style=""
+               (event)="onTimerCount($event)"></countdown>
     <div class="col-lg-2 mt-lg-3 justify-content-center responsive-desktop">
-      <countdown #countdown [config]="countDownConfig" style="font-size: 30pt"
-                 (event)="onTimerCount($event)"></countdown>
       <div class="text-center mt-2">
         <h3>Điểm thưởng: {{bonus}}</h3>
       </div>
@@ -21,10 +21,9 @@
         <h1>Điểm: {{score}}</h1>
       </div>
     </div>
-    <div class="col-sm-12 ustify-content-center responsive-mobile">
+    <div class="col-sm-12 responsive-mobile">
       <div class="d-flex justify-content-center">
-        <countdown #countdown [config]="countDownConfig" style="font-size: 15pt;font-weight: bold"
-                   (event)="onTimerCount($event)"></countdown>
+
       </div>
       <div class="d-flex justify-content-between">
         <div class="text-center">
