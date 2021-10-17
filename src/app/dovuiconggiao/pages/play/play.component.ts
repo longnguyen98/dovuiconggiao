@@ -60,8 +60,11 @@ export class PlayComponent implements OnInit {
         op: 'array-contains-any',
         value: this.topicSelect.getSelectedTopicIds()
       }, (ids: any) => {
-        this.questionIds = ids;
+        this.questionIds = this.shuffle(ids);
         let random = Math.floor(Math.random() * (this.questionIds.length - 5));
+        console.log(this.questionIds.length);
+        console.log(random);
+        console.log(random + 4);
         this.questionService.query([{
           field: 'id',
           op: 'in',
@@ -163,7 +166,7 @@ export class PlayComponent implements OnInit {
     this.question.options = this.shuffle(this.question.options);
   }
 
-  shuffle(array: Option[]) {
+  shuffle(array: any[]) {
     let currentIndex = array.length, randomIndex;
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
