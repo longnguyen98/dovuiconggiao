@@ -25,10 +25,19 @@
     .scope {
         width: 10%;
     } 
+    
+    .ranking-header .scope {
+        margin-left: -19px;
+    }
+
     .totalQuestion{
         width: 10%;
     }
-  
+    
+    /* .ranking-header .totalQuestion, .topic {
+        margin-left: -2px;
+    } */
+
     .topic {
         width: 20%
     }
@@ -44,7 +53,7 @@
     align-items: center;
     margin-bottom: 2px;
     text-align: center;
-    background-color: rgb(24, 150, 253);
+    background-color:#3f51b5;
 }
 .ranking {
     display: flex;
