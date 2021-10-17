@@ -87,7 +87,7 @@
       </mat-form-field>
     </div>
 
-    <div class="d-flex " [class.justify-content-between]="isAdmin" [class.justify-content-end]="!isAdmin">
+    <div class="d-flex button-blog" [class.justify-content-between]="isAdmin" [class.justify-content-end]="!isAdmin">
       <div *ngIf="isAdmin">
         <button mat-raised-button color="warn" style="width: 200px" type="button"
                 (click)="approvalQuestion('reject')">Ẩn
@@ -96,7 +96,7 @@
                 (click)="approvalQuestion('approved')">Duyệt
         </button>
       </div>
-      <div>
+      <div [class.right-button]="!isAdmin">
         <button mat-raised-button color="warn" style="width: 200px" type="button" (click)="back()">Quay lại</button>
         <button mat-raised-button color="primary" style="width: 200px" type="button" (click)="submitQuestion()">
           {{questionId ? 'Lưu' : 'Gửi'}}

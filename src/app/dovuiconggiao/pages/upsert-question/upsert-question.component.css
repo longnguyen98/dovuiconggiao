@@ -142,3 +142,14 @@ mat-icon {
   left: -10px;
 }
 
+@media (max-width: 1080px) {
+  .button-blog {
+    margin-left: -20px;
+  }
+  .right-button {
+    display: contents !important;
+  }
+}
+/*desktop*/
+@media (min-width: 1080px) {
+}
