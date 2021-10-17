@@ -82,6 +82,11 @@ export class UpsertQuestionComponent implements OnInit {
     if (this.questionId) {
       if (this.localQuery.hasEntity(this.questionId)) {
         this.question = {...<Question>this.localQuery.getEntity(this.questionId)};
+        let options = this.question.options;
+        this.question.options = [];
+        options.forEach((o) => {
+          this.question.options.push({...o});
+        });
         this.topicSelect?.topicsFormControl.setValue(this.question!.topicIds);
       } else {
         this.questionsService.get(this.questionId, (ds: DocumentSnapshot<Question>) => {
@@ -99,6 +104,7 @@ export class UpsertQuestionComponent implements OnInit {
           });
         });
       }
+
       if (this.question.img) {
         this.imgSrc = this.domSan.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.question.img}`);
       }

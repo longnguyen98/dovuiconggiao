@@ -18,7 +18,7 @@ import {DocumentSnapshot} from '@angular/fire/firestore';
   styleUrls: ['./rank.component.css']
 })
 export class RankComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'score', 'userName', 'location', 'rightAnswer', 'topics'];
+  displayedColumns: string[] = ['id', 'score', 'userName', 'rightAnswer', 'topics'];
   ELEMENT_DATA: Record[] = [];
   dataSource = new MatTableDataSource<Record>(this.ELEMENT_DATA);
   totalRecords = 0;
