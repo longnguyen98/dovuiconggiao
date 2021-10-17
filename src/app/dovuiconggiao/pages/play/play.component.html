@@ -1,7 +1,7 @@
 <div class="px-lg-4 py-lg-2 my-lg-2 text-center">
   <div *ngIf="!isStart && !showResult">
     <div class="col-lg-6 mx-auto">
-      <topic-select #topicSelector></topic-select>
+      <topic-select #topicSelector [play]="true"></topic-select>
     </div>
     <div class="d-grid gap-2 d-sm-flex justify-content-center mb-3">
       <button mat-raised-button color="primary" class="px-4 bg-primary" style="width: 300px" (click)="onStart()">Bắt

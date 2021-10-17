@@ -17,6 +17,9 @@ export class TopicSelectComponent implements OnInit {
   loading = true;
   @Input()
   multiple = false;
+  @Input()
+  play = false;
+  ignoreList: string[] = ['BceWltO5DzIvoTLm9b9Y', 'Q4ox5VWKayHxDwaJX8L1', 'oqXrX5eJH8PXl24pKdgA'];
 
   constructor(private topicService: TopicsService) {
     topicService.listThenStore().then((qs: QuerySnapshot<Topic>) => {
@@ -28,6 +31,9 @@ export class TopicSelectComponent implements OnInit {
         this.topics = topics.sort(function (a, b) {
           return a.order - b.order;
         });
+        if (this.play) {
+          this.topics = this.topics.filter((tp) => !this.ignoreList.includes(tp.id));
+        }
         this.loading = false;
       }
     });
