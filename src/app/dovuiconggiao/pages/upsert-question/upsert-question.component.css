@@ -143,13 +143,23 @@ mat-icon {
 }
 
 @media (max-width: 1080px) {
+  .status-blog {
+    text-align: center;
+  }
   .button-blog {
     margin-left: -20px;
   }
   .right-button {
     display: contents !important;
+    text-align: end;
+  }
+  .bottom-button {
+    width: 100px;
   }
 }
 /*desktop*/
 @media (min-width: 1080px) {
+  .bottom-button {
+    width: 200px;
+  }
 }
