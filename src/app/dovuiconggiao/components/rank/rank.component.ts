@@ -62,12 +62,26 @@ export class RankComponent implements OnInit {
         this.ELEMENT_DATA.push(record);
       });
       this.dataSource.data = this.ELEMENT_DATA.sort((a, b) => b.score - a.score);
-      this.dataSource.data.forEach((el) => {
+      this.ELEMENT_DATA.forEach((el) => {
         this.userService.get(el.userId, (ds: DocumentSnapshot<User>) => {
           el.user = ds.data();
         }, () => {
         });
       });
+      let temp: Record[] = [];
+      let processed: string[] = [];
+      for (let i = 0; i < this.ELEMENT_DATA.length; i++) {
+        let el = this.ELEMENT_DATA[i];
+        if (processed.includes(el.id)) {
+          continue;
+        }
+        let recordsByUserAndTopic = this.ELEMENT_DATA
+          .filter((r) => r.userId === el.userId && r.topicId == el.topicId)
+          .sort((r1, r2) => r2.score - r1.score);
+        processed.push(...recordsByUserAndTopic.map((r)=>r.id));
+        temp.push(recordsByUserAndTopic[0]);
+      }
+      this.dataSource.data = temp;
     });
 
 
